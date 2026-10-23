@@ -1,4 +1,4 @@
-name: Refresh orbital data
+name: Refresh orbital data and signed receptions
 # Every 6 hours, fetch current orbital elements for Earth-observation satellites
 # from CelesTrak, plus land outlines once, and commit them so the globe can load
 # them from this site. Positions are then computed live in each visitor's browser.
@@ -20,9 +20,16 @@ jobs:
       - name: Land outlines (Natural Earth, once)
         run: |
           [ -s land.geojson ] || curl -fsSL "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_110m_land.geojson" -o land.geojson || echo "Land download failed"
+      - name: Real receptions from SatNOGS, signed by EDEN
+        env:
+          EDEN_SIGNING_SEED: ${{ secrets.EDEN_SIGNING_SEED }}
+        run: |
+          pip install --quiet cryptography
+          python scripts/satnogs_sign.py
+          [ -s receptions.json ] && python scripts/satnogs_sign.py --verify || true
       - name: Commit if changed
         run: |
           git config user.name "orbit-data-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add -A tle.txt land.geojson 2>/dev/null || true
+          git add -A tle.txt land.geojson receptions.json eden_pubkey.txt 2>/dev/null || true
           git diff --cached --quiet || (git commit -m "Refresh orbital data" && git push)

@@ -2,7 +2,7 @@
 <html lang="en-GB">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-oTcVyb1hSFRxlPVLwU9ovCgltE77wGEczbck7LCpu/w=' https://cdn.jsdelivr.net/npm/satellite.js@5.0.0/dist/satellite.min.js; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-E1zNJ2KFNBa67TVnlCKLyqBZu7LOUi6LneIWkX4SaI4=' https://cdn.jsdelivr.net/npm/satellite.js@5.0.0/dist/satellite.min.js; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
@@ -90,6 +90,14 @@ nav .btn { padding: 9px 16px; }
 .readout .rk { color: var(--night-muted); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
 .readout .rn { color: var(--foil); font-size: 13px; overflow-wrap: anywhere; }
 .readout .rv { font-variant-numeric: tabular-nums; }
+.stage { position: relative; }
+@media (max-width: 640px) { .rxpanel { position: static !important; max-width: none !important; margin: 4px 0 10px; } }
+.rxpanel { position: absolute; right: 0; bottom: 0; font-family: var(--font-mono); font-size: 11.5px; color: var(--night-ink); background: rgba(10, 15, 21, .82); border: 1px solid rgba(95, 212, 180, .45); border-radius: 3px; padding: 9px 11px; display: grid; gap: 2px; max-width: 62%; backdrop-filter: blur(4px); }
+.rxpanel .rk { color: #5fd4b4; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
+.rxpanel .rk:last-child { color: var(--night-muted); letter-spacing: .04em; text-transform: none; margin-top: 3px; }
+.rxpanel .rn { color: #5fd4b4; font-size: 13px; overflow-wrap: anywhere; }
+.rxpanel a { color: var(--night-ink); text-underline-offset: 2px; }
+.rxpanel.bad { border-color: #c96a5a; color: #e7a596; }
 .viz figcaption { font-family: var(--font-mono); font-size: 11px; letter-spacing: .08em; color: var(--night-muted); text-transform: uppercase; display: flex; flex-wrap: wrap; gap: 6px 16px; }
 .viz figcaption i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
 
@@ -192,7 +200,7 @@ footer a { color: var(--night-ink); }
       <div class="copy">
         <div class="eyebrow">EDEN SSI · Signed Satellite Inference</div>
         <h1>The black box for every <em>AI.</em></h1>
-        <p class="lede">In orbit and on the ground, AI now makes decisions where nobody can watch: on board satellites, in drones and sensors, on servers. EDEN gives every one of those decisions a signed receipt that anyone can check, without trusting the operator or us. We started with satellites, because orbit is the hardest place to do it.</p>
+        <p class="lede">When an AI decision costs money, someone has to prove what it actually did. Today the only record belongs to whoever might be at fault. EDEN gives every AI decision a sealed receipt anyone can check, in orbit and on the ground, without trusting the operator or us. We started with satellites, because orbit is the hardest place to do it.</p>
         <div class="ctas">
           <a class="btn foil" href="verify.html">Check a pass yourself <span class="arr">→</span></a>
           <a class="btn line" href="#pilots">Run a pilot with us</a>
@@ -200,11 +208,14 @@ footer a { color: var(--night-ink); }
         <div class="tagline">Don't recompute it. Verify it.</div>
       </div>
       <figure class="viz">
-        <canvas id="globe" role="img" aria-label="Live 3D globe showing Earth-observation satellites at their current computed positions. Drag to rotate."></canvas>
+        <div class="stage">
+        <canvas id="globe" role="img" aria-label="Live 3D globe showing Earth-observation satellites at their current computed positions, and real signed satellite receptions from SatNOGS ground stations. Drag to rotate."></canvas>
+        <div class="rxpanel" id="rxpanel" aria-live="polite" hidden></div>
+        </div>
         <div class="readout" id="readout" aria-live="polite">
           <div class="rk">Loading orbits…</div>
         </div>
-        <figcaption><span id="gstatus">Positions computed in your browser from public orbital data</span><span><i style="background:#d8b064"></i>Sentinel · Landsat</span><span><i style="background:#edf1f4"></i>Other Earth observation</span><span>Drag to rotate · tap a satellite</span></figcaption>
+        <figcaption><span id="gstatus">Positions computed in your browser from public orbital data</span><span id="rxstatus" hidden></span><span><i style="background:#d8b064"></i>Sentinel · Landsat</span><span><i style="background:#edf1f4"></i>Other Earth observation</span><span><i style="background:#5fd4b4"></i>Real reception, signed</span><span>Drag to rotate · tap a satellite</span></figcaption>
       </figure>
     </div>
 
@@ -518,6 +529,7 @@ footer a { color: var(--night-ink); }
       ctx.beginPath(); ctx.arc(q[0], q[1], rad, 0, 2 * Math.PI); ctx.fill(); ctx.globalAlpha = 1;
       if (i === selected) { ctx.strokeStyle = C.foil; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.arc(q[0], q[1], 8, 0, 2 * Math.PI); ctx.stroke(); }
     });
+    if (typeof drawReceipts === "function") drawReceipts(performance.now());
   }
   function line(pts, k) {
     ctx.beginPath(); let pen = false;
@@ -562,6 +574,126 @@ footer a { color: var(--night-ink); }
     if (best >= 0) { selected = best; userPicked = true; lastTrail = 0; idleUntil = performance.now() + 8000; update(performance.now()); setReadout(); if (reduce) render(); }
   });
 
+  /* ---------- real receptions (SatNOGS), sealed by EDEN, checked here in the browser ---------- */
+  const EDV = (() => {
+    const P = 2n ** 255n - 19n, L = 2n ** 252n + 27742317777372353535851937790883648493n;
+    const md = a => { const x = a % P; return x < 0n ? x + P : x; };
+    const mpow = (b, e) => { let x = 1n; b = md(b); while (e > 0n) { if (e & 1n) x = x * b % P; b = b * b % P; e >>= 1n; } return x; };
+    const inv = a => mpow(a, P - 2n);
+    const Dc = md(-121665n * inv(121666n)), SQ = mpow(2n, (P - 1n) / 4n);
+    const xrec = y => { const xx = md((y * y - 1n) * inv(Dc * y * y + 1n)); let x = mpow(xx, (P + 3n) / 8n); if (md(x * x - xx) !== 0n) x = x * SQ % P; if (x & 1n) x = P - x; return x; };
+    const BY = md(4n * inv(5n)), BX = xrec(BY), BASE = [BX, BY, 1n, md(BX * BY)];
+    const padd = (p, q) => { const A = md((p[1] - p[0]) * (q[1] - q[0])), B = md((p[1] + p[0]) * (q[1] + q[0])), Cc = md(p[3] * 2n * Dc * q[3]), Dd = md(p[2] * 2n * q[2]);
+      const E = B - A, F = Dd - Cc, G = Dd + Cc, H = B + A; return [md(E * F), md(G * H), md(F * G), md(E * H)]; };
+    const pmul = (s, pt) => { let q = [0n, 1n, 1n, 0n]; while (s > 0n) { if (s & 1n) q = padd(q, pt); pt = padd(pt, pt); s >>= 1n; } return q; };
+    const leInt = u => { let x = 0n; for (let k = u.length - 1; k >= 0; k--) x = (x << 8n) | BigInt(u[k]); return x; };
+    const penc = pt => { const zi = inv(pt[2]); const xa = pt[0] * zi % P, ya = pt[1] * zi % P; let v = ya | ((xa & 1n) << 255n); const o = new Uint8Array(32); for (let k = 0; k < 32; k++) { o[k] = Number(v & 255n); v >>= 8n; } return o; };
+    const pdec = u => { if (u.length !== 32) throw 0; let y = leInt(u); const sg = y >> 255n; y &= (1n << 255n) - 1n; if (y >= P) throw 0; let x = xrec(y);
+      if (md(-x * x + y * y - 1n - Dc * x * x * y * y) !== 0n) throw 0; if ((x & 1n) !== sg) { if (x === 0n) throw 0; x = P - x; } return [x, y, 1n, md(x * y)]; };
+    const enc = new TextEncoder();
+    const cat = (...ps) => { const o = new Uint8Array(ps.reduce((a, p) => a + p.length, 0)); let k = 0; for (const p of ps) { o.set(p, k); k += p.length; } return o; };
+    const eq = (a, b) => a.length === b.length && a.every((x, k) => x === b[k]);
+    const hex = u => Array.from(u, b => b.toString(16).padStart(2, "0")).join("");
+    const unhex = h => { if (typeof h !== "string" || !/^([0-9a-f]{2})*$/i.test(h)) throw 0; const o = new Uint8Array(h.length / 2); for (let k = 0; k < o.length; k++) o[k] = parseInt(h.substr(k * 2, 2), 16); return o; };
+    const sha = async (alg, u) => new Uint8Array(await crypto.subtle.digest(alg, u));
+    async function edVerify(pub, msg, sig) {
+      try { if (sig.length !== 64 || pub.length !== 32) return false;
+        const A = pdec(pub), R = pdec(sig.slice(0, 32)), S = leInt(sig.slice(32)); if (S >= L) return false;
+        const k = leInt(await sha("SHA-512", cat(sig.slice(0, 32), pub, msg))) % L;
+        return eq(penc(pmul(S, BASE)), penc(padd(R, pmul(k, A)))); } catch (e) { return false; }
+    }
+    // canonical JSON exactly as satnogs_sign.py writes it (integers only, no floats)
+    function canon(v) {
+      if (v === null || v === true || v === false) return String(v);
+      if (typeof v === "number") { if (!Number.isSafeInteger(v)) throw new Error("non-integer number"); return String(v); }
+      if (typeof v === "string") return JSON.stringify(v);
+      if (Array.isArray(v)) return "[" + v.map(canon).join(",") + "]";
+      return "{" + Object.keys(v).sort().map(k => JSON.stringify(k) + ":" + canon(v[k])).join(",") + "}";
+    }
+    const leaf = r => sha("SHA-256", cat(new Uint8Array([0]), enc.encode(canon(r))));
+    const node = async (a, b) => sha("SHA-256", cat(new Uint8Array([1]), a, b));
+    async function root(h) { if (!h.length) return sha("SHA-256", new Uint8Array(0)); if (h.length === 1) return h[0];
+      let k = 1; while (k * 2 < h.length) k *= 2; return node(await root(h.slice(0, k)), await root(h.slice(k))); }
+    async function check(doc, pinned) {
+      if (!(window.crypto && crypto.subtle)) return [false, "Signature check needs HTTPS"];
+      if (!(await edVerify(unhex("d75a980182b10ab7d54bfed3c964073a0ee172f3daa62325af021a68f707511a"), new Uint8Array(0),
+        unhex("e5564300c360ac729086e2cc806e828a84877f1eb8e5d974d873e065224901555fb8821590a33bacc61e39701cf9b46bd25bf5f0595bbe24655141438e7a100b"))))
+        return [false, "Browser self-test failed"];
+      try {
+        if (doc.schema !== "EDEN-SATNOGS-RECEIPTS-v1") return [false, "Unknown file format"];
+        if (pinned && pinned !== doc.pub) return [false, "Key is not EDEN's published key"];
+        const pub = unhex(doc.pub);
+        if (doc.key !== hex(await sha("SHA-256", pub)).slice(0, 16)) return [false, "Key id mismatch"];
+        if (!Array.isArray(doc.records) || doc.count !== doc.records.length) return [false, "Record count mismatch"];
+        if (hex(await root(await Promise.all(doc.records.map(leaf)))) !== doc.root) return [false, "Records were changed after signing"];
+        const body = {}; for (const k of Object.keys(doc)) if (k !== "sig") body[k] = doc[k];
+        const ok = await edVerify(pub, cat(enc.encode("EDEN-SATNOGS-RECEIPTS-v1\0"), enc.encode(canon(body))), unhex(doc.sig));
+        return ok ? [true, "Signature valid"] : [false, "Signature invalid"];
+      } catch (e) { return [false, "File could not be checked"]; }
+    }
+    return { check };
+  })();
+
+  let rx = [], rxIdx = -1, rxSince = 0, rxDoc = null;
+  const TEAL = "#5fd4b4";
+  const rxPanel = document.getElementById("rxpanel"), rxStatus = document.getElementById("rxstatus");
+  async function loadReceipts() {
+    let doc, pinned = null;
+    try { doc = JSON.parse(await getText("receptions.json")); } catch (e) { return; }   // stage not switched on yet
+    try { pinned = (await getText("eden_pubkey.txt")).trim(); } catch (e) {}
+    const [ok, why] = await EDV.check(doc, pinned);
+    rxPanel.hidden = false;
+    if (!ok) { rxPanel.className = "rxpanel bad"; rxPanel.textContent = "Real receptions: " + why + ". Not shown."; return; }
+    rxDoc = doc;
+    rx = doc.records.map(r => {
+      let rec = null; try { rec = satellite.twoline2satrec(r.tle1, r.tle2); if (rec.error) rec = null; } catch (e) {}
+      const t0 = Date.parse(r.start), t1 = Date.parse(r.end), mid = new Date((t0 + t1) / 2);
+      let st = null;
+      if (rec) { const pv = satellite.propagate(rec, mid); if (pv && pv.position && !isNaN(pv.position.x)) { const g = satellite.eciToGeodetic(pv.position, satellite.gstime(mid)); st = { lat: g.latitude, lon: g.longitude, alt: g.height }; } }
+      return { r, st, slat: parseFloat(r.lat) * D2R, slon: parseFloat(r.lng) * D2R, mid };
+    }).filter(x => x.st && isFinite(x.slat) && isFinite(x.slon));
+    if (!rx.length) { rxPanel.hidden = true; return; }
+    const stations = new Set(rx.map(x => x.r.station)).size;
+    rxStatus.textContent = `${rx.length} real receptions from ${stations} SatNOGS stations · signed by EDEN · checked in your browser`;
+    rxStatus.hidden = false;
+    nextPing(performance.now());
+  }
+  function nextPing(now) {
+    if (!rx.length) return;
+    rxIdx = (rxIdx + 1) % rx.length; rxSince = now;
+    const x = rx[rxIdx], r = x.r, when = x.mid.toISOString().slice(0, 16).replace("T", " ");
+    rxPanel.className = "rxpanel"; rxPanel.innerHTML = "";
+    const row = (cls, txt) => { const d = document.createElement("div"); d.className = cls; d.textContent = txt; rxPanel.append(d); return d; };
+    row("rk", "Received · signed ✓");
+    row("rn", r.sat);
+    row("rv", `heard by ${r.station}`);
+    row("rv", `${when} UTC · ${r.mode || "radio"}${r.frames ? " · " + r.frames + " frames" : ""}`);
+    const a = document.createElement("a"); a.href = r.url; a.rel = "noopener"; a.target = "_blank"; a.textContent = `SatNOGS observation ${r.obs} ↗`;
+    const d = document.createElement("div"); d.className = "rv"; d.append(a); rxPanel.append(d);
+    row("rk", `EDEN key ${rxDoc.key} · sealed ${rxDoc.fetched_at.slice(0, 16).replace("T", " ")} UTC`);
+  }
+  function drawReceipts(now) {
+    if (!rx.length) return;
+    if (!reduce && now - rxSince > 4200) nextPing(now);
+    // every station that contributed: small teal points
+    ctx.fillStyle = "rgba(95,212,180,0.55)";
+    for (const x of rx) { const q = project(x.slat, x.slon, 1); if (q[2] > 0) ctx.fillRect(q[0] - 1.5, q[1] - 1.5, 3, 3); }
+    const x = rx[rxIdx]; if (!x) return;
+    const s = project(x.slat, x.slon, 1), k = 1 + x.st.alt / RE, p = project(x.st.lat, x.st.lon, k);
+    const ph = reduce ? 0.5 : ((now - rxSince) % 1400) / 1400;
+    if (s[2] > 0) {
+      for (const off of [0, 0.5]) { const t = (ph + off) % 1; ctx.strokeStyle = `rgba(95,212,180,${0.8 * (1 - t)})`; ctx.lineWidth = 1.4;
+        ctx.beginPath(); ctx.arc(s[0], s[1], 3 + t * 22, 0, 2 * Math.PI); ctx.stroke(); }
+      ctx.fillStyle = TEAL; ctx.beginPath(); ctx.arc(s[0], s[1], 3.2, 0, 2 * Math.PI); ctx.fill();
+    }
+    if (visibleSat(p)) {
+      if (s[2] > 0) { ctx.strokeStyle = "rgba(95,212,180,0.75)"; ctx.lineWidth = 1; ctx.setLineDash([2, 3]);
+        ctx.beginPath(); ctx.moveTo(s[0], s[1]); ctx.lineTo(p[0], p[1]); ctx.stroke(); ctx.setLineDash([]); }
+      ctx.fillStyle = TEAL; ctx.beginPath(); ctx.arc(p[0], p[1], 2.8, 0, 2 * Math.PI); ctx.fill();
+      ctx.strokeStyle = TEAL; ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(p[0], p[1], 6, 0, 2 * Math.PI); ctx.stroke();
+    }
+  }
+
   /* ---------- loop ---------- */
   let lastFrame = 0, lastReadout = 0, lastCycle = 0;
   function render() { update(performance.now()); draw(); }
@@ -593,6 +725,7 @@ footer a { color: var(--night-ink); }
     }
     pickNext(); render(); setReadout();
     if (!reduce) requestAnimationFrame(frame);
+    if (typeof loadReceipts === "function" && mode === "live") loadReceipts().then(() => { if (reduce) render(); }).catch(() => {});
   }
   init();
 })();
