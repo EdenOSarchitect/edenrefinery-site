@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+<title>EDEN Refinery</title>
+<meta name="description" content="EDEN SSI (Signed Satellite Inference) gives every decision a satellite's AI makes a signed, independently checkable receipt.">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: one long page, ground-segment feel. Hero pairs the claim with a real signed pass receipt; sections follow the buyer's questions: what, how, proof, who, limits, pilot. */
+:root {
+  --bg: #f4f6f5;
+  --surface: #ffffff;
+  --ink: #13202c;
+  --muted: #566573;
+  --line: #d6dde2;
+  --accent: #1f5c8b;
+  --accent-ink: #ffffff;
+  --signal: #b8661c;
+  --band: #10202f;
+  --band-ink: #e8eef3;
+  --band-muted: #9fb1c1;
+  --pass: #1d7a4a; --pass-bg: #e3f3ea;
+  --todo: #8a5a00; --todo-bg: #fdf1d8;
+  --font-display: "IBM Plex Sans Condensed", "Arial Narrow", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0d141b; --surface: #151f29; --ink: #e5ebf0; --muted: #9babb9; --line: #263440;
+  --accent: #6aa9dd; --accent-ink: #0b1218; --signal: #e8a25a;
+  --band: #0a1118; --band-ink: #e5ebf0; --band-muted: #93a6b6;
+  --pass: #5fcf92; --pass-bg: #123323; --todo: #f2c25c; --todo-bg: #352a10;
+  color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0d141b; --surface: #151f29; --ink: #e5ebf0; --muted: #9babb9; --line: #263440;
+  --accent: #6aa9dd; --accent-ink: #0b1218; --signal: #e8a25a;
+  --band: #0a1118; --band-ink: #e5ebf0; --band-muted: #93a6b6;
+  --pass: #5fcf92; --pass-bg: #123323; --todo: #f2c25c; --todo-bg: #352a10;
+  color-scheme: dark }
+
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.6; }
+a { color: var(--accent); }
+.inner { max-width: 1080px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+section { padding-block: 56px; }
+section + section { border-top: 1px solid var(--line); }
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; }
+h2 { font-size: clamp(26px, 3.6vw, 34px); font-weight: 600; line-height: 1.15; }
+h3 { font-size: 19px; font-weight: 600; }
+p { margin: 0; }
+.eyebrow { font-family: var(--font-mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.lead { color: var(--muted); max-width: 64ch; }
+.stack { display: grid; gap: 14px; }
+
+/* top bar */
+.bar { background: var(--band); color: var(--band-ink); }
+.bar .inner { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between; padding-block: 14px; }
+.brand { font-family: var(--font-display); font-weight: 700; font-size: 20px; letter-spacing: .04em; color: var(--band-ink); text-decoration: none; }
+.brand span { color: var(--band-muted); font-weight: 500; }
+nav { display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: center; }
+nav a { color: var(--band-muted); text-decoration: none; font-size: 15px; }
+nav a:hover, nav a:focus-visible { color: var(--band-ink); }
+.btn { display: inline-block; font: 600 15px var(--font-body); text-decoration: none; padding: 11px 18px; border-radius: 6px; border: 1px solid var(--accent); }
+.btn.solid { background: var(--accent); color: var(--accent-ink); }
+.btn.ghost { color: var(--accent); background: transparent; }
+nav .btn { padding: 7px 14px; color: var(--accent-ink); }
+a:focus-visible, .btn:focus-visible { outline: 2px solid var(--signal); outline-offset: 2px; }
+
+/* hero */
+.hero { background: var(--band); color: var(--band-ink); padding-block: 48px 64px; border: 0; }
+.hero .inner { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 40px; align-items: center; }
+.hero .eyebrow { color: var(--band-muted); }
+.hero h1 { font-size: clamp(36px, 6vw, 60px); font-weight: 700; line-height: 1.02; letter-spacing: -.01em; }
+.hero p.lead { color: var(--band-muted); font-size: 18px; }
+.hero .ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+.hero .btn.ghost { color: var(--band-ink); border-color: var(--band-muted); }
+.tagline { font-family: var(--font-mono); font-size: 13px; color: var(--signal); letter-spacing: .04em; }
+.receipt { background: var(--surface); color: var(--ink); border-radius: 8px; border: 1px solid var(--line); font-family: var(--font-mono); font-size: 13px; overflow: hidden; min-width: 0; }
+.receipt .head { display: flex; justify-content: space-between; gap: 8px; padding: 10px 14px; border-bottom: 1px dashed var(--line); color: var(--muted); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; }
+.receipt dl { margin: 0; padding: 12px 14px; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px 14px; }
+.receipt dt { color: var(--muted); }
+.receipt dd { margin: 0; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+.receipt .ok { color: var(--pass); }
+.receipt .foot { padding: 10px 14px; border-top: 1px dashed var(--line); color: var(--muted); font-size: 12px; font-family: var(--font-body); }
+
+/* how it works */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 22px; counter-reset: s; }
+.steps li { counter-increment: s; display: grid; gap: 6px; align-content: start; }
+.steps li::before { content: counter(s, decimal-leading-zero); font-family: var(--font-mono); font-size: 13px; color: var(--signal); }
+.steps p { color: var(--muted); font-size: 15px; }
+
+/* evidence */
+.tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; min-width: 560px; font-size: 15px; }
+th, td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 600; }
+tr:last-child td { border-bottom: 0; }
+td.fig { font-family: var(--font-mono); font-size: 14px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.label { font: 500 11px var(--font-mono); letter-spacing: .06em; padding: 3px 7px; border-radius: 4px; white-space: nowrap; }
+.label.done { background: var(--pass-bg); color: var(--pass); }
+.label.next { background: var(--todo-bg); color: var(--todo); }
+
+/* who */
+.who { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0 32px; margin: 0; }
+.who div { padding: 16px 0; border-top: 1px solid var(--line); min-width: 0; }
+.who dt { font-weight: 600; }
+.who dd { margin: 4px 0 0; color: var(--muted); font-size: 15px; }
+
+/* limits */
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; }
+.two p { color: var(--muted); }
+
+/* pilots */
+.pilot { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 36px; align-items: start; }
+.pilot ul { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+.offer { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--signal); border-radius: 6px; padding: 18px; display: grid; gap: 10px; }
+.offer .mail { font-family: var(--font-mono); font-size: 15px; user-select: all; overflow-wrap: anywhere; }
+
+footer { background: var(--band); color: var(--band-muted); font-size: 14px; }
+footer .inner { padding-block: 28px; display: flex; flex-wrap: wrap; gap: 10px 28px; justify-content: space-between; }
+footer a { color: var(--band-ink); }
+
+@media (max-width: 760px) {
+  .hero .inner, .pilot { grid-template-columns: 1fr; }
+  section { padding-block: 40px; }
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="inner">
+    <a class="brand" href="#top">EDEN <span>Refinery</span></a>
+    <nav aria-label="Main">
+      <a href="#how">How it works</a>
+      <a href="#evidence">Evidence</a>
+      <a href="#who">Who it's for</a>
+      <a href="#pilots">Pilots</a>
+      <a class="btn solid" href="verify.html">Verify a pass</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="inner">
+      <div class="stack">
+        <div class="eyebrow">EDEN SSI · Signed Satellite Inference</div>
+        <h1>Every AI decision in orbit, provable.</h1>
+        <p class="lead">Satellites now decide on board which images to keep, which to discard and when to raise an alert. EDEN SSI gives every one of those decisions a signed receipt that anyone can check, without trusting the operator or us.</p>
+        <div class="ctas">
+          <a class="btn solid" href="verify.html">Check a pass yourself</a>
+          <a class="btn ghost" href="#pilots">Run a pilot with us</a>
+        </div>
+        <div class="tagline">Don't recompute it. Verify it.</div>
+      </div>
+      <figure class="receipt" aria-label="Example signed pass summary">
+        <div class="head"><span>bundle.json · signed pass summary</span><span class="ok">verified</span></div>
+        <dl>
+          <dt>pass</dt><dd>pass-wildfire-0142</dd>
+          <dt>decisions</dt><dd>300 (86 kept, 211 discarded, 3 fire alerts)</dd>
+          <dt>status</dt><dd class="ok">OK</dd>
+          <dt>alerts locked</dt><dd>3 checkpoints</dd>
+          <dt>root</dt><dd>82abf4e9aac899cc2665…5cc2d4be</dd>
+          <dt>key</dt><dd>d42d2a07c9df2295</dd>
+          <dt>signature</dt><dd>4011f1d89695dd58…5b0fa601</dd>
+          <dt>size</dt><dd>926 bytes for the whole pass</dd>
+        </dl>
+        <div class="foot">From the simulated sample pass. Open it in the verifier and check it yourself.</div>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <div class="inner stack">
+      <div class="eyebrow">The problem</div>
+      <h2>Once a satellite's AI decides, nobody can check it.</h2>
+      <p class="lead">Onboard AI saves bandwidth by throwing data away and acts faster by raising alerts in orbit. But what it saw, what it decided and whether the record was changed later are invisible on the ground. As insurance payouts, emissions reports and security decisions start to depend on those calls, "trust us" stops being enough.</p>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="inner stack" style="gap:28px">
+      <div class="stack">
+        <div class="eyebrow">How it works</div>
+        <h2>A flight recorder for onboard AI</h2>
+      </div>
+      <ol class="steps">
+        <li><h3>Record</h3><p>Each decision becomes a record: fingerprint of the image, the exact model weights, the score and the verdict.</p></li>
+        <li><h3>Sign the pass</h3><p>Records are chained in a Merkle tree. At the end of the pass the satellite signs one small summary.</p></li>
+        <li><h3>Lock in alerts</h3><p>An alert is signed the moment it fires. The final pass must prove it extends every alert, so history can't be rewritten afterwards, even by the key holder.</p></li>
+        <li><h3>Verify anywhere</h3><p>Anyone with the public key checks the pass, or any single image, kept or discarded, on their own machine.</p></li>
+        <li><h3>Re-run</h3><p>A second machine recomputes a sample of decisions with the same model and flags any it wouldn't have made, such as a radiation fault or a tampered device.</p></li>
+      </ol>
+      <p class="lead">Built on standard cryptography (SHA-256, RFC 6962 Merkle trees, Ed25519). It sits beside existing models and leaves the radio link and its security to the platform.</p>
+    </div>
+  </section>
+
+  <section id="evidence">
+    <div class="inner stack" style="gap:22px">
+      <div class="stack">
+        <div class="eyebrow">Evidence</div>
+        <h2>What we've measured, and what we haven't yet</h2>
+        <p class="lead">Every claim carries a status. Measurements so far use synthetic images; flight hardware is the next step.</p>
+      </div>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Claim</th><th>Figure</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Automated tests, laptop and Android ARM handset</td><td class="fig">24 / 24 pass</td><td><span class="label done">IMPLEMENTED</span></td></tr>
+            <tr><td>Time to record one 64 kB image on an ARM handset (2 runs)</td><td class="fig">1.8–2.1 ms</td><td><span class="label done">MEASURED</span></td></tr>
+            <tr><td>Fire alert signed and ready after detection (handset)</td><td class="fig">~5 ms</td><td><span class="label done">MEASURED</span></td></tr>
+            <tr><td>Signed summary for a 2,000-image pass</td><td class="fig">713 bytes</td><td><span class="label done">MEASURED</span></td></tr>
+            <tr><td>Proof about any single image, including discarded ones</td><td class="fig">~1 kB</td><td><span class="label done">MEASURED</span></td></tr>
+            <tr><td>History rewritten and re-signed with the real key is caught</td><td class="fig">caught</td><td><span class="label done">TESTED (simulated attack)</span></td></tr>
+            <tr><td>Corrupted onboard decision caught by a ground re-run</td><td class="fig">caught</td><td><span class="label done">TESTED (simulated fault)</span></td></tr>
+            <tr><td>Real satellite imagery</td><td class="fig">—</td><td><span class="label next">NEXT</span></td></tr>
+            <tr><td>Flight-representative hardware, then in orbit</td><td class="fig">—</td><td><span class="label next">PILOT</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="lead">Want to see it fail properly? The <a href="verify.html">verifier</a> includes a tampered pass: the signature still checks out, and the verifier still catches the rewrite and a swapped fire image.</p>
+    </div>
+  </section>
+
+  <section id="who">
+    <div class="inner stack" style="gap:22px">
+      <div class="stack">
+        <div class="eyebrow">Who it's for</div>
+        <h2>Anyone who has to defend a machine's decision to someone else</h2>
+      </div>
+      <dl class="who">
+        <div><dt>Satellite operators and onboard-AI builders</dt><dd>Prove to customers what your AI kept, discarded and flagged, for under a kilobyte per pass.</dd></div>
+        <div><dt>Parametric insurers</dt><dd>Payouts triggered by satellite observations get a record both sides can check, so fewer disputes about the data.</dd></div>
+        <div><dt>Emissions monitoring</dt><dd>Detections that hold up when the operator concerned disputes them.</dd></div>
+        <div><dt>Defence and space security</dt><dd>Tamper-evident records of autonomous decisions, jamming and intrusions, plus re-runs that expose faulty or manipulated ones.</dd></div>
+        <div><dt>Ground stations</dt><dd>A neutral record that a pass was delivered complete and unaltered.</dd></div>
+        <div><dt>AI assurance</dt><dd>The same engine proves any AI decision on any device. Satellites are simply the hardest place to do it.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section>
+    <div class="inner two">
+      <div class="stack"><div class="eyebrow">What a pass check proves</div><p>What the satellite decided, on which image, with which model version, in what order, and that none of it changed afterwards.</p></div>
+      <div class="stack"><div class="eyebrow">What it doesn't prove</div><p>That the decision was right: a verified fire alert proves the AI said "fire", not that there was one. Wall-clock time needs a trusted time source, which isn't in place yet.</p></div>
+    </div>
+  </section>
+
+  <section id="pilots">
+    <div class="inner pilot">
+      <div class="stack">
+        <div class="eyebrow">Pilots</div>
+        <h2>Fixed-price pilots, handled in writing</h2>
+        <p class="lead">We run EDEN SSI on one of your recorded passes, or on a development board of your flight computer, over 8 to 12 weeks.</p>
+        <ul>
+          <li>Integration beside your existing onboard model</li>
+          <li>Signed records for every decision in the pass</li>
+          <li>Verification reports your customers can check themselves</li>
+          <li>A findings memo: overhead on your hardware and what it would change for you</li>
+        </ul>
+        <p class="lead">Hardware makers: we also offer joint tests with no fee either way.</p>
+      </div>
+      <div class="offer">
+        <h3>Start a pilot</h3>
+        <p>Email Daniel Clarke, founder, with your platform and one question you'd want answered.</p>
+        <p class="mail">daniel@edenrefinery.com</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="inner stack">
+      <div class="eyebrow">Company</div>
+      <p class="lead">Eden OS and Refinery Ltd is a UK company building verification for automated decisions. Public evidence: <a href="https://github.com/EdenOSarchitect/EDEN-OS">EDEN-OS</a> and <a href="https://github.com/EdenOSarchitect/eden-os-evidence">eden-os-evidence</a> on GitHub. Founder ORCID: <a href="https://orcid.org/0009-0004-3797-2396">0009-0004-3797-2396</a>.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="inner">
+    <span>© 2026 Eden OS and Refinery Ltd</span>
+    <span>Don't recompute it. Verify it.</span>
+    <a href="verify.html">Verify a pass</a>
+  </div>
+</footer>
+
+</body>
+</html>
