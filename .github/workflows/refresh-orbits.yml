@@ -1,0 +1,28 @@
+name: Refresh orbital data
+# Every 6 hours, fetch current orbital elements for Earth-observation satellites
+# from CelesTrak, plus land outlines once, and commit them so the globe can load
+# them from this site. Positions are then computed live in each visitor's browser.
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Earth-observation orbits (CelesTrak)
+        run: |
+          curl -fsSL "https://celestrak.org/NORAD/elements/gp.php?GROUP=resource&FORMAT=tle" -o tle.new
+          if [ "$(grep -c '^1 ' tle.new)" -gt 10 ]; then mv tle.new tle.txt; else echo "Download looked wrong; keeping old data"; fi
+      - name: Land outlines (Natural Earth, once)
+        run: |
+          [ -s land.geojson ] || curl -fsSL "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_110m_land.geojson" -o land.geojson || echo "Land download failed"
+      - name: Commit if changed
+        run: |
+          git config user.name "orbit-data-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A tle.txt land.geojson 2>/dev/null || true
+          git diff --cached --quiet || (git commit -m "Refresh orbital data" && git push)

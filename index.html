@@ -2,166 +2,253 @@
 <html lang="en-GB">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-oTcVyb1hSFRxlPVLwU9ovCgltE77wGEczbck7LCpu/w=' https://cdn.jsdelivr.net/npm/satellite.js@5.0.0/dist/satellite.min.js; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
 <title>EDEN Refinery</title>
 <meta name="description" content="EDEN SSI (Signed Satellite Inference) gives every decision a satellite's AI makes a signed, independently checkable receipt.">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
 <style>
-/* Layout: one long page, ground-segment feel. Hero pairs the claim with a real signed pass receipt; sections follow the buyer's questions: what, how, proof, who, limits, pilot. */
+/* Layout: orbital-night hero with a live pass-to-signature animation, a measured-stats strip, then light editorial sections.
+   Signature detail: gold foil, the colour of satellite thermal blankets, used only for seals, numbers and the one call to action. */
 :root {
-  --bg: #f4f6f5;
+  --night: #0a0f15;
+  --night-2: #111a24;
+  --night-ink: #edf1f4;
+  --night-muted: #93a3b2;
+  --night-line: #223142;
+  --foil: #d8b064;
+  --foil-deep: #8e6a24;
+  --bg: #f5f4f0;
   --surface: #ffffff;
-  --ink: #13202c;
-  --muted: #566573;
-  --line: #d6dde2;
-  --accent: #1f5c8b;
-  --accent-ink: #ffffff;
-  --signal: #b8661c;
-  --band: #10202f;
-  --band-ink: #e8eef3;
-  --band-muted: #9fb1c1;
+  --ink: #111820;
+  --muted: #59646f;
+  --line: #dcdfe0;
+  --accent: var(--foil-deep);
   --pass: #1d7a4a; --pass-bg: #e3f3ea;
-  --todo: #8a5a00; --todo-bg: #fdf1d8;
-  --font-display: "IBM Plex Sans Condensed", "Arial Narrow", system-ui, sans-serif;
+  --todo: #8a5a00; --todo-bg: #fbefd6;
+  --font-display: "Archivo", "Arial Narrow", system-ui, sans-serif;
   --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
 }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
-  --bg: #0d141b; --surface: #151f29; --ink: #e5ebf0; --muted: #9babb9; --line: #263440;
-  --accent: #6aa9dd; --accent-ink: #0b1218; --signal: #e8a25a;
-  --band: #0a1118; --band-ink: #e5ebf0; --band-muted: #93a6b6;
-  --pass: #5fcf92; --pass-bg: #123323; --todo: #f2c25c; --todo-bg: #352a10;
+  --bg: #0d131a; --surface: #131c26; --ink: #e8edf1; --muted: #9aa8b5; --line: #243241;
+  --accent: var(--foil); --pass: #5fcf92; --pass-bg: #123323; --todo: #f2c25c; --todo-bg: #352a10;
   color-scheme: dark } }
 :root[data-theme="dark"] {
-  --bg: #0d141b; --surface: #151f29; --ink: #e5ebf0; --muted: #9babb9; --line: #263440;
-  --accent: #6aa9dd; --accent-ink: #0b1218; --signal: #e8a25a;
-  --band: #0a1118; --band-ink: #e5ebf0; --band-muted: #93a6b6;
-  --pass: #5fcf92; --pass-bg: #123323; --todo: #f2c25c; --todo-bg: #352a10;
+  --bg: #0d131a; --surface: #131c26; --ink: #e8edf1; --muted: #9aa8b5; --line: #243241;
+  --accent: var(--foil); --pass: #5fcf92; --pass-bg: #123323; --todo: #f2c25c; --todo-bg: #352a10;
   color-scheme: dark }
 
-body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.6; }
-a { color: var(--accent); }
-.inner { max-width: 1080px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
-section { padding-block: 56px; }
-section + section { border-top: 1px solid var(--line); }
-h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; }
-h2 { font-size: clamp(26px, 3.6vw, 34px); font-weight: 600; line-height: 1.15; }
-h3 { font-size: 19px; font-weight: 600; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 17px; line-height: 1.6; }
+a { color: var(--accent); text-underline-offset: 3px; }
 p { margin: 0; }
-.eyebrow { font-family: var(--font-mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
-.lead { color: var(--muted); max-width: 64ch; }
-.stack { display: grid; gap: 14px; }
+h1, h2, h3 { margin: 0; font-family: var(--font-display); text-wrap: balance; }
+.inner { max-width: 1160px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+.eyebrow { font-family: var(--font-mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.lede { color: var(--muted); max-width: 62ch; font-size: 18px; }
+section { padding-block: 96px; }
+h2 { font-size: clamp(30px, 4.4vw, 50px); font-weight: 700; font-stretch: 82%; line-height: 1.04; letter-spacing: -.01em; }
+h3 { font-size: 20px; font-weight: 650; font-stretch: 90%; }
+:focus-visible { outline: 2px solid var(--foil); outline-offset: 3px; }
 
-/* top bar */
-.bar { background: var(--band); color: var(--band-ink); }
-.bar .inner { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between; padding-block: 14px; }
-.brand { font-family: var(--font-display); font-weight: 700; font-size: 20px; letter-spacing: .04em; color: var(--band-ink); text-decoration: none; }
-.brand span { color: var(--band-muted); font-weight: 500; }
-nav { display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: center; }
-nav a { color: var(--band-muted); text-decoration: none; font-size: 15px; }
-nav a:hover, nav a:focus-visible { color: var(--band-ink); }
-.btn { display: inline-block; font: 600 15px var(--font-body); text-decoration: none; padding: 11px 18px; border-radius: 6px; border: 1px solid var(--accent); }
-.btn.solid { background: var(--accent); color: var(--accent-ink); }
-.btn.ghost { color: var(--accent); background: transparent; }
-nav .btn { padding: 7px 14px; color: var(--accent-ink); }
-a:focus-visible, .btn:focus-visible { outline: 2px solid var(--signal); outline-offset: 2px; }
+/* ---------- night band (header + hero + stats) ---------- */
+.night { background: radial-gradient(1200px 520px at 78% 35%, #16263a 0%, transparent 60%), var(--night); color: var(--night-ink); }
+.night .eyebrow { color: var(--night-muted); }
+.bar { display: flex; flex-wrap: wrap; gap: 14px 28px; align-items: center; justify-content: space-between; padding-block: 22px; }
+.brand { display: inline-flex; align-items: baseline; gap: 10px; text-decoration: none; color: var(--night-ink); }
+.brand b { font-family: var(--font-display); font-stretch: 125%; font-weight: 800; font-size: 21px; letter-spacing: .18em; }
+.brand span { font-family: var(--font-mono); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--night-muted); }
+nav { display: flex; flex-wrap: wrap; gap: 8px 26px; align-items: center; }
+nav a { color: var(--night-muted); text-decoration: none; font-size: 15px; }
+nav a:hover { color: var(--night-ink); }
+.btn { display: inline-flex; align-items: center; gap: 10px; font: 600 15px var(--font-body); text-decoration: none; padding: 13px 20px; border-radius: 3px; transition: background-color .2s, color .2s, border-color .2s; }
+.btn.foil { background: var(--foil); color: #18120a; }
+.btn.foil:hover { background: #e6c27c; }
+.btn.line { color: var(--night-ink); border: 1px solid var(--night-line); }
+.btn.line:hover { border-color: var(--night-muted); }
+nav .btn { padding: 9px 16px; }
+.btn .arr { font-family: var(--font-mono); }
 
-/* hero */
-.hero { background: var(--band); color: var(--band-ink); padding-block: 48px 64px; border: 0; }
-.hero .inner { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 40px; align-items: center; }
-.hero .eyebrow { color: var(--band-muted); }
-.hero h1 { font-size: clamp(36px, 6vw, 60px); font-weight: 700; line-height: 1.02; letter-spacing: -.01em; }
-.hero p.lead { color: var(--band-muted); font-size: 18px; }
-.hero .ctas { display: flex; flex-wrap: wrap; gap: 12px; }
-.hero .btn.ghost { color: var(--band-ink); border-color: var(--band-muted); }
-.tagline { font-family: var(--font-mono); font-size: 13px; color: var(--signal); letter-spacing: .04em; }
-.receipt { background: var(--surface); color: var(--ink); border-radius: 8px; border: 1px solid var(--line); font-family: var(--font-mono); font-size: 13px; overflow: hidden; min-width: 0; }
-.receipt .head { display: flex; justify-content: space-between; gap: 8px; padding: 10px 14px; border-bottom: 1px dashed var(--line); color: var(--muted); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; }
-.receipt dl { margin: 0; padding: 12px 14px; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px 14px; }
-.receipt dt { color: var(--muted); }
-.receipt dd { margin: 0; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
-.receipt .ok { color: var(--pass); }
-.receipt .foot { padding: 10px 14px; border-top: 1px dashed var(--line); color: var(--muted); font-size: 12px; font-family: var(--font-body); }
+.hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: center; padding-block: 56px 72px; }
+.hero h1 { font-size: clamp(44px, 7.4vw, 92px); font-weight: 750; font-stretch: 72%; line-height: .94; letter-spacing: -.015em; }
+.hero h1 em { font-style: normal; color: var(--foil); }
+.hero .lede { color: var(--night-muted); }
+.hero .copy { display: grid; gap: 26px; }
+.ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+.tagline { font-family: var(--font-mono); font-size: 13px; letter-spacing: .06em; color: var(--foil); }
+.viz { position: relative; min-width: 0; }
+.viz canvas { width: 100%; height: clamp(320px, 44vw, 560px); display: block; }
+.viz canvas { cursor: grab; touch-action: none; }
+.viz canvas:active { cursor: grabbing; }
+.readout { position: absolute; left: 0; top: 0; font-family: var(--font-mono); font-size: 12px; color: var(--night-ink); background: rgba(10, 15, 21, .78); border: 1px solid var(--night-line); border-radius: 3px; padding: 10px 12px; display: grid; gap: 2px; min-width: 210px; max-width: 70%; backdrop-filter: blur(4px); }
+.readout .rk { color: var(--night-muted); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
+.readout .rn { color: var(--foil); font-size: 13px; overflow-wrap: anywhere; }
+.readout .rv { font-variant-numeric: tabular-nums; }
+.viz figcaption { font-family: var(--font-mono); font-size: 11px; letter-spacing: .08em; color: var(--night-muted); text-transform: uppercase; display: flex; flex-wrap: wrap; gap: 6px 16px; }
+.viz figcaption i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
 
-/* how it works */
-.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 22px; counter-reset: s; }
-.steps li { counter-increment: s; display: grid; gap: 6px; align-content: start; }
-.steps li::before { content: counter(s, decimal-leading-zero); font-family: var(--font-mono); font-size: 13px; color: var(--signal); }
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--night-line); }
+.stat { padding: 26px 22px 30px 0; display: grid; gap: 4px; align-content: start; }
+.stat + .stat { padding-left: 22px; border-left: 1px solid var(--night-line); }
+.stat .n { font-family: var(--font-display); font-weight: 700; font-stretch: 75%; font-size: clamp(34px, 4.2vw, 52px); line-height: 1; font-variant-numeric: tabular-nums; }
+.stat .n small { font-size: .5em; font-weight: 600; color: var(--night-muted); margin-left: 4px; }
+.stat .l { color: var(--night-muted); font-size: 14px; }
+.statnote { font-family: var(--font-mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--night-muted); padding-block: 0 26px; }
+
+/* ---------- light sections ---------- */
+.statement { display: grid; gap: 22px; max-width: 900px; }
+.statement h2 { font-size: clamp(32px, 5vw, 58px); }
+.steps { list-style: none; margin: 48px 0 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); counter-reset: s; border-top: 1px solid var(--line); }
+.steps li { counter-increment: s; padding: 26px 22px 0 0; display: grid; gap: 10px; align-content: start; }
+.steps li + li { padding-left: 22px; border-left: 1px solid var(--line); }
+.steps li::before { content: counter(s, decimal-leading-zero); font-family: var(--font-mono); font-size: 13px; color: var(--accent); letter-spacing: .1em; }
 .steps p { color: var(--muted); font-size: 15px; }
+.note { color: var(--muted); font-size: 15px; margin-top: 36px; max-width: 70ch; }
 
-/* evidence */
-.tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
-table { border-collapse: collapse; width: 100%; min-width: 560px; font-size: 15px; }
-th, td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
-th { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 600; }
-tr:last-child td { border-bottom: 0; }
-td.fig { font-family: var(--font-mono); font-size: 14px; white-space: nowrap; font-variant-numeric: tabular-nums; }
-.label { font: 500 11px var(--font-mono); letter-spacing: .06em; padding: 3px 7px; border-radius: 4px; white-space: nowrap; }
+.proof { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: center; }
+.receipt { background: var(--night); color: var(--night-ink); border-radius: 6px; font-family: var(--font-mono); font-size: 13px; border: 1px solid var(--night-line); box-shadow: 0 30px 60px -30px rgba(10, 15, 21, .55); min-width: 0; }
+.receipt .head { display: flex; justify-content: space-between; gap: 10px; padding: 14px 18px; border-bottom: 1px dashed var(--night-line); color: var(--night-muted); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; }
+.receipt .seal { color: var(--foil); }
+.receipt dl { margin: 0; padding: 16px 18px; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px 18px; }
+.receipt dt { color: var(--night-muted); }
+.receipt dd { margin: 0; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+.receipt .ok { color: #5fcf92; }
+.receipt .foot { padding: 12px 18px; border-top: 1px dashed var(--night-line); color: var(--night-muted); font: 12px var(--font-body); }
+.proof .btn.foil { justify-self: start; }
+
+.tablewrap { overflow-x: auto; margin-top: 36px; border-top: 2px solid var(--ink); }
+table { border-collapse: collapse; width: 100%; min-width: 600px; }
+th, td { text-align: left; padding: 15px 14px 15px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font: 600 12px var(--font-mono); text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
+td.fig { font-family: var(--font-mono); font-size: 15px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.label { font: 500 11px var(--font-mono); letter-spacing: .08em; padding: 4px 8px; border-radius: 2px; white-space: nowrap; }
 .label.done { background: var(--pass-bg); color: var(--pass); }
 .label.next { background: var(--todo-bg); color: var(--todo); }
 
-/* who */
-.who { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0 32px; margin: 0; }
-.who div { padding: 16px 0; border-top: 1px solid var(--line); min-width: 0; }
-.who dt { font-weight: 600; }
-.who dd { margin: 4px 0 0; color: var(--muted); font-size: 15px; }
+.who { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 40px; margin: 40px 0 0; }
+.who div { padding: 22px 0; border-top: 1px solid var(--line); min-width: 0; }
+.who dt { font-family: var(--font-display); font-weight: 650; font-stretch: 90%; font-size: 19px; }
+.who dd { margin: 6px 0 0; color: var(--muted); font-size: 15px; }
 
-/* limits */
-.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; }
-.two p { color: var(--muted); }
+.limits { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; }
+.limits div { display: grid; gap: 10px; padding-top: 18px; border-top: 2px solid var(--ink); }
+.limits p { color: var(--muted); }
 
-/* pilots */
-.pilot { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 36px; align-items: start; }
-.pilot ul { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
-.offer { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--signal); border-radius: 6px; padding: 18px; display: grid; gap: 10px; }
-.offer .mail { font-family: var(--font-mono); font-size: 15px; user-select: all; overflow-wrap: anywhere; }
+.pilot-band { padding-block: 96px; }
+.pilot { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 56px; align-items: start; }
+.pilot h2 { color: var(--night-ink); }
+.pilot .lede { color: var(--night-muted); }
+.pilot ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+.pilot li { padding-left: 26px; position: relative; color: var(--night-ink); }
+.pilot li::before { content: ""; position: absolute; left: 0; top: .72em; width: 12px; height: 1px; background: var(--foil); }
+.offer { border: 1px solid var(--foil); border-radius: 4px; padding: 28px; display: grid; gap: 14px; background: rgba(216, 176, 100, .05); }
+.offer h3 { color: var(--night-ink); font-size: 24px; }
+.offer p { color: var(--night-muted); }
+.mail { font-family: var(--font-mono); font-size: 17px; color: var(--foil); user-select: all; overflow-wrap: anywhere; }
 
-footer { background: var(--band); color: var(--band-muted); font-size: 14px; }
-footer .inner { padding-block: 28px; display: flex; flex-wrap: wrap; gap: 10px 28px; justify-content: space-between; }
-footer a { color: var(--band-ink); }
+.company { display: grid; gap: 14px; }
+footer { border-top: 1px solid var(--night-line); }
+footer .inner { display: flex; flex-wrap: wrap; gap: 10px 32px; justify-content: space-between; padding-block: 30px; font-size: 14px; color: var(--night-muted); }
+footer a { color: var(--night-ink); }
 
-@media (max-width: 760px) {
-  .hero .inner, .pilot { grid-template-columns: 1fr; }
-  section { padding-block: 40px; }
+@media (max-width: 960px) {
+  .hero, .proof, .pilot { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: 1fr 1fr; }
+  .steps li, .steps li + li { padding: 22px 16px 22px 0; border-left: 0; border-bottom: 1px solid var(--line); }
+  .stats { grid-template-columns: 1fr 1fr; }
+  .stat:nth-child(3) { padding-left: 0; border-left: 0; }
+  .stat:nth-child(n+3) { border-top: 1px solid var(--night-line); }
+  .who { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  section, .pilot-band { padding-block: 64px; }
+  .steps, .who, .limits { grid-template-columns: 1fr; }
+  nav a:not(.btn) { display: none; }
 }
 </style>
 </head>
 <body>
 
-<header class="bar">
+<div class="night">
   <div class="inner">
-    <a class="brand" href="#top">EDEN <span>Refinery</span></a>
-    <nav aria-label="Main">
-      <a href="#how">How it works</a>
-      <a href="#evidence">Evidence</a>
-      <a href="#who">Who it's for</a>
-      <a href="#pilots">Pilots</a>
-      <a class="btn solid" href="verify.html">Verify a pass</a>
-    </nav>
-  </div>
-</header>
+    <header class="bar">
+      <a class="brand" href="#top"><b>EDEN</b><span>Refinery</span></a>
+      <nav aria-label="Main">
+        <a href="#how">How it works</a>
+        <a href="#evidence">Evidence</a>
+        <a href="#who">Who it's for</a>
+        <a href="#pilots">Pilots</a>
+        <a class="btn foil" href="verify.html">Verify a pass</a>
+      </nav>
+    </header>
 
-<main id="top">
-  <section class="hero">
-    <div class="inner">
-      <div class="stack">
+    <div class="hero" id="top">
+      <div class="copy">
         <div class="eyebrow">EDEN SSI · Signed Satellite Inference</div>
-        <h1>Every AI decision in orbit, provable.</h1>
-        <p class="lead">Satellites now decide on board which images to keep, which to discard and when to raise an alert. EDEN SSI gives every one of those decisions a signed receipt that anyone can check, without trusting the operator or us.</p>
+        <h1>Every AI decision in orbit, <em>provable.</em></h1>
+        <p class="lede">Satellites now decide on board which images to keep, which to discard and when to raise an alert. EDEN SSI gives every one of those decisions a signed receipt that anyone can check, without trusting the operator or us.</p>
         <div class="ctas">
-          <a class="btn solid" href="verify.html">Check a pass yourself</a>
-          <a class="btn ghost" href="#pilots">Run a pilot with us</a>
+          <a class="btn foil" href="verify.html">Check a pass yourself <span class="arr">→</span></a>
+          <a class="btn line" href="#pilots">Run a pilot with us</a>
         </div>
         <div class="tagline">Don't recompute it. Verify it.</div>
       </div>
-      <figure class="receipt" aria-label="Example signed pass summary">
-        <div class="head"><span>bundle.json · signed pass summary</span><span class="ok">verified</span></div>
+      <figure class="viz">
+        <canvas id="globe" role="img" aria-label="Live 3D globe showing Earth-observation satellites at their current computed positions. Drag to rotate."></canvas>
+        <div class="readout" id="readout" aria-live="polite">
+          <div class="rk">Loading orbits…</div>
+        </div>
+        <figcaption><span id="gstatus">Positions computed in your browser from public orbital data</span><span><i style="background:#d8b064"></i>Sentinel · Landsat</span><span><i style="background:#edf1f4"></i>Other Earth observation</span><span>Drag to rotate · tap a satellite</span></figcaption>
+      </figure>
+    </div>
+
+    <div class="stats" aria-label="Measured results">
+      <div class="stat"><div class="n">713<small>bytes</small></div><div class="l">Signed proof for a whole 2,000-image pass</div></div>
+      <div class="stat"><div class="n">~2<small>ms</small></div><div class="l">To record one image on an ARM processor</div></div>
+      <div class="stat"><div class="n">~5<small>ms</small></div><div class="l">From fire detection to signed alert</div></div>
+      <div class="stat"><div class="n">24<small>/ 24</small></div><div class="l">Automated tests passing, laptop and handset</div></div>
+    </div>
+    <div class="statnote">Measured on an Android ARM handset, synthetic images, 22 Oct 2026</div>
+  </div>
+</div>
+
+<main>
+  <section>
+    <div class="inner statement">
+      <div class="eyebrow">The problem</div>
+      <h2>Once a satellite's AI decides, nobody on the ground can check it.</h2>
+      <p class="lede">Onboard AI saves bandwidth by throwing data away and acts faster by raising alerts in orbit. What it saw, what it decided and whether the record was changed later are invisible. As insurance payouts, emissions reports and security decisions start to depend on those calls, "trust us" stops being enough.</p>
+    </div>
+  </section>
+
+  <section id="how" style="padding-top:0">
+    <div class="inner">
+      <div class="eyebrow">How it works</div>
+      <h2 style="margin-top:14px">A flight recorder for onboard AI.</h2>
+      <ol class="steps">
+        <li><h3>Record</h3><p>Each decision becomes a record: the image's fingerprint, the exact model weights, the score and the verdict.</p></li>
+        <li><h3>Sign the pass</h3><p>Records chain into a Merkle tree. At the end of the pass the satellite signs one small summary.</p></li>
+        <li><h3>Lock in alerts</h3><p>An alert is signed the moment it fires. The final pass must extend it, so history can't be rewritten afterwards, even by the key holder.</p></li>
+        <li><h3>Verify anywhere</h3><p>Anyone with the public key checks the pass, or any single image, kept or discarded, on their own machine.</p></li>
+        <li><h3>Re-run</h3><p>A second machine recomputes sampled decisions with the same model and flags any it wouldn't have made.</p></li>
+      </ol>
+      <p class="note">Standard cryptography throughout: SHA-256, RFC 6962 Merkle trees and Ed25519. It sits beside your existing models and leaves the radio link and its security to the platform.</p>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="inner proof">
+      <figure class="receipt" aria-label="Example signed pass summary" style="margin:0">
+        <div class="head"><span>bundle.json · signed pass summary</span><span class="seal">● signed</span></div>
         <dl>
           <dt>pass</dt><dd>pass-wildfire-0142</dd>
-          <dt>decisions</dt><dd>300 (86 kept, 211 discarded, 3 fire alerts)</dd>
+          <dt>decisions</dt><dd>300 · 86 kept · 211 discarded · 3 alerts</dd>
           <dt>status</dt><dd class="ok">OK</dd>
           <dt>alerts locked</dt><dd>3 checkpoints</dd>
           <dt>root</dt><dd>82abf4e9aac899cc2665…5cc2d4be</dd>
@@ -169,124 +256,348 @@ footer a { color: var(--band-ink); }
           <dt>signature</dt><dd>4011f1d89695dd58…5b0fa601</dd>
           <dt>size</dt><dd>926 bytes for the whole pass</dd>
         </dl>
-        <div class="foot">From the simulated sample pass. Open it in the verifier and check it yourself.</div>
+        <div class="foot">From the simulated sample pass in the verifier.</div>
       </figure>
-    </div>
-  </section>
-
-  <section>
-    <div class="inner stack">
-      <div class="eyebrow">The problem</div>
-      <h2>Once a satellite's AI decides, nobody can check it.</h2>
-      <p class="lead">Onboard AI saves bandwidth by throwing data away and acts faster by raising alerts in orbit. But what it saw, what it decided and whether the record was changed later are invisible on the ground. As insurance payouts, emissions reports and security decisions start to depend on those calls, "trust us" stops being enough.</p>
-    </div>
-  </section>
-
-  <section id="how">
-    <div class="inner stack" style="gap:28px">
-      <div class="stack">
-        <div class="eyebrow">How it works</div>
-        <h2>A flight recorder for onboard AI</h2>
+      <div style="display:grid;gap:22px">
+        <div class="eyebrow">Don't take our word for it</div>
+        <h2>Check a pass in your browser in ten seconds.</h2>
+        <p class="lede">The verifier runs entirely on your device and loads no outside code. Try the tampered sample: its signature still checks out, and the verifier still catches the rewritten history and the swapped fire image.</p>
+        <a class="btn foil" href="verify.html">Open the verifier <span class="arr">→</span></a>
       </div>
-      <ol class="steps">
-        <li><h3>Record</h3><p>Each decision becomes a record: fingerprint of the image, the exact model weights, the score and the verdict.</p></li>
-        <li><h3>Sign the pass</h3><p>Records are chained in a Merkle tree. At the end of the pass the satellite signs one small summary.</p></li>
-        <li><h3>Lock in alerts</h3><p>An alert is signed the moment it fires. The final pass must prove it extends every alert, so history can't be rewritten afterwards, even by the key holder.</p></li>
-        <li><h3>Verify anywhere</h3><p>Anyone with the public key checks the pass, or any single image, kept or discarded, on their own machine.</p></li>
-        <li><h3>Re-run</h3><p>A second machine recomputes a sample of decisions with the same model and flags any it wouldn't have made, such as a radiation fault or a tampered device.</p></li>
-      </ol>
-      <p class="lead">Built on standard cryptography (SHA-256, RFC 6962 Merkle trees, Ed25519). It sits beside existing models and leaves the radio link and its security to the platform.</p>
     </div>
   </section>
 
-  <section id="evidence">
-    <div class="inner stack" style="gap:22px">
-      <div class="stack">
-        <div class="eyebrow">Evidence</div>
-        <h2>What we've measured, and what we haven't yet</h2>
-        <p class="lead">Every claim carries a status. Measurements so far use synthetic images; flight hardware is the next step.</p>
-      </div>
+  <section id="evidence" style="padding-top:0">
+    <div class="inner">
+      <div class="eyebrow">Evidence</div>
+      <h2 style="margin-top:14px">What we've measured, and what comes next.</h2>
       <div class="tablewrap">
         <table>
           <thead><tr><th>Claim</th><th>Figure</th><th>Status</th></tr></thead>
           <tbody>
-            <tr><td>Automated tests, laptop and Android ARM handset</td><td class="fig">24 / 24 pass</td><td><span class="label done">IMPLEMENTED</span></td></tr>
-            <tr><td>Time to record one 64 kB image on an ARM handset (2 runs)</td><td class="fig">1.8–2.1 ms</td><td><span class="label done">MEASURED</span></td></tr>
-            <tr><td>Fire alert signed and ready after detection (handset)</td><td class="fig">~5 ms</td><td><span class="label done">MEASURED</span></td></tr>
-            <tr><td>Signed summary for a 2,000-image pass</td><td class="fig">713 bytes</td><td><span class="label done">MEASURED</span></td></tr>
+            <tr><td>Automated tests, laptop and Android ARM handset</td><td class="fig">24 / 24</td><td><span class="label done">IMPLEMENTED</span></td></tr>
+            <tr><td>Time to record one 64 kB image on an ARM handset, two runs</td><td class="fig">1.8–2.1 ms</td><td><span class="label done">MEASURED</span></td></tr>
+            <tr><td>Fire alert signed and ready after detection</td><td class="fig">~5 ms</td><td><span class="label done">MEASURED</span></td></tr>
+            <tr><td>Signed summary for a 2,000-image pass</td><td class="fig">713 B</td><td><span class="label done">MEASURED</span></td></tr>
             <tr><td>Proof about any single image, including discarded ones</td><td class="fig">~1 kB</td><td><span class="label done">MEASURED</span></td></tr>
-            <tr><td>History rewritten and re-signed with the real key is caught</td><td class="fig">caught</td><td><span class="label done">TESTED (simulated attack)</span></td></tr>
-            <tr><td>Corrupted onboard decision caught by a ground re-run</td><td class="fig">caught</td><td><span class="label done">TESTED (simulated fault)</span></td></tr>
+            <tr><td>History rewritten and re-signed with the real key is caught</td><td class="fig">caught</td><td><span class="label done">TESTED · SIMULATED ATTACK</span></td></tr>
+            <tr><td>Corrupted onboard decision caught by a ground re-run</td><td class="fig">caught</td><td><span class="label done">TESTED · SIMULATED FAULT</span></td></tr>
             <tr><td>Real satellite imagery</td><td class="fig">—</td><td><span class="label next">NEXT</span></td></tr>
             <tr><td>Flight-representative hardware, then in orbit</td><td class="fig">—</td><td><span class="label next">PILOT</span></td></tr>
           </tbody>
         </table>
       </div>
-      <p class="lead">Want to see it fail properly? The <a href="verify.html">verifier</a> includes a tampered pass: the signature still checks out, and the verifier still catches the rewrite and a swapped fire image.</p>
     </div>
   </section>
 
-  <section id="who">
-    <div class="inner stack" style="gap:22px">
-      <div class="stack">
-        <div class="eyebrow">Who it's for</div>
-        <h2>Anyone who has to defend a machine's decision to someone else</h2>
-      </div>
+  <section id="who" style="padding-top:0">
+    <div class="inner">
+      <div class="eyebrow">Who it's for</div>
+      <h2 style="margin-top:14px">Anyone who has to defend a machine's decision to someone else.</h2>
       <dl class="who">
-        <div><dt>Satellite operators and onboard-AI builders</dt><dd>Prove to customers what your AI kept, discarded and flagged, for under a kilobyte per pass.</dd></div>
-        <div><dt>Parametric insurers</dt><dd>Payouts triggered by satellite observations get a record both sides can check, so fewer disputes about the data.</dd></div>
+        <div><dt>Satellite operators</dt><dd>Prove to customers what your onboard AI kept, discarded and flagged, for under a kilobyte per pass.</dd></div>
+        <div><dt>Parametric insurers</dt><dd>Satellite-triggered payouts get a record both sides can check, so fewer disputes about the data.</dd></div>
         <div><dt>Emissions monitoring</dt><dd>Detections that hold up when the operator concerned disputes them.</dd></div>
-        <div><dt>Defence and space security</dt><dd>Tamper-evident records of autonomous decisions, jamming and intrusions, plus re-runs that expose faulty or manipulated ones.</dd></div>
+        <div><dt>Defence and space security</dt><dd>Tamper-evident records of autonomous decisions, jamming and intrusions, with re-runs that expose faulty or manipulated ones.</dd></div>
         <div><dt>Ground stations</dt><dd>A neutral record that a pass was delivered complete and unaltered.</dd></div>
-        <div><dt>AI assurance</dt><dd>The same engine proves any AI decision on any device. Satellites are simply the hardest place to do it.</dd></div>
+        <div><dt>AI assurance</dt><dd>The same engine proves any AI decision on any device. Orbit is simply the hardest place to do it.</dd></div>
       </dl>
     </div>
   </section>
 
-  <section>
-    <div class="inner two">
-      <div class="stack"><div class="eyebrow">What a pass check proves</div><p>What the satellite decided, on which image, with which model version, in what order, and that none of it changed afterwards.</p></div>
-      <div class="stack"><div class="eyebrow">What it doesn't prove</div><p>That the decision was right: a verified fire alert proves the AI said "fire", not that there was one. Wall-clock time needs a trusted time source, which isn't in place yet.</p></div>
-    </div>
-  </section>
-
-  <section id="pilots">
-    <div class="inner pilot">
-      <div class="stack">
-        <div class="eyebrow">Pilots</div>
-        <h2>Fixed-price pilots, handled in writing</h2>
-        <p class="lead">We run EDEN SSI on one of your recorded passes, or on a development board of your flight computer, over 8 to 12 weeks.</p>
-        <ul>
-          <li>Integration beside your existing onboard model</li>
-          <li>Signed records for every decision in the pass</li>
-          <li>Verification reports your customers can check themselves</li>
-          <li>A findings memo: overhead on your hardware and what it would change for you</li>
-        </ul>
-        <p class="lead">Hardware makers: we also offer joint tests with no fee either way.</p>
-      </div>
-      <div class="offer">
-        <h3>Start a pilot</h3>
-        <p>Email Daniel Clarke, founder, with your platform and one question you'd want answered.</p>
-        <p class="mail">daniel@edenrefinery.com</p>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="inner stack">
-      <div class="eyebrow">Company</div>
-      <p class="lead">Eden OS and Refinery Ltd is a UK company building verification for automated decisions. Public evidence: <a href="https://github.com/EdenOSarchitect/EDEN-OS">EDEN-OS</a> and <a href="https://github.com/EdenOSarchitect/eden-os-evidence">eden-os-evidence</a> on GitHub. Founder ORCID: <a href="https://orcid.org/0009-0004-3797-2396">0009-0004-3797-2396</a>.</p>
+  <section style="padding-top:0">
+    <div class="inner limits">
+      <div><div class="eyebrow">What a pass check proves</div><p>What the satellite decided, on which image, with which model version, in what order, and that none of it changed afterwards.</p></div>
+      <div><div class="eyebrow">What it doesn't prove</div><p>That the decision was right: a verified fire alert proves the AI said "fire", not that there was one. Wall-clock time needs a trusted time source, which isn't in place yet.</p></div>
     </div>
   </section>
 </main>
 
-<footer>
-  <div class="inner">
-    <span>© 2026 Eden OS and Refinery Ltd</span>
-    <span>Don't recompute it. Verify it.</span>
-    <a href="verify.html">Verify a pass</a>
+<div class="night pilot-band" id="pilots">
+  <div class="inner pilot">
+    <div style="display:grid;gap:22px">
+      <div class="eyebrow">Pilots</div>
+      <h2>Fixed-price pilots, handled in writing.</h2>
+      <p class="lede">We run EDEN SSI on one of your recorded passes, or on a development board of your flight computer, over 8 to 12 weeks.</p>
+      <ul>
+        <li>Integration beside your existing onboard model</li>
+        <li>Signed records for every decision in the pass</li>
+        <li>Verification reports your customers can check themselves</li>
+        <li>A findings memo: overhead on your hardware and what it would change for you</li>
+      </ul>
+      <p class="lede">Hardware makers: we also run joint tests with no fee either way.</p>
+    </div>
+    <div class="offer">
+      <h3>Start a pilot</h3>
+      <p>Email Daniel Clarke, founder, with your platform and one question you'd want answered.</p>
+      <p class="mail">daniel@edenrefinery.com</p>
+    </div>
   </div>
-</footer>
+  <div class="inner company" style="margin-top:72px">
+    <div class="eyebrow">Company</div>
+    <p class="lede">Eden OS and Refinery Ltd is a UK company building verification for automated decisions. Public evidence: <a href="https://github.com/EdenOSarchitect/EDEN-OS" style="color:var(--foil)">EDEN-OS</a> and <a href="https://github.com/EdenOSarchitect/eden-os-evidence" style="color:var(--foil)">eden-os-evidence</a> on GitHub. Founder ORCID: <a href="https://orcid.org/0009-0004-3797-2396" style="color:var(--foil)">0009-0004-3797-2396</a>.</p>
+  </div>
+  <footer style="margin-top:72px">
+    <div class="inner">
+      <span>© 2026 Eden OS and Refinery Ltd</span>
+      <span>Don't recompute it. Verify it.</span>
+      <a href="verify.html">Verify a pass</a>
+    </div>
+  </footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/satellite.js@5.0.0/dist/satellite.min.js"></script>
+<script>
+(() => {
+  const cv = document.getElementById("globe");
+  const ctx = cv.getContext("2d");
+  const readout = document.getElementById("readout");
+  const statusEl = document.getElementById("gstatus");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const C = { ink: "#edf1f4", muted: "#93a3b2", line: "#223142", foil: "#d8b064", sea: "#0e1925", rim: "#2b4156" };
+  const D2R = Math.PI / 180, RE = 6371;
+  const HIGHLIGHT = /SENTINEL|LANDSAT/i;
+
+  /* ---------- view ---------- */
+  let W = 0, H = 0, dpr = 1, cx = 0, cy = 0, r = 0;
+  let lon0 = -10 * D2R, lat0 = 22 * D2R, idleUntil = 0, dragging = null;
+  function size() {
+    const b = cv.getBoundingClientRect(); dpr = Math.min(2, devicePixelRatio || 1);
+    W = b.width; H = b.height; cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    cx = W / 2; cy = H / 2; r = Math.min(W, H) * 0.39;
+  }
+  // geodetic (rad) + radius factor -> screen; returns [sx, sy, depth]
+  function project(lat, lon, k) {
+    const cl = Math.cos(lat), x = cl * Math.cos(lon), y = cl * Math.sin(lon), z = Math.sin(lat);
+    const x1 = x * Math.cos(lon0) + y * Math.sin(lon0), y1 = -x * Math.sin(lon0) + y * Math.cos(lon0);
+    const x2 = x1 * Math.cos(lat0) + z * Math.sin(lat0), z2 = -x1 * Math.sin(lat0) + z * Math.cos(lat0);
+    return [cx + r * k * y1, cy - r * k * z2, x2 * k, (y1 * y1 + z2 * z2) * k * k];
+  }
+  const visibleSat = p => p[2] > 0 || p[3] > 1;   // in front of the Earth, or outside its disk
+
+  /* ---------- sun (approximate, good to ~1 deg) ---------- */
+  function sunVec(d) {
+    const start = Date.UTC(d.getUTCFullYear(), 0, 0), doy = (d - start) / 864e5;
+    const dec = -23.44 * D2R * Math.cos(2 * Math.PI / 365 * (doy + 10));
+    const hrs = d.getUTCHours() + d.getUTCMinutes() / 60 + d.getUTCSeconds() / 3600;
+    const slon = (12 - hrs) * 15 * D2R;
+    return [Math.cos(dec) * Math.cos(slon), Math.cos(dec) * Math.sin(slon), Math.sin(dec)];
+  }
+
+  /* ---------- land dots ---------- */
+  const NPTS = 7000, GA = Math.PI * (3 - Math.sqrt(5));
+  let dots = [];   // {lat, lon, x, y, z}
+  function pointInRing(lon, lat, ring) {
+    let inside = false;
+    for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+      const [xi, yi] = ring[i], [xj, yj] = ring[j];
+      if ((yi > lat) !== (yj > lat) && lon < (xj - xi) * (lat - yi) / (yj - yi) + xi) inside = !inside;
+    }
+    return inside;
+  }
+  function buildDots(geo) {
+    const polys = [];
+    for (const f of geo.features || []) {
+      const g = f.geometry; if (!g) continue;
+      const list = g.type === "Polygon" ? [g.coordinates] : g.type === "MultiPolygon" ? g.coordinates : [];
+      for (const p of list) {
+        const outer = p[0]; let a = 180, b = -180, c = 90, d = -90;
+        for (const [x, y] of outer) { a = Math.min(a, x); b = Math.max(b, x); c = Math.min(c, y); d = Math.max(d, y); }
+        polys.push({ rings: p, bb: [a, b, c, d] });
+      }
+    }
+    dots = [];
+    for (let i = 0; i < NPTS; i++) {
+      const lat = Math.asin(1 - 2 * (i + 0.5) / NPTS), lon = ((i * GA) % (2 * Math.PI)) - Math.PI;
+      const la = lat / D2R, lo = lon / D2R;
+      let land = false;
+      for (const p of polys) {
+        if (lo < p.bb[0] || lo > p.bb[1] || la < p.bb[2] || la > p.bb[3]) continue;
+        if (pointInRing(lo, la, p.rings[0]) && !p.rings.slice(1).some(h => pointInRing(lo, la, h))) { land = true; break; }
+      }
+      if (land) dots.push({ lat, lon, v: [Math.cos(lat) * Math.cos(lon), Math.cos(lat) * Math.sin(lon), Math.sin(lat)] });
+    }
+  }
+
+  /* ---------- satellites ---------- */
+  let sats = [], mode = "loading", dataNote = "", selected = -1, userPicked = false;
+  function parseTLE(text) {
+    const L = text.split(/\r?\n/).map(s => s.trimEnd()).filter(Boolean), out = [];
+    for (let i = 0; i + 2 < L.length + 1; i++) {
+      if (L[i + 1] && L[i + 2] && L[i + 1].startsWith("1 ") && L[i + 2].startsWith("2 ")) {
+        try {
+          const rec = satellite.twoline2satrec(L[i + 1], L[i + 2]);
+          if (!rec.error) out.push({ name: L[i].replace(/^0 /, "").trim(), rec, hl: HIGHLIGHT.test(L[i]) });
+        } catch (e) {}
+        i += 2;
+      }
+    }
+    return out;
+  }
+  function tleEpoch(rec) { return new Date((rec.jdsatepoch - 2440587.5) * 864e5); }
+  // illustrative fallback: circular sun-synchronous-style orbits, clearly labelled
+  function demoSats() {
+    const out = [];
+    for (let k = 0; k < 28; k++) out.push({ name: "Illustrative orbit " + (k + 1), hl: k % 5 === 0,
+      demo: { inc: (97.4 + (k % 4) * 0.4) * D2R, raan: (k * 37 % 360) * D2R, ph: (k * 71 % 360) * D2R, alt: 500 + (k * 53) % 300 } });
+    return out;
+  }
+  function gmstOf(d) { return typeof satellite !== "undefined" ? satellite.gstime(d) : 0; }
+  function stateOf(s, d) {
+    if (s.demo) {
+      const a = RE + s.demo.alt, n = Math.sqrt(398600.4418 / (a * a * a)), t = d.getTime() / 1000;
+      const u = s.demo.ph + n * t, raan = s.demo.raan - 7.2921159e-5 * t + 1.99e-7 * t;
+      const xo = Math.cos(u), yo = Math.sin(u);
+      const x = xo * Math.cos(raan) - yo * Math.cos(s.demo.inc) * Math.sin(raan);
+      const y = xo * Math.sin(raan) + yo * Math.cos(s.demo.inc) * Math.cos(raan);
+      const z = yo * Math.sin(s.demo.inc);
+      return { lat: Math.asin(z), lon: Math.atan2(y, x), alt: s.demo.alt, v: Math.sqrt(398600.4418 / a) };
+    }
+    const pv = satellite.propagate(s.rec, d);
+    if (!pv || !pv.position || isNaN(pv.position.x)) return null;
+    const g = satellite.eciToGeodetic(pv.position, gmstOf(d));
+    const v = pv.velocity; return { lat: g.latitude, lon: g.longitude, alt: g.height, v: Math.hypot(v.x, v.y, v.z) };
+  }
+  let lastProp = 0, lastTrail = 0;
+  function update(now) {
+    const d = new Date();
+    if (now - lastProp > 250) {
+      for (const s of sats) s.st = stateOf(s, d);
+      lastProp = now;
+    }
+    if (now - lastTrail > 4000) {
+      for (const s of sats) { s.trail = []; for (let k = 12; k >= 1; k--) { const st = stateOf(s, new Date(d - k * 25000)); if (st) s.trail.push(st); } }
+      if (selected >= 0) { const s = sats[selected]; s.orbit = []; for (let k = 0; k <= 120; k++) { const st = stateOf(s, new Date(+d + (k - 60) * 50000)); if (st) s.orbit.push(st); } }
+      lastTrail = now;
+    }
+  }
+
+  /* ---------- draw ---------- */
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    // atmosphere glow + sea disk
+    const g = ctx.createRadialGradient(cx, cy, r * 0.96, cx, cy, r * 1.22);
+    g.addColorStop(0, "rgba(90,140,190,0.22)"); g.addColorStop(1, "rgba(90,140,190,0)");
+    ctx.fillStyle = g; ctx.beginPath(); ctx.arc(cx, cy, r * 1.22, 0, 2 * Math.PI); ctx.fill();
+    ctx.fillStyle = C.sea; ctx.beginPath(); ctx.arc(cx, cy, r, 0, 2 * Math.PI); ctx.fill();
+    ctx.strokeStyle = C.rim; ctx.lineWidth = 1; ctx.stroke();
+    // graticule
+    ctx.strokeStyle = C.line; ctx.lineWidth = 0.6;
+    for (let la = -60; la <= 60; la += 30) line(Array.from({ length: 73 }, (_, i) => [la * D2R, (i * 5 - 180) * D2R]), 1);
+    for (let lo = -180; lo < 180; lo += 30) line(Array.from({ length: 37 }, (_, i) => [(i * 5 - 90) * D2R, lo * D2R]), 1);
+    // land dots, lit by the sun
+    const sv = sunVec(new Date()), ds = Math.max(1, r / 170);
+    for (const p of dots) {
+      const q = project(p.lat, p.lon, 1); if (q[2] <= 0) continue;
+      const lit = p.v[0] * sv[0] + p.v[1] * sv[1] + p.v[2] * sv[2] > 0;
+      ctx.fillStyle = lit ? "rgba(214,224,232," + (0.35 + 0.55 * q[2]) + ")" : "rgba(120,140,160," + (0.18 + 0.25 * q[2]) + ")";
+      ctx.fillRect(q[0] - ds / 2, q[1] - ds / 2, ds, ds);
+    }
+    // selected satellite's orbit
+    if (selected >= 0 && sats[selected] && sats[selected].orbit) {
+      ctx.strokeStyle = "rgba(216,176,100,0.55)"; ctx.lineWidth = 1; ctx.setLineDash([3, 4]);
+      const pts = sats[selected].orbit.map(st => project(st.lat, st.lon, 1 + st.alt / RE));
+      ctx.beginPath(); let pen = false;
+      for (const q of pts) { if (visibleSat(q)) { pen ? ctx.lineTo(q[0], q[1]) : ctx.moveTo(q[0], q[1]); pen = true; } else pen = false; }
+      ctx.stroke(); ctx.setLineDash([]);
+    }
+    // satellites with short trails
+    sats.forEach((s, i) => {
+      if (!s.st) return;
+      const k = 1 + s.st.alt / RE, q = project(s.st.lat, s.st.lon, k); s.scr = visibleSat(q) ? q : null;
+      if (!s.scr) return;
+      if (s.trail && s.trail.length) {
+        ctx.strokeStyle = s.hl ? "rgba(216,176,100,0.5)" : "rgba(237,241,244,0.28)"; ctx.lineWidth = 1;
+        ctx.beginPath(); let pen = false;
+        for (const st of s.trail) { const t = project(st.lat, st.lon, 1 + st.alt / RE); if (visibleSat(t)) { pen ? ctx.lineTo(t[0], t[1]) : ctx.moveTo(t[0], t[1]); pen = true; } }
+        if (pen) { ctx.lineTo(q[0], q[1]); ctx.stroke(); }
+      }
+      const rad = (s.hl ? 2.6 : 1.8) * (q[2] > 0 ? 1 : 0.7);
+      ctx.fillStyle = s.hl ? C.foil : C.ink; ctx.globalAlpha = q[2] > 0 ? 1 : 0.45;
+      ctx.beginPath(); ctx.arc(q[0], q[1], rad, 0, 2 * Math.PI); ctx.fill(); ctx.globalAlpha = 1;
+      if (i === selected) { ctx.strokeStyle = C.foil; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.arc(q[0], q[1], 8, 0, 2 * Math.PI); ctx.stroke(); }
+    });
+  }
+  function line(pts, k) {
+    ctx.beginPath(); let pen = false;
+    for (const [la, lo] of pts) { const q = project(la, lo, k); if (q[2] > 0) { pen ? ctx.lineTo(q[0], q[1]) : ctx.moveTo(q[0], q[1]); pen = true; } else pen = false; }
+    ctx.stroke();
+  }
+
+  /* ---------- readout ---------- */
+  function setReadout() {
+    if (mode === "loading") return;
+    if (!sats.length) { readout.innerHTML = '<div class="rk">Orbit data unavailable</div>'; return; }
+    const s = sats[selected]; if (!s || !s.st) return;
+    const f = (x, n = 1) => x.toFixed(n);
+    readout.innerHTML = "";
+    const row = (cls, txt) => { const d = document.createElement("div"); d.className = cls; d.textContent = txt; readout.append(d); };
+    row("rk", mode === "live" ? "Modelled position · now" : "Illustrative orbit");
+    row("rn", s.name);
+    row("rv", `alt ${f(s.st.alt, 0)} km · ${f(s.st.v, 2)} km/s`);
+    row("rv", `${f(Math.abs(s.st.lat / D2R))}°${s.st.lat >= 0 ? "N" : "S"}  ${f(Math.abs(s.st.lon / D2R))}°${s.st.lon >= 0 ? "E" : "W"}`);
+  }
+  function pickNext() {
+    const hl = sats.map((s, i) => [s, i]).filter(([s]) => s.hl);
+    const pool = hl.length ? hl : sats.map((s, i) => [s, i]);
+    const cur = pool.findIndex(([, i]) => i === selected);
+    selected = pool[(cur + 1) % pool.length][1]; lastTrail = 0;
+  }
+
+  /* ---------- interaction ---------- */
+  cv.addEventListener("pointerdown", e => { dragging = { x: e.clientX, y: e.clientY, lon0, lat0, moved: false }; cv.setPointerCapture(e.pointerId); });
+  cv.addEventListener("pointermove", e => {
+    if (!dragging) return;
+    const dx = e.clientX - dragging.x, dy = e.clientY - dragging.y;
+    if (Math.abs(dx) + Math.abs(dy) > 4) dragging.moved = true;
+    lon0 = dragging.lon0 - dx / r; lat0 = Math.max(-1.2, Math.min(1.2, dragging.lat0 + dy / r));
+    idleUntil = performance.now() + 4000; if (reduce) render();
+  });
+  cv.addEventListener("pointerup", e => {
+    const d = dragging; dragging = null; if (!d || d.moved) return;
+    const b = cv.getBoundingClientRect(), x = e.clientX - b.left, y = e.clientY - b.top;
+    let best = -1, bd = 22 * 22;
+    sats.forEach((s, i) => { if (s.scr) { const dd = (s.scr[0] - x) ** 2 + (s.scr[1] - y) ** 2; if (dd < bd) { bd = dd; best = i; } } });
+    if (best >= 0) { selected = best; userPicked = true; lastTrail = 0; idleUntil = performance.now() + 8000; update(performance.now()); setReadout(); if (reduce) render(); }
+  });
+
+  /* ---------- loop ---------- */
+  let lastFrame = 0, lastReadout = 0, lastCycle = 0;
+  function render() { update(performance.now()); draw(); }
+  function frame(now) {
+    const dt = lastFrame ? Math.min(100, now - lastFrame) : 16; lastFrame = now;
+    if (!dragging && now > idleUntil) lon0 -= dt * 0.00006;
+    update(now); draw();
+    if (now - lastReadout > 500) { setReadout(); lastReadout = now; }
+    if (!userPicked && now - lastCycle > 7000) { if (sats.length) pickNext(); lastCycle = now; }
+    requestAnimationFrame(frame);
+  }
+
+  /* ---------- data ---------- */
+  async function getText(url) { const r = await fetch(url, { cache: "no-cache" }); if (!r.ok) throw new Error(r.status); return r.text(); }
+  async function init() {
+    size(); addEventListener("resize", () => { size(); if (reduce) render(); });
+    try { buildDots(JSON.parse(await getText("land.geojson"))); } catch (e) { dots = []; }
+    try {
+      if (typeof satellite === "undefined") throw new Error("no sgp4");
+      sats = parseTLE(await getText("tle.txt"));
+      if (!sats.length) throw new Error("no sats");
+      mode = "live";
+      const newest = Math.max(...sats.map(s => tleEpoch(s.rec).getTime()));
+      const hrs = Math.max(0, Math.round((Date.now() - newest) / 36e5));
+      statusEl.textContent = `Live: ${sats.length} Earth-observation satellites · orbital data ${hrs < 1 ? "under an hour" : hrs + " h"} old · positions modelled, not received`;
+    } catch (e) {
+      sats = demoSats(); mode = "demo";
+      statusEl.textContent = "Illustrative orbits: live orbital data didn't load here";
+    }
+    pickNext(); render(); setReadout();
+    if (!reduce) requestAnimationFrame(frame);
+  }
+  init();
+})();
+
+</script>
 
 </body>
 </html>
