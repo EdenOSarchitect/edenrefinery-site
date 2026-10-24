@@ -1,0 +1,46 @@
+{
+ "v": 1,
+ "type": "pack",
+ "log": "edenrefinery.com/bench/verify-vs-rerun",
+ "pub": "bf0155e868b2df48ede42a0e1bbe7b41d5fc4a267c2cc36686964c65ac2ada33",
+ "entries": [
+  {
+   "v": 1,
+   "log": "edenrefinery.com/bench/verify-vs-rerun",
+   "i": 0,
+   "t": "2026-10-24T12:59:21Z",
+   "kind": "benchmark",
+   "actor": "github-actions",
+   "input": null,
+   "model": null,
+   "body": {
+    "what": "benchmark: check every decision of a pass vs re-run a 0.09 GFLOP stand-in AI per image",
+    "runner": "Linux x86_64",
+    "tiles": 1000,
+    "rerun_us_per_decision": 5331,
+    "verify_all_ns_per_decision": 1804,
+    "verify_one_us": 182,
+    "checking_cheaper_x": 2955,
+    "modelled_70b_audit_usd_per_year_rerun_all": "35701-123430",
+    "modelled_70b_audit_usd_per_year_eden": "357-1234",
+    "modelled_assumptions": "1,000,000 decisions/day, EDEN verifies all + re-runs 1%, H100 USD 1.99-6.88/h at 40% utilisation"
+   }
+  }
+ ],
+ "seals": [
+  {
+   "v": 1,
+   "type": "seal",
+   "log": "edenrefinery.com/bench/verify-vs-rerun",
+   "seq": 0,
+   "n": 1,
+   "root": "ff40abe05b2be837fac6d27f512a8ba181214701f561e8dab3aa73aa480f6da9",
+   "t": "2026-10-24T12:59:21Z",
+   "key": "40f497df261b1a10",
+   "prev_seal": "0000000000000000000000000000000000000000000000000000000000000000",
+   "note": "weekly benchmark",
+   "sig": "a0cc00cbc1f2dc7f4824e60f3fda917e39a358a34b559539a16ff3b9a3946fdc3487cecdf854db49e92f377c45e0180943994a96210c96dff4ce708a7856a207"
+  }
+ ],
+ "consistency": []
+}
