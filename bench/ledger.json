@@ -25,6 +25,28 @@
     "modelled_70b_audit_usd_per_year_eden": "357-1234",
     "modelled_assumptions": "1,000,000 decisions/day, EDEN verifies all + re-runs 1%, H100 USD 1.99-6.88/h at 40% utilisation"
    }
+  },
+  {
+   "v": 1,
+   "log": "edenrefinery.com/bench/verify-vs-rerun",
+   "i": 1,
+   "t": "2026-10-24T13:00:15Z",
+   "kind": "benchmark",
+   "actor": "github-actions",
+   "input": null,
+   "model": null,
+   "body": {
+    "what": "benchmark: check every decision of a pass vs re-run a 0.09 GFLOP stand-in AI per image",
+    "runner": "Linux x86_64",
+    "tiles": 1000,
+    "rerun_us_per_decision": 4167,
+    "verify_all_ns_per_decision": 1390,
+    "verify_one_us": 116,
+    "checking_cheaper_x": 2997,
+    "modelled_70b_audit_usd_per_year_rerun_all": "35701-123430",
+    "modelled_70b_audit_usd_per_year_eden": "357-1234",
+    "modelled_assumptions": "1,000,000 decisions/day, EDEN verifies all + re-runs 1%, H100 USD 1.99-6.88/h at 40% utilisation"
+   }
   }
  ],
  "seals": [
@@ -40,7 +62,24 @@
    "prev_seal": "0000000000000000000000000000000000000000000000000000000000000000",
    "note": "weekly benchmark",
    "sig": "a0cc00cbc1f2dc7f4824e60f3fda917e39a358a34b559539a16ff3b9a3946fdc3487cecdf854db49e92f377c45e0180943994a96210c96dff4ce708a7856a207"
+  },
+  {
+   "v": 1,
+   "type": "seal",
+   "log": "edenrefinery.com/bench/verify-vs-rerun",
+   "seq": 1,
+   "n": 2,
+   "root": "eb0c1cc2f250816b71be780a5a8991ba5176e4546175eb1f69abe7a298284723",
+   "t": "2026-10-24T13:00:15Z",
+   "key": "40f497df261b1a10",
+   "prev_seal": "fb6d9ee45543170a3743fe91eb503046d9f296035c1814666b2d5f8666ae5706",
+   "note": "weekly benchmark",
+   "sig": "f62946daeb7892fe980fbdf6e969382a3b0383cf3c961ab23bf07c1a2df6d50d26cb248e1e6374525ac27e25f696b42565467ff65989a6d9fd223ec51bd63d0a"
   }
  ],
- "consistency": []
+ "consistency": [
+  [
+   "e3237e7bd28ef0b561c0f1829db4799f4d554d88bc63e421705ed36f8225dcfc"
+  ]
+ ]
 }
