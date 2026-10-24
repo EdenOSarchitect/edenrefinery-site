@@ -1,0 +1,33 @@
+name: Weekly verify-vs-re-run benchmark (sealed ledger)
+# Every Monday: re-measure how much cheaper checking EDEN receipts is than re-running the AI,
+# append the result to bench/ledger.json and seal it with EDEN Evidence. A benchmark, not a
+# customer workload. Runs on GitHub's free runners; uses no Claude usage.
+on:
+  schedule:
+    - cron: "23 6 * * 1"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: site-data
+  cancel-in-progress: false
+jobs:
+  bench:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run benchmark and extend the sealed ledger
+        env:
+          EDEN_SIGNING_SEED: ${{ secrets.EDEN_SIGNING_SEED }}
+        run: |
+          pip install --quiet numpy cryptography
+          python scripts/bench_ledger.py --tiles 1000
+      - name: Commit
+        run: |
+          git config user.name "eden-bench-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add bench/ledger.json
+          git diff --cached --quiet || (git commit -m "Weekly benchmark: verify vs re-run" && git pull --rebase && git push)
