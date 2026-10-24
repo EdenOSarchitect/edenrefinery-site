@@ -1,0 +1,542 @@
+{
+ "schema": "EDEN-MARBLE-FEED-v1",
+ "what": "Every file the edenrefinery.com globe uses, each in a MARBLE/1.0 envelope, hash-chained and sealed by EDEN. Satellite positions drawn from these files are modelled, not received.",
+ "sealed_at": "2026-10-24T12:11:23Z",
+ "count": 10,
+ "head": "b870bef30e72ca9ae900c78bd3d3811cc3be99df8beb74fa33089252ac66ee5d",
+ "pub": "bf0155e868b2df48ede42a0e1bbe7b41d5fc4a267c2cc36686964c65ac2ada33",
+ "key": "40f497df261b1a10",
+ "stream": [
+  {
+   "marble": {
+    "schema": "MARBLE/1.0",
+    "event_id": "92e31baf-b81f-4b70-8a0d-e9ab1f55cfff",
+    "event_kind": "ORBIT_DATA",
+    "sequence": 0,
+    "time": {
+     "wall_utc": "2026-10-24T12:11:23Z",
+     "label": "UNTRUSTED"
+    },
+    "source": {
+     "node_id": "edenrefinery.com/globe-feed",
+     "operator": "EDEN globe feed",
+     "operator_version": "1"
+    },
+    "state": {
+     "input_hash": "b5ff6541c1c319f516e0e0cc05b26c5092ec32d6002fa6c56b807e4414674489",
+     "output_hash": null,
+     "dimension": null
+    },
+    "payload": {
+     "path": "tle.txt",
+     "bytes": 28056,
+     "sha256": "b5ff6541c1c319f516e0e0cc05b26c5092ec32d6002fa6c56b807e4414674489",
+     "detail": "167 satellites · CelesTrak"
+    },
+    "chrysalis": {
+     "status": "NOT_MEASURED"
+    },
+    "bandwidth": {
+     "raw": 28056,
+     "effective": null,
+     "compression_ratio": null,
+     "state": "DELIVERED",
+     "label": "bytes the browser downloads"
+    },
+    "keep": {
+     "projected": true,
+     "projection_score": null,
+     "state_hash": "b5ff6541c1c319f516e0e0cc05b26c5092ec32d6002fa6c56b807e4414674489"
+    },
+    "entropy": {
+     "status": "NOT_MEASURED"
+    },
+    "receipt": null,
+    "note": "observes, never alters",
+    "ledger": {
+     "previous_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+     "chain_index": 0,
+     "packet_hash": "88484b922018bfd70a6903278f6325e4926656e72150b13e37961b94ba9122e9"
+    }
+   }
+  },
+  {
+   "marble": {
+    "schema": "MARBLE/1.0",
+    "event_id": "4bf4707a-053f-4a3c-b176-923a4855c1a2",
+    "event_kind": "RECEPTIONS",
+    "sequence": 1,
+    "time": {
+     "wall_utc": "2026-10-24T12:11:23Z",
+     "label": "UNTRUSTED"
+    },
+    "source": {
+     "node_id": "edenrefinery.com/globe-feed",
+     "operator": "EDEN globe feed",
+     "operator_version": "1"
+    },
+    "state": {
+     "input_hash": "c06209e4d9cce14acf171c2ba3c5315c27b4127a3e2df665b52ccc7e05b90cd6",
+     "output_hash": null,
+     "dimension": null
+    },
+    "payload": {
+     "path": "receptions.json",
+     "bytes": 31063,
+     "sha256": "c06209e4d9cce14acf171c2ba3c5315c27b4127a3e2df665b52ccc7e05b90cd6",
+     "detail": "60 real receptions · SatNOGS · EDEN-signed"
+    },
+    "chrysalis": {
+     "status": "NOT_MEASURED"
+    },
+    "bandwidth": {
+     "raw": 31063,
+     "effective": null,
+     "compression_ratio": null,
+     "state": "DELIVERED",
+     "label": "bytes the browser downloads"
+    },
+    "keep": {
+     "projected": true,
+     "projection_score": null,
+     "state_hash": "c06209e4d9cce14acf171c2ba3c5315c27b4127a3e2df665b52ccc7e05b90cd6"
+    },
+    "entropy": {
+     "status": "NOT_MEASURED"
+    },
+    "receipt": null,
+    "note": "observes, never alters",
+    "ledger": {
+     "previous_hash": "88484b922018bfd70a6903278f6325e4926656e72150b13e37961b94ba9122e9",
+     "chain_index": 1,
+     "packet_hash": "25be1150f332a11b73d0c4f26186fe0b6dc11be1d602fdec66dece68d10118c4"
+    }
+   }
+  },
+  {
+   "marble": {
+    "schema": "MARBLE/1.0",
+    "event_id": "891fd95f-dc93-408c-8f35-8d2118ef8f7e",
+    "event_kind": "LAND_OUTLINES",
+    "sequence": 2,
+    "time": {
+     "wall_utc": "2026-10-24T12:11:23Z",
+     "label": "UNTRUSTED"
+    },
+    "source": {
+     "node_id": "edenrefinery.com/globe-feed",
+     "operator": "EDEN globe feed",
+     "operator_version": "1"
+    },
+    "state": {
+     "input_hash": "9e0729ee253ca7d7a5c4ae9395fb1902264c5377c52e224d13dd85010e2835d9",
+     "output_hash": null,
+     "dimension": null
+    },
+    "payload": {
+     "path": "land.geojson",
+     "bytes": 138160,
+     "sha256": "9e0729ee253ca7d7a5c4ae9395fb1902264c5377c52e224d13dd85010e2835d9",
+     "detail": "Natural Earth 1:110m"
+    },
+    "chrysalis": {
+     "status": "NOT_MEASURED"
+    },
+    "bandwidth": {
+     "raw": 138160,
+     "effective": null,
+     "compression_ratio": null,
+     "state": "DELIVERED",
+     "label": "bytes the browser downloads"
+    },
+    "keep": {
+     "projected": true,
+     "projection_score": null,
+     "state_hash": "9e0729ee253ca7d7a5c4ae9395fb1902264c5377c52e224d13dd85010e2835d9"
+    },
+    "entropy": {
+     "status": "NOT_MEASURED"
+    },
+    "receipt": null,
+    "note": "observes, never alters",
+    "ledger": {
+     "previous_hash": "25be1150f332a11b73d0c4f26186fe0b6dc11be1d602fdec66dece68d10118c4",
+     "chain_index": 2,
+     "packet_hash": "d30d58760a73af21582f7a2d2e3fd6c05d8b5ebe8d9aceff6348f21832860704"
+    }
+   }
+  },
+  {
+   "marble": {
+    "schema": "MARBLE/1.0",
+    "event_id": "9f235521-33fa-4317-a197-8ae82c1fb28e",
+    "event_kind": "EARTH_IMAGERY",
+    "sequence": 3,
+    "time": {
+     "wall_utc": "2026-10-24T12:11:23Z",
+     "label": "UNTRUSTED"
+    },
+    "source": {
+     "node_id": "edenrefinery.com/globe-feed",
+     "operator": "EDEN globe feed",
+     "operator_version": "1"
+    },
+    "state": {
+     "input_hash": "f5779eeda44ed6e344eba9f4812a166b64cd7fc9b1eb996d5ab51edceb42e244",
+     "output_hash": null,
+     "dimension": null
+    },
+    "payload": {
+     "path": "tex/clouds_2k.jpg",
+     "bytes": 356367,
+     "sha256": "f5779eeda44ed6e344eba9f4812a166b64cd7fc9b1eb996d5ab51edceb42e244",
+     "detail": "clouds 2k · 348 kB"
+    },
+    "chrysalis": {
+     "status": "NOT_MEASURED"
+    },
+    "bandwidth": {
+     "raw": 356367,
+     "effective": null,
+     "compression_ratio": null,
+     "state": "DELIVERED",
+     "label": "bytes the browser downloads"
+    },
+    "keep": {
+     "projected": true,
+     "projection_score": null,
+     "state_hash": "f5779eeda44ed6e344eba9f4812a166b64cd7fc9b1eb996d5ab51edceb42e244"
+    },
+    "entropy": {
+     "status": "NOT_MEASURED"
+    },
+    "receipt": null,
+    "note": "observes, never alters",
+    "ledger": {
+     "previous_hash": "d30d58760a73af21582f7a2d2e3fd6c05d8b5ebe8d9aceff6348f21832860704",
+     "chain_index": 3,
+     "packet_hash": "4c3f1d2803f8900e4663f19c14560a21ba86e1396f5ee5e21227d8bb50c5f0fd"
+    }
+   }
+  },
+  {
+   "marble": {
+    "schema": "MARBLE/1.0",
+    "event_id": "86eba4c7-a381-4ab6-9fa4-e23bef286f19",
+    "event_kind": "EARTH_IMAGERY",
+    "sequence": 4,
+    "time": {
+     "wall_utc": "2026-10-24T12:11:23Z",
+     "label": "UNTRUSTED"
+    },
+    "source": {
+     "node_id": "edenrefinery.com/globe-feed",
+     "operator": "EDEN globe feed",
+     "operator_version": "1"
+    },
+    "state": {
+     "input_hash": "61fa5415f3aae6f7873b78981b435b20011ce773264b9f04a72594d4653bab17",
+     "output_hash": null,
+     "dimension": null
+    },
+    "payload": {
+     "path": "tex/clouds_4k.jpg",
+     "bytes": 2418916,
+     "sha256": "61fa5415f3aae6f7873b78981b435b20011ce773264b9f04a72594d4653bab17",
+     "detail": "clouds 4k · 2362 kB"
+    },
+    "chrysalis": {
+     "status": "NOT_MEASURED"
+    },
+    "bandwidth": {
+     "raw": 2418916,
+     "effective": null,
+     "compression_ratio": null,
+     "state": "DELIVERED",
+     "label": "bytes the browser downloads"
+    },
+    "keep": {
+     "projected": true,
+     "projection_score": null,
+     "state_hash": "61fa5415f3aae6f7873b78981b435b20011ce773264b9f04a72594d4653bab17"
+    },
+    "entropy": {
+     "status": "NOT_MEASURED"
+    },
+    "receipt": null,
+    "note": "observes, never alters",
+    "ledger": {
+     "previous_hash": "4c3f1d2803f8900e4663f19c14560a21ba86e1396f5ee5e21227d8bb50c5f0fd",
+     "chain_index": 4,
+     "packet_hash": "17e73b71429da16c33e52913e316c2bae368b1041935b1502fc084474f1e08fa"
+    }
+   }
+  },
+  {
+   "marble": {
+    "schema": "MARBLE/1.0",
+    "event_id": "f03a3b4c-919b-4910-ac0f-f046c465a27b",
+    "event_kind": "EARTH_IMAGERY",
+    "sequence": 5,
+    "time": {
+     "wall_utc": "2026-10-24T12:11:23Z",
+     "label": "UNTRUSTED"
+    },
+    "source": {
+     "node_id": "edenrefinery.com/globe-feed",
+     "operator": "EDEN globe feed",
+     "operator_version": "1"
+    },
+    "state": {
+     "input_hash": "b18e136e630cc34e764d7419e669209d7c5e9ea348a223e347349247a04af268",
+     "output_hash": null,
+     "dimension": null
+    },
+    "payload": {
+     "path": "tex/day_2k.jpg",
+     "bytes": 357230,
+     "sha256": "b18e136e630cc34e764d7419e669209d7c5e9ea348a223e347349247a04af268",
+     "detail": "day 2k · 348 kB"
+    },
+    "chrysalis": {
+     "status": "NOT_MEASURED"
+    },
+    "bandwidth": {
+     "raw": 357230,
+     "effective": null,
+     "compression_ratio": null,
+     "state": "DELIVERED",
+     "label": "bytes the browser downloads"
+    },
+    "keep": {
+     "projected": true,
+     "projection_score": null,
+     "state_hash": "b18e136e630cc34e764d7419e669209d7c5e9ea348a223e347349247a04af268"
+    },
+    "entropy": {
+     "status": "NOT_MEASURED"
+    },
+    "receipt": null,
+    "note": "observes, never alters",
+    "ledger": {
+     "previous_hash": "17e73b71429da16c33e52913e316c2bae368b1041935b1502fc084474f1e08fa",
+     "chain_index": 5,
+     "packet_hash": "900fbbfdd458f7d8c0fda57731a56c2063777be18f3ba5901b82599a021ae497"
+    }
+   }
+  },
+  {
+   "marble": {
+    "schema": "MARBLE/1.0",
+    "event_id": "fea9a460-b438-455e-8eeb-093d7883accc",
+    "event_kind": "EARTH_IMAGERY",
+    "sequence": 6,
+    "time": {
+     "wall_utc": "2026-10-24T12:11:23Z",
+     "label": "UNTRUSTED"
+    },
+    "source": {
+     "node_id": "edenrefinery.com/globe-feed",
+     "operator": "EDEN globe feed",
+     "operator_version": "1"
+    },
+    "state": {
+     "input_hash": "a138b5be651de50a4cf67dc2737dc1a802371631f531a7c237cd8bbfb6262e36",
+     "output_hash": null,
+     "dimension": null
+    },
+    "payload": {
+     "path": "tex/day_4k.jpg",
+     "bytes": 782348,
+     "sha256": "a138b5be651de50a4cf67dc2737dc1a802371631f531a7c237cd8bbfb6262e36",
+     "detail": "day 4k · 764 kB"
+    },
+    "chrysalis": {
+     "status": "NOT_MEASURED"
+    },
+    "bandwidth": {
+     "raw": 782348,
+     "effective": null,
+     "compression_ratio": null,
+     "state": "DELIVERED",
+     "label": "bytes the browser downloads"
+    },
+    "keep": {
+     "projected": true,
+     "projection_score": null,
+     "state_hash": "a138b5be651de50a4cf67dc2737dc1a802371631f531a7c237cd8bbfb6262e36"
+    },
+    "entropy": {
+     "status": "NOT_MEASURED"
+    },
+    "receipt": null,
+    "note": "observes, never alters",
+    "ledger": {
+     "previous_hash": "900fbbfdd458f7d8c0fda57731a56c2063777be18f3ba5901b82599a021ae497",
+     "chain_index": 6,
+     "packet_hash": "07bce4560fab938f03b32a13b5649fa4449acc68a9efb59a612b3dd2f15d961d"
+    }
+   }
+  },
+  {
+   "marble": {
+    "schema": "MARBLE/1.0",
+    "event_id": "04f68d16-d812-40b8-8205-9e648e0a5473",
+    "event_kind": "EARTH_IMAGERY",
+    "sequence": 7,
+    "time": {
+     "wall_utc": "2026-10-24T12:11:23Z",
+     "label": "UNTRUSTED"
+    },
+    "source": {
+     "node_id": "edenrefinery.com/globe-feed",
+     "operator": "EDEN globe feed",
+     "operator_version": "1"
+    },
+    "state": {
+     "input_hash": "f3759d07443114e21f51c0d3205d9db9a07ace0bfa1b4ea5c0d6d1addcd82459",
+     "output_hash": null,
+     "dimension": null
+    },
+    "payload": {
+     "path": "tex/night_2k.jpg",
+     "bytes": 200418,
+     "sha256": "f3759d07443114e21f51c0d3205d9db9a07ace0bfa1b4ea5c0d6d1addcd82459",
+     "detail": "night 2k · 195 kB"
+    },
+    "chrysalis": {
+     "status": "NOT_MEASURED"
+    },
+    "bandwidth": {
+     "raw": 200418,
+     "effective": null,
+     "compression_ratio": null,
+     "state": "DELIVERED",
+     "label": "bytes the browser downloads"
+    },
+    "keep": {
+     "projected": true,
+     "projection_score": null,
+     "state_hash": "f3759d07443114e21f51c0d3205d9db9a07ace0bfa1b4ea5c0d6d1addcd82459"
+    },
+    "entropy": {
+     "status": "NOT_MEASURED"
+    },
+    "receipt": null,
+    "note": "observes, never alters",
+    "ledger": {
+     "previous_hash": "07bce4560fab938f03b32a13b5649fa4449acc68a9efb59a612b3dd2f15d961d",
+     "chain_index": 7,
+     "packet_hash": "12835416495cba8651acfec3c106ac9533067b87283de8e43647a87d1070dfd6"
+    }
+   }
+  },
+  {
+   "marble": {
+    "schema": "MARBLE/1.0",
+    "event_id": "f18fc3f0-3075-4feb-9270-f89809f0be05",
+    "event_kind": "EARTH_IMAGERY",
+    "sequence": 8,
+    "time": {
+     "wall_utc": "2026-10-24T12:11:23Z",
+     "label": "UNTRUSTED"
+    },
+    "source": {
+     "node_id": "edenrefinery.com/globe-feed",
+     "operator": "EDEN globe feed",
+     "operator_version": "1"
+    },
+    "state": {
+     "input_hash": "445b3f3538d424f78cc237b79d4885be938568e1869ac9bcee3890beb2ce6faf",
+     "output_hash": null,
+     "dimension": null
+    },
+    "payload": {
+     "path": "tex/night_4k.jpg",
+     "bytes": 443248,
+     "sha256": "445b3f3538d424f78cc237b79d4885be938568e1869ac9bcee3890beb2ce6faf",
+     "detail": "night 4k · 432 kB"
+    },
+    "chrysalis": {
+     "status": "NOT_MEASURED"
+    },
+    "bandwidth": {
+     "raw": 443248,
+     "effective": null,
+     "compression_ratio": null,
+     "state": "DELIVERED",
+     "label": "bytes the browser downloads"
+    },
+    "keep": {
+     "projected": true,
+     "projection_score": null,
+     "state_hash": "445b3f3538d424f78cc237b79d4885be938568e1869ac9bcee3890beb2ce6faf"
+    },
+    "entropy": {
+     "status": "NOT_MEASURED"
+    },
+    "receipt": null,
+    "note": "observes, never alters",
+    "ledger": {
+     "previous_hash": "12835416495cba8651acfec3c106ac9533067b87283de8e43647a87d1070dfd6",
+     "chain_index": 8,
+     "packet_hash": "e59e95d2ac3be8f7485b26dea5f9b5b09fbbbe946d39ec36d7170a8b04e17f35"
+    }
+   }
+  },
+  {
+   "marble": {
+    "schema": "MARBLE/1.0",
+    "event_id": "5e99a38b-0af9-4b41-b261-5c15689e0789",
+    "event_kind": "EARTH_IMAGERY",
+    "sequence": 9,
+    "time": {
+     "wall_utc": "2026-10-24T12:11:23Z",
+     "label": "UNTRUSTED"
+    },
+    "source": {
+     "node_id": "edenrefinery.com/globe-feed",
+     "operator": "EDEN globe feed",
+     "operator_version": "1"
+    },
+    "state": {
+     "input_hash": "fca8b8ca7ea07b9399f5a23a645b88d16ddf1ead13fd89cad49181da07dd542b",
+     "output_hash": null,
+     "dimension": null
+    },
+    "payload": {
+     "path": "tex/spec_2k.jpg",
+     "bytes": 210312,
+     "sha256": "fca8b8ca7ea07b9399f5a23a645b88d16ddf1ead13fd89cad49181da07dd542b",
+     "detail": "spec 2k · 205 kB"
+    },
+    "chrysalis": {
+     "status": "NOT_MEASURED"
+    },
+    "bandwidth": {
+     "raw": 210312,
+     "effective": null,
+     "compression_ratio": null,
+     "state": "DELIVERED",
+     "label": "bytes the browser downloads"
+    },
+    "keep": {
+     "projected": true,
+     "projection_score": null,
+     "state_hash": "fca8b8ca7ea07b9399f5a23a645b88d16ddf1ead13fd89cad49181da07dd542b"
+    },
+    "entropy": {
+     "status": "NOT_MEASURED"
+    },
+    "receipt": null,
+    "note": "observes, never alters",
+    "ledger": {
+     "previous_hash": "e59e95d2ac3be8f7485b26dea5f9b5b09fbbbe946d39ec36d7170a8b04e17f35",
+     "chain_index": 9,
+     "packet_hash": "b870bef30e72ca9ae900c78bd3d3811cc3be99df8beb74fa33089252ac66ee5d"
+    }
+   }
+  }
+ ],
+ "sig": "58592bca2e3dec84f7ae15e5bf7514ed2022ce851d72bbddc252438c410ef9d74194e51c4246b7c0daaed447b476875158333b396dedb07c6ad8238812ba4d02"
+}

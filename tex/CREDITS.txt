@@ -1,0 +1,7 @@
+day_4k.jpg <- https://www.solarsystemscope.com/textures/download/8k_earth_daymap.jpg : Solar System Scope (CC BY 4.0), https://www.solarsystemscope.com/textures/ , based on NASA imagery
+night_4k.jpg <- https://www.solarsystemscope.com/textures/download/8k_earth_nightmap.jpg : Solar System Scope (CC BY 4.0), https://www.solarsystemscope.com/textures/ , based on NASA imagery
+clouds_4k.jpg <- https://www.solarsystemscope.com/textures/download/8k_earth_clouds.jpg : Solar System Scope (CC BY 4.0), https://www.solarsystemscope.com/textures/ , based on NASA imagery
+day_2k.jpg <- https://raw.githubusercontent.com/mrdoob/three.js/r149/examples/textures/planets/earth_atmos_2048.jpg : three.js r149 example textures (github.com/mrdoob/three.js), NASA-derived imagery
+night_2k.jpg <- https://raw.githubusercontent.com/mrdoob/three.js/r149/examples/textures/planets/earth_lights_2048.png : three.js r149 example textures (github.com/mrdoob/three.js), NASA-derived imagery
+clouds_2k.jpg <- https://raw.githubusercontent.com/mrdoob/three.js/r149/examples/textures/planets/earth_clouds_1024.png : three.js r149 example textures (github.com/mrdoob/three.js), NASA-derived imagery
+spec_2k.jpg <- https://raw.githubusercontent.com/mrdoob/three.js/r149/examples/textures/planets/earth_specular_2048.jpg : three.js r149 example textures (github.com/mrdoob/three.js), NASA-derived imagery

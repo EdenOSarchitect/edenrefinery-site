@@ -3,7 +3,7 @@
  "what": "Recent good-quality receptions published by the SatNOGS Network, sealed by EDEN at fetch time. Proves these records are unchanged since then; does not prove what each station heard.",
  "source": "SatNOGS Network, https://network.satnogs.org",
  "licence": "CC BY-SA 4.0. Data (c) SatNOGS contributors; this signed file is shared under the same licence.",
- "fetched_at": "2026-10-24T12:10:12Z",
+ "fetched_at": "2026-10-24T12:11:07Z",
  "count": 60,
  "root": "707ecfc6f1f2be94c2e9d057ceb724ddcedcdff89d1eb4d4cc360eb7c0a0a1c0",
  "pub": "bf0155e868b2df48ede42a0e1bbe7b41d5fc4a267c2cc36686964c65ac2ada33",
@@ -970,5 +970,5 @@
    "station_id": 91
   }
  ],
- "sig": "3381316c750ea6982792ca5c4fcfcc7ff05f7fe05ef10ecfa55b1b38cd30a95ecd64a693fd437a2ba271820176155cca0e568a914dab0f93896e1d1449fd190d"
+ "sig": "f34c0cfc471aada32a013872465002d6d3d73ffb89e81a5130b2680d1b4a11ab99a60881a98858e6ed4f195198230547463d4730e72f69f0cdc1cc1b61b8a103"
 }
