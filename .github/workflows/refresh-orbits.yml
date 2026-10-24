@@ -1,7 +1,7 @@
-name: Refresh orbital data and signed receptions
-# Every 6 hours, fetch current orbital elements for Earth-observation satellites
-# from CelesTrak, plus land outlines once, and commit them so the globe can load
-# them from this site. Positions are then computed live in each visitor's browser.
+name: Refresh orbits, receptions, Earth imagery and the MARBLE feed
+# Every 6 hours: fetch orbital elements (CelesTrak) and real receptions (SatNOGS, EDEN-signed);
+# once: land outlines and Earth imagery. Then wrap every file the globe uses in a MARBLE/1.0
+# envelope, chain and seal them, so each visitor's browser can check them before drawing.
 on:
   schedule:
     - cron: "17 */6 * * *"
@@ -27,9 +27,19 @@ jobs:
           pip install --quiet cryptography
           python scripts/satnogs_sign.py
           [ -s receptions.json ] && python scripts/satnogs_sign.py --verify || true
+      - name: Earth imagery for the photoreal globe (once)
+        run: |
+          pip install --quiet pillow
+          python scripts/fetch_earth.py || echo "Earth imagery step failed; dot-matrix globe stays"
+      - name: Seal everything the globe uses in a MARBLE/1.0 feed
+        env:
+          EDEN_SIGNING_SEED: ${{ secrets.EDEN_SIGNING_SEED }}
+        run: |
+          python scripts/marble_feed.py
+          [ -s globe.marble.json ] && python scripts/marble_feed.py --verify
       - name: Commit if changed
         run: |
           git config user.name "orbit-data-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add -A tle.txt land.geojson receptions.json eden_pubkey.txt 2>/dev/null || true
+          git add -A tle.txt land.geojson receptions.json eden_pubkey.txt globe.marble.json tex 2>/dev/null || true
           git diff --cached --quiet || (git commit -m "Refresh orbital data" && git push)

@@ -2,204 +2,256 @@
 <html lang="en-GB">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-E1zNJ2KFNBa67TVnlCKLyqBZu7LOUi6LneIWkX4SaI4=' https://cdn.jsdelivr.net/npm/satellite.js@5.0.0/dist/satellite.min.js; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-b5cIWeuVrKDvzQ07npfCiS2uAzhzW3ScHyUy4jYdBiw=' https://cdn.jsdelivr.net/npm/satellite.js@5.0.0/dist/satellite.min.js; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
 <title>EDEN Refinery</title>
 <meta name="description" content="The black box for every AI. EDEN gives every AI decision, in orbit and on the ground, a signed receipt anyone can check. EDEN SSI (Signed Satellite Inference) brings it to satellites first.">
 <meta name="claude:viewport-fit-sides" content="cover">
+<meta name="theme-color" content="#05080c">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap">
 <style>
-/* Layout: orbital-night hero with a live pass-to-signature animation, a measured-stats strip, then light editorial sections.
-   Signature detail: gold foil, the colour of satellite thermal blankets, used only for seals, numbers and the one call to action. */
+/* Direction: an observatory at night. Deep space black, one precious metal (gold foil, the colour of
+   satellite thermal blankets) used only for seals, numbers and the call to action, an instrument-grade
+   mono for every live reading, and a serif italic reserved for the single word that matters. */
 :root {
-  --night: #0a0f15;
-  --night-2: #111a24;
-  --night-ink: #edf1f4;
-  --night-muted: #93a3b2;
-  --night-line: #223142;
-  --foil: #d8b064;
-  --foil-deep: #8e6a24;
-  --bg: #f5f4f0;
-  --surface: #ffffff;
-  --ink: #111820;
-  --muted: #59646f;
-  --line: #dcdfe0;
+  --space: #05080c; --night: #080d13; --night-2: #0e1620;
+  --night-ink: #eef2f5; --night-muted: #8d9cab; --night-line: rgba(160, 185, 210, .14);
+  --foil: #d8b064; --foil-hi: #f3dca0; --foil-deep: #8e6a24;
+  --teal: #5fd4b4;
+  --bg: #f4f2ec; --surface: #fbfaf6; --ink: #0f151c; --muted: #58636e; --line: #dedbd2;
   --accent: var(--foil-deep);
-  --pass: #1d7a4a; --pass-bg: #e3f3ea;
-  --todo: #8a5a00; --todo-bg: #fbefd6;
+  --pass: #1d7a4a; --pass-bg: #e3f3ea; --todo: #8a5a00; --todo-bg: #fbefd6;
   --font-display: "Archivo", "Arial Narrow", system-ui, sans-serif;
+  --font-serif: "Instrument Serif", "Iowan Old Style", Georgia, serif;
   --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --gold: linear-gradient(100deg, #f6e2ab 0%, #d8b064 38%, #a77c34 62%, #ecd08e 100%);
+  --ease: cubic-bezier(.2, .7, .1, 1);
 }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
-  --bg: #0d131a; --surface: #131c26; --ink: #e8edf1; --muted: #9aa8b5; --line: #243241;
-  --accent: var(--foil); --pass: #5fcf92; --pass-bg: #123323; --todo: #f2c25c; --todo-bg: #352a10;
-  color-scheme: dark } }
+  --bg: #0a0f15; --surface: #10171f; --ink: #e9eef2; --muted: #96a4b1; --line: #1f2b38;
+  --accent: var(--foil); --pass: #5fcf92; --pass-bg: #123323; --todo: #f2c25c; --todo-bg: #352a10; color-scheme: dark } }
 :root[data-theme="dark"] {
-  --bg: #0d131a; --surface: #131c26; --ink: #e8edf1; --muted: #9aa8b5; --line: #243241;
-  --accent: var(--foil); --pass: #5fcf92; --pass-bg: #123323; --todo: #f2c25c; --todo-bg: #352a10;
-  color-scheme: dark }
+  --bg: #0a0f15; --surface: #10171f; --ink: #e9eef2; --muted: #96a4b1; --line: #1f2b38;
+  --accent: var(--foil); --pass: #5fcf92; --pass-bg: #123323; --todo: #f2c25c; --todo-bg: #352a10; color-scheme: dark }
 
 html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 17px; line-height: 1.6; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
 a { color: var(--accent); text-underline-offset: 3px; }
 p { margin: 0; }
 h1, h2, h3 { margin: 0; font-family: var(--font-display); text-wrap: balance; }
-.inner { max-width: 1160px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
-.eyebrow { font-family: var(--font-mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
-.lede { color: var(--muted); max-width: 62ch; font-size: 18px; }
-section { padding-block: 96px; }
-h2 { font-size: clamp(30px, 4.4vw, 50px); font-weight: 700; font-stretch: 82%; line-height: 1.04; letter-spacing: -.01em; }
+em.s { font-family: var(--font-serif); font-style: italic; font-weight: 400; letter-spacing: 0; }
+.gold { background: var(--gold); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.inner { max-width: 1240px; margin: 0 auto; padding-left: max(22px, env(safe-area-inset-left, 0px)); padding-right: max(22px, env(safe-area-inset-right, 0px)); }
+.eyebrow { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); display: inline-flex; align-items: center; gap: 12px; }
+.eyebrow::before { content: ""; width: 22px; height: 1px; background: var(--foil); }
+.lede { color: var(--muted); max-width: 60ch; font-size: 18.5px; line-height: 1.62; }
+section { padding-block: 120px; }
+h2 { font-size: clamp(32px, 4.6vw, 58px); font-weight: 700; font-stretch: 78%; line-height: 1.02; letter-spacing: -.012em; }
+h2 em.s { font-size: 1.08em; }
 h3 { font-size: 20px; font-weight: 650; font-stretch: 90%; }
 :focus-visible { outline: 2px solid var(--foil); outline-offset: 3px; }
 
-/* ---------- night band (header + hero + stats) ---------- */
-.night { background: radial-gradient(1200px 520px at 78% 35%, #16263a 0%, transparent 60%), var(--night); color: var(--night-ink); }
-.night .eyebrow { color: var(--night-muted); }
-.bar { display: flex; flex-wrap: wrap; gap: 14px 28px; align-items: center; justify-content: space-between; padding-block: 22px; }
-.brand { display: inline-flex; align-items: baseline; gap: 10px; text-decoration: none; color: var(--night-ink); }
-.brand b { font-family: var(--font-display); font-stretch: 125%; font-weight: 800; font-size: 21px; letter-spacing: .18em; }
-.brand span { font-family: var(--font-mono); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--night-muted); }
-nav { display: flex; flex-wrap: wrap; gap: 8px 26px; align-items: center; }
-nav a { color: var(--night-muted); text-decoration: none; font-size: 15px; }
-nav a:hover { color: var(--night-ink); }
-.btn { display: inline-flex; align-items: center; gap: 10px; font: 600 15px var(--font-body); text-decoration: none; padding: 13px 20px; border-radius: 3px; transition: background-color .2s, color .2s, border-color .2s; }
-.btn.foil { background: var(--foil); color: #18120a; }
-.btn.foil:hover { background: #e6c27c; }
-.btn.line { color: var(--night-ink); border: 1px solid var(--night-line); }
-.btn.line:hover { border-color: var(--night-muted); }
-nav .btn { padding: 9px 16px; }
-.btn .arr { font-family: var(--font-mono); }
+/* reveal on scroll */
+.js .reveal { opacity: 0; transform: translateY(18px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
+.js .reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .js .reveal { opacity: 1; transform: none; transition: none; } }
 
-.hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: center; padding-block: 56px 72px; }
-.hero h1 { font-size: clamp(44px, 7.4vw, 92px); font-weight: 750; font-stretch: 72%; line-height: .94; letter-spacing: -.015em; }
-.hero h1 em { font-style: normal; color: var(--foil); }
-.hero .lede { color: var(--night-muted); }
-.hero .copy { display: grid; gap: 26px; }
+/* ---------- night ---------- */
+.night { position: relative; background: radial-gradient(1100px 620px at 76% 30%, rgba(40, 70, 110, .32) 0%, transparent 62%), radial-gradient(700px 400px at 10% 90%, rgba(216, 176, 100, .05), transparent 70%), var(--space); color: var(--night-ink); isolation: isolate; overflow: hidden; }
+.night::after { content: ""; position: absolute; inset: 0; pointer-events: none; z-index: -1; opacity: .5; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E"); }
+.night .eyebrow { color: var(--night-muted); }
+.night .lede { color: var(--night-muted); }
+
+/* header */
+.top { position: sticky; top: 0; z-index: 50; transition: background-color .4s, border-color .4s, backdrop-filter .4s; border-bottom: 1px solid transparent; }
+.top.scrolled { background: rgba(5, 8, 12, .72); backdrop-filter: blur(16px) saturate(140%); -webkit-backdrop-filter: blur(16px) saturate(140%); border-bottom-color: var(--night-line); }
+.bar { display: flex; flex-wrap: wrap; gap: 14px 28px; align-items: center; justify-content: space-between; padding-block: 18px; }
+.brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; color: var(--night-ink); }
+.brand svg { width: 26px; height: 26px; }
+.brand b { font-family: var(--font-display); font-stretch: 125%; font-weight: 800; font-size: 19px; letter-spacing: .26em; }
+.brand span { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .2em; text-transform: uppercase; color: var(--night-muted); }
+nav { display: flex; flex-wrap: wrap; gap: 8px 30px; align-items: center; }
+nav a { color: var(--night-muted); text-decoration: none; font-size: 14.5px; transition: color .25s; }
+nav a:hover { color: var(--night-ink); }
+.btn { position: relative; display: inline-flex; align-items: center; gap: 10px; font: 600 15px var(--font-body); text-decoration: none; padding: 14px 22px; border-radius: 999px; transition: transform .35s var(--ease), box-shadow .35s var(--ease), background-color .25s, border-color .25s, color .25s; }
+.btn.foil { background: var(--gold); color: #17110a; box-shadow: 0 0 0 1px rgba(255, 230, 170, .35) inset, 0 10px 30px -12px rgba(216, 176, 100, .6); }
+.btn.foil:hover { transform: translateY(-1px); box-shadow: 0 0 0 1px rgba(255, 230, 170, .5) inset, 0 16px 40px -14px rgba(216, 176, 100, .8); }
+.btn.line { color: var(--night-ink); border: 1px solid rgba(216, 176, 100, .35); background: rgba(255, 255, 255, .02); }
+.btn.line:hover { border-color: var(--foil); }
+nav .btn { padding: 9px 18px; font-size: 14px; }
+.btn .arr { font-family: var(--font-mono); transition: transform .35s var(--ease); }
+.btn:hover .arr { transform: translateX(3px); }
+
+/* hero */
+.hero { display: grid; grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr); gap: 24px; align-items: center; padding-block: 40px 56px; }
+.hero h1 { font-size: clamp(50px, 7.6vw, 112px); font-weight: 760; font-stretch: 70%; line-height: .9; letter-spacing: -.02em; }
+.hero h1 em.s { font-size: 1.12em; line-height: .8; padding-right: .04em; }
+.hero .copy { display: grid; gap: 30px; }
 .ctas { display: flex; flex-wrap: wrap; gap: 12px; }
-.tagline { font-family: var(--font-mono); font-size: 13px; letter-spacing: .06em; color: var(--foil); }
-.viz { position: relative; min-width: 0; }
-.viz canvas { width: 100%; height: clamp(320px, 44vw, 560px); display: block; }
-.viz canvas { cursor: grab; touch-action: none; }
-.viz canvas:active { cursor: grabbing; }
-.readout { position: absolute; left: 0; top: 0; font-family: var(--font-mono); font-size: 12px; color: var(--night-ink); background: rgba(10, 15, 21, .78); border: 1px solid var(--night-line); border-radius: 3px; padding: 10px 12px; display: grid; gap: 2px; min-width: 210px; max-width: 70%; backdrop-filter: blur(4px); }
-.readout .rk { color: var(--night-muted); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
-.readout .rn { color: var(--foil); font-size: 13px; overflow-wrap: anywhere; }
-.readout .rv { font-variant-numeric: tabular-nums; }
+.tagline { font-family: var(--font-mono); font-size: 12.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--foil); }
+.viz { position: relative; min-width: 0; margin: 0 -40px 0 0; }
 .stage { position: relative; }
-@media (max-width: 640px) { .rxpanel { position: static !important; max-width: none !important; margin: 4px 0 10px; } }
-.rxpanel { position: absolute; right: 0; bottom: 0; font-family: var(--font-mono); font-size: 11.5px; color: var(--night-ink); background: rgba(10, 15, 21, .82); border: 1px solid rgba(95, 212, 180, .45); border-radius: 3px; padding: 9px 11px; display: grid; gap: 2px; max-width: 62%; backdrop-filter: blur(4px); }
-.rxpanel .rk { color: #5fd4b4; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
+.stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.stage { height: clamp(380px, 50vw, 700px); }
+#globe { cursor: grab; touch-action: none; }
+#globe:active { cursor: grabbing; }
+.glass { font-family: var(--font-mono); font-size: 11.5px; color: var(--night-ink); background: linear-gradient(180deg, rgba(20, 30, 42, .62), rgba(8, 13, 19, .62)); border: 1px solid rgba(160, 185, 210, .16); border-radius: 12px; padding: 11px 13px; display: grid; gap: 2px; align-content: start; backdrop-filter: blur(10px) saturate(140%); -webkit-backdrop-filter: blur(10px) saturate(140%); box-shadow: 0 20px 40px -24px rgba(0, 0, 0, .8); }
+.glass .rk { color: var(--night-muted); font-size: 9.5px; letter-spacing: .16em; text-transform: uppercase; }
+.glass .rn { font-size: 13px; overflow-wrap: anywhere; }
+.glass .rv { font-variant-numeric: tabular-nums; color: #c9d3dc; }
+.hud { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 6px 40px 14px 0; }
+.readout .rn { color: var(--foil); }
+.dial .rn { color: var(--foil-hi); font-size: 15px; letter-spacing: .04em; }
+.rxpanel { border-color: rgba(95, 212, 180, .4); }
+.rxpanel .rk { color: var(--teal); }
 .rxpanel .rk:last-child { color: var(--night-muted); letter-spacing: .04em; text-transform: none; margin-top: 3px; }
-.rxpanel .rn { color: #5fd4b4; font-size: 13px; overflow-wrap: anywhere; }
+.rxpanel .rn { color: var(--teal); }
 .rxpanel a { color: var(--night-ink); text-underline-offset: 2px; }
 .rxpanel.bad { border-color: #c96a5a; color: #e7a596; }
-.viz figcaption { font-family: var(--font-mono); font-size: 11px; letter-spacing: .08em; color: var(--night-muted); text-transform: uppercase; display: flex; flex-wrap: wrap; gap: 6px 16px; }
-.viz figcaption i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+.viz figcaption { margin-right: 40px; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .1em; color: var(--night-muted); text-transform: uppercase; display: flex; flex-wrap: wrap; gap: 6px 16px; }
+.viz figcaption i { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
 
+/* MARBLE strip */
+.marble { margin: 14px 40px 0 0; border: 1px solid var(--night-line); border-radius: 12px; overflow: hidden; font-family: var(--font-mono); font-size: 11px; background: rgba(255, 255, 255, .015); }
+.marble .mhead { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 14px; border-bottom: 1px solid var(--night-line); color: var(--night-muted); letter-spacing: .04em; }
+.marble .pill { flex: none; font-size: 9.5px; letter-spacing: .14em; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; border: 1px solid currentColor; }
+.pill.ok { color: var(--teal); } .pill.bad { color: #e7a596; } .pill.absent, .pill.loading { color: var(--night-muted); }
+.marble .mrow { display: grid; grid-template-columns: 26px 128px minmax(0, 1fr) auto; gap: 12px; padding: 6px 14px; color: #c3cdd6; border-top: 1px solid rgba(160, 185, 210, .06); }
+.marble .mrow span:nth-child(2) { color: var(--foil); letter-spacing: .06em; }
+.marble .mrow span:nth-child(3) { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.marble .okc { color: var(--teal); } .marble .badc { color: #e7a596; } .marble .wait { color: var(--night-muted); }
+
+/* stats */
 .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--night-line); }
-.stat { padding: 26px 22px 30px 0; display: grid; gap: 4px; align-content: start; }
-.stat + .stat { padding-left: 22px; border-left: 1px solid var(--night-line); }
-.stat .n { font-family: var(--font-display); font-weight: 700; font-stretch: 75%; font-size: clamp(34px, 4.2vw, 52px); line-height: 1; font-variant-numeric: tabular-nums; }
-.stat .n small { font-size: .5em; font-weight: 600; color: var(--night-muted); margin-left: 4px; }
+.stat { padding: 30px 24px 34px 0; display: grid; gap: 6px; align-content: start; }
+.stat + .stat { padding-left: 24px; border-left: 1px solid var(--night-line); }
+.stat .n { font-family: var(--font-display); font-weight: 700; font-stretch: 72%; font-size: clamp(40px, 4.6vw, 64px); line-height: 1; font-variant-numeric: tabular-nums; }
+.stat .n small { font-size: .42em; font-weight: 600; color: var(--night-muted); margin-left: 6px; -webkit-text-fill-color: var(--night-muted); }
 .stat .l { color: var(--night-muted); font-size: 14px; }
-.statnote { font-family: var(--font-mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--night-muted); padding-block: 0 26px; }
+.statnote { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--night-muted); padding-block: 0 30px; }
 
 /* ---------- light sections ---------- */
-.statement { display: grid; gap: 22px; max-width: 900px; }
-.statement h2 { font-size: clamp(32px, 5vw, 58px); }
-.steps { list-style: none; margin: 48px 0 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); counter-reset: s; border-top: 1px solid var(--line); }
-.steps li { counter-increment: s; padding: 26px 22px 0 0; display: grid; gap: 10px; align-content: start; }
-.steps li + li { padding-left: 22px; border-left: 1px solid var(--line); }
-.steps li::before { content: counter(s, decimal-leading-zero); font-family: var(--font-mono); font-size: 13px; color: var(--accent); letter-spacing: .1em; }
+.statement { display: grid; gap: 26px; max-width: 980px; }
+.statement h2 { font-size: clamp(36px, 5.4vw, 70px); }
+.steps { list-style: none; margin: 56px 0 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; counter-reset: s; }
+.steps li { counter-increment: s; padding: 26px 22px 28px; display: grid; gap: 12px; align-content: start; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; transition: transform .5s var(--ease), border-color .4s, box-shadow .5s var(--ease); }
+.steps li:hover { transform: translateY(-4px); border-color: rgba(216, 176, 100, .6); box-shadow: 0 24px 50px -30px rgba(80, 60, 20, .35); }
+.steps li::before { content: counter(s, decimal-leading-zero); font-family: var(--font-serif); font-style: italic; font-size: 34px; line-height: 1; color: var(--accent); }
 .steps p { color: var(--muted); font-size: 15px; }
-.note { color: var(--muted); font-size: 15px; margin-top: 36px; max-width: 70ch; }
+.note { color: var(--muted); font-size: 15px; margin-top: 40px; max-width: 72ch; }
 
-.proof { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: center; }
-.receipt { background: var(--night); color: var(--night-ink); border-radius: 6px; font-family: var(--font-mono); font-size: 13px; border: 1px solid var(--night-line); box-shadow: 0 30px 60px -30px rgba(10, 15, 21, .55); min-width: 0; }
-.receipt .head { display: flex; justify-content: space-between; gap: 10px; padding: 14px 18px; border-bottom: 1px dashed var(--night-line); color: var(--night-muted); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; }
+.proof { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 72px; align-items: center; }
+.receipt { position: relative; background: linear-gradient(180deg, #0c131b, #070b10); color: var(--night-ink); border-radius: 18px; font-family: var(--font-mono); font-size: 13px; border: 1px solid #1c2733; box-shadow: 0 50px 90px -40px rgba(5, 8, 12, .7), 0 0 0 1px rgba(216, 176, 100, .08) inset; min-width: 0; overflow: hidden; }
+.receipt::before { content: ""; position: absolute; inset: -40% -60%; background: linear-gradient(115deg, transparent 42%, rgba(243, 220, 160, .09) 50%, transparent 58%); animation: sheen 7s var(--ease) infinite; pointer-events: none; }
+@keyframes sheen { 0%, 55% { transform: translateX(-30%); } 100% { transform: translateX(30%); } }
+@media (prefers-reduced-motion: reduce) { .receipt::before { animation: none; display: none; } }
+.receipt .head { display: flex; justify-content: space-between; gap: 10px; padding: 16px 20px; border-bottom: 1px dashed #233142; color: var(--night-muted); font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; }
 .receipt .seal { color: var(--foil); }
-.receipt dl { margin: 0; padding: 16px 18px; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px 18px; }
+.receipt dl { margin: 0; padding: 18px 20px; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 9px 20px; }
 .receipt dt { color: var(--night-muted); }
 .receipt dd { margin: 0; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
 .receipt .ok { color: #5fcf92; }
-.receipt .foot { padding: 12px 18px; border-top: 1px dashed var(--night-line); color: var(--night-muted); font: 12px var(--font-body); }
+.receipt .foot { padding: 13px 20px; border-top: 1px dashed #233142; color: var(--night-muted); font: 12px var(--font-body); }
 .proof .btn.foil { justify-self: start; }
 
-.tablewrap { overflow-x: auto; margin-top: 36px; border-top: 2px solid var(--ink); }
+/* sealed-end-to-end band */
+.e2e { padding-block: 110px; }
+.e2e .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 48px; }
+.e2e .card { border: 1px solid var(--night-line); border-radius: 18px; padding: 26px; display: grid; gap: 10px; align-content: start; background: linear-gradient(180deg, rgba(255, 255, 255, .03), rgba(255, 255, 255, .005)); }
+.e2e .card .k { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--foil); }
+.e2e .card h3 { color: var(--night-ink); }
+.e2e .card p { color: var(--night-muted); font-size: 15px; }
+
+.tablewrap { overflow-x: auto; margin-top: 40px; border-top: 1px solid var(--ink); }
 table { border-collapse: collapse; width: 100%; min-width: 600px; }
-th, td { text-align: left; padding: 15px 14px 15px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
-th { font: 600 12px var(--font-mono); text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
+th, td { text-align: left; padding: 17px 16px 17px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font: 500 11px var(--font-mono); text-transform: uppercase; letter-spacing: .14em; color: var(--muted); }
 td.fig { font-family: var(--font-mono); font-size: 15px; white-space: nowrap; font-variant-numeric: tabular-nums; }
-.label { font: 500 11px var(--font-mono); letter-spacing: .08em; padding: 4px 8px; border-radius: 2px; white-space: nowrap; }
+tbody tr { transition: background-color .3s; }
+tbody tr:hover { background: color-mix(in srgb, var(--foil) 6%, transparent); }
+.label { font: 500 10.5px var(--font-mono); letter-spacing: .1em; padding: 4px 9px; border-radius: 999px; white-space: nowrap; }
 .label.done { background: var(--pass-bg); color: var(--pass); }
 .label.next { background: var(--todo-bg); color: var(--todo); }
 
-.who { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 40px; margin: 40px 0 0; }
-.who div { padding: 22px 0; border-top: 1px solid var(--line); min-width: 0; }
-.who dt { font-family: var(--font-display); font-weight: 650; font-stretch: 90%; font-size: 19px; }
-.who dd { margin: 6px 0 0; color: var(--muted); font-size: 15px; }
+.who { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin: 48px 0 0; }
+.who div { padding: 26px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); min-width: 0; transition: border-color .4s, transform .5s var(--ease); }
+.who div:hover { border-color: rgba(216, 176, 100, .6); transform: translateY(-3px); }
+.who dt { font-family: var(--font-display); font-weight: 650; font-stretch: 90%; font-size: 20px; }
+.who dd { margin: 8px 0 0; color: var(--muted); font-size: 15px; }
 
-.limits { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; }
-.limits div { display: grid; gap: 10px; padding-top: 18px; border-top: 2px solid var(--ink); }
-.limits p { color: var(--muted); }
+.limits { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px; }
+.limits div { display: grid; gap: 12px; padding-top: 22px; border-top: 1px solid var(--ink); }
+.limits p { color: var(--muted); font-size: 18px; }
 
-.pilot-band { padding-block: 96px; }
-.pilot { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 56px; align-items: start; }
+.pilot-band { padding-block: 120px 0; }
+.pilot { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 72px; align-items: start; }
 .pilot h2 { color: var(--night-ink); }
-.pilot .lede { color: var(--night-muted); }
-.pilot ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
-.pilot li { padding-left: 26px; position: relative; color: var(--night-ink); }
-.pilot li::before { content: ""; position: absolute; left: 0; top: .72em; width: 12px; height: 1px; background: var(--foil); }
-.offer { border: 1px solid var(--foil); border-radius: 4px; padding: 28px; display: grid; gap: 14px; background: rgba(216, 176, 100, .05); }
-.offer h3 { color: var(--night-ink); font-size: 24px; }
+.pilot ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 12px; }
+.pilot li { padding-left: 30px; position: relative; color: var(--night-ink); }
+.pilot li::before { content: ""; position: absolute; left: 0; top: .78em; width: 16px; height: 1px; background: var(--foil); }
+.offer { position: relative; border-radius: 22px; padding: 34px; display: grid; gap: 16px; background: linear-gradient(180deg, rgba(216, 176, 100, .07), rgba(216, 176, 100, .015)); }
+.offer::before { content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px; background: var(--gold); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; }
+.offer h3 { color: var(--night-ink); font-size: 28px; font-stretch: 85%; }
 .offer p { color: var(--night-muted); }
-.mail { font-family: var(--font-mono); font-size: 17px; color: var(--foil); user-select: all; overflow-wrap: anywhere; }
-
-.company { display: grid; gap: 14px; }
+.mail { font-family: var(--font-mono); font-size: 17px; user-select: all; overflow-wrap: anywhere; }
+.company { display: grid; gap: 16px; }
 footer { border-top: 1px solid var(--night-line); }
-footer .inner { display: flex; flex-wrap: wrap; gap: 10px 32px; justify-content: space-between; padding-block: 30px; font-size: 14px; color: var(--night-muted); }
+footer .inner { display: flex; flex-wrap: wrap; gap: 10px 32px; justify-content: space-between; padding-block: 34px; font-size: 13.5px; color: var(--night-muted); }
 footer a { color: var(--night-ink); }
 
+@media (max-width: 1080px) { .viz { margin-right: 0; } .marble, .viz figcaption, .hud { margin-right: 0; } }
 @media (max-width: 960px) {
   .hero, .proof, .pilot { grid-template-columns: 1fr; }
   .steps { grid-template-columns: 1fr 1fr; }
-  .steps li, .steps li + li { padding: 22px 16px 22px 0; border-left: 0; border-bottom: 1px solid var(--line); }
   .stats { grid-template-columns: 1fr 1fr; }
   .stat:nth-child(3) { padding-left: 0; border-left: 0; }
   .stat:nth-child(n+3) { border-top: 1px solid var(--night-line); }
-  .who { grid-template-columns: 1fr 1fr; }
+  .who, .e2e .grid { grid-template-columns: 1fr 1fr; }
 }
-@media (max-width: 600px) {
-  section, .pilot-band { padding-block: 64px; }
-  .steps, .who, .limits { grid-template-columns: 1fr; }
+@media (max-width: 640px) {
+  section, .e2e { padding-block: 76px; } .pilot-band { padding-top: 76px; }
+  .steps, .who, .limits, .e2e .grid { grid-template-columns: 1fr; }
   nav a:not(.btn) { display: none; }
+  .stage { height: 380px; }
+  .hud { grid-template-columns: 1fr 1fr; }
+  .hud .glass { font-size: 10.5px; padding: 9px 10px; }
+  .rxpanel { grid-column: 1 / -1; }
+  .marble .mrow { grid-template-columns: 22px minmax(0, 1fr) auto; }
+  .marble .mrow span:nth-child(3) { display: none; }
 }
 </style>
 </head>
 <body>
 
 <div class="night">
-  <div class="inner">
-    <header class="bar">
-      <a class="brand" href="#top"><b>EDEN</b><span>Refinery</span></a>
-      <nav aria-label="Main">
-        <a href="#how">How it works</a>
-        <a href="#evidence">Evidence</a>
-        <a href="#who">Who it's for</a>
-        <a href="#pilots">Pilots</a>
-        <a class="btn foil" href="verify.html">Verify a pass</a>
-      </nav>
-    </header>
+  <div class="top" id="topbar">
+    <div class="inner">
+      <header class="bar">
+        <a class="brand" href="#top" aria-label="EDEN Refinery home">
+          <svg viewBox="0 0 26 26" aria-hidden="true"><defs><linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#f6e2ab"/><stop offset=".5" stop-color="#d8b064"/><stop offset="1" stop-color="#8e6a24"/></linearGradient></defs><circle cx="13" cy="13" r="11.5" fill="none" stroke="url(#bg)" stroke-width="1.2"/><ellipse cx="13" cy="13" rx="11.5" ry="4.2" fill="none" stroke="url(#bg)" stroke-width=".8" transform="rotate(-24 13 13)"/><circle cx="13" cy="13" r="3" fill="url(#bg)"/></svg>
+          <b>EDEN</b><span>Refinery</span></a>
+        <nav aria-label="Main">
+          <a href="#how">How it works</a>
+          <a href="#sealed">Sealed end to end</a>
+          <a href="#evidence">Evidence</a>
+          <a href="#pilots">Pilots</a>
+          <a class="btn foil" href="verify.html">Verify a pass</a>
+        </nav>
+      </header>
+    </div>
+  </div>
 
+  <div class="inner">
     <div class="hero" id="top">
-      <div class="copy">
+      <div class="copy reveal">
         <div class="eyebrow">EDEN SSI · Signed Satellite Inference</div>
-        <h1>The black box for every <em>AI.</em></h1>
+        <h1>The black box for every <em class="s gold">AI.</em></h1>
         <p class="lede">When an AI decision costs money, someone has to prove what it actually did. Today the only record belongs to whoever might be at fault. EDEN gives every AI decision a sealed receipt anyone can check, in orbit and on the ground, without trusting the operator or us. We started with satellites, because orbit is the hardest place to do it.</p>
         <div class="ctas">
           <a class="btn foil" href="verify.html">Check a pass yourself <span class="arr">→</span></a>
@@ -207,23 +259,26 @@ footer a { color: var(--night-ink); }
         </div>
         <div class="tagline">Don't recompute it. Verify it.</div>
       </div>
-      <figure class="viz">
+      <figure class="viz" style="margin-block:0">
         <div class="stage">
-        <canvas id="globe" role="img" aria-label="Live 3D globe showing Earth-observation satellites at their current computed positions, and real signed satellite receptions from SatNOGS ground stations. Drag to rotate."></canvas>
-        <div class="rxpanel" id="rxpanel" aria-live="polite" hidden></div>
+          <canvas id="earth" aria-hidden="true"></canvas>
+          <canvas id="globe" role="img" aria-label="Live 3D Earth with the Sun and Moon at their computed positions, Earth-observation satellites at their modelled positions, and real signed satellite receptions from SatNOGS ground stations. Drag to rotate."></canvas>
         </div>
-        <div class="readout" id="readout" aria-live="polite">
-          <div class="rk">Loading orbits…</div>
+        <div class="hud">
+          <div class="glass readout" id="readout" aria-live="polite"><div class="rk">Loading orbits…</div></div>
+          <div class="glass dial" id="dial" aria-live="off"></div>
+          <div class="glass rxpanel" id="rxpanel" aria-live="polite" hidden></div>
         </div>
         <figcaption><span id="gstatus">Positions computed in your browser from public orbital data</span><span id="rxstatus" hidden></span><span><i style="background:#d8b064"></i>Sentinel · Landsat</span><span><i style="background:#edf1f4"></i>Other Earth observation</span><span><i style="background:#5fd4b4"></i>Real reception, signed</span><span>Drag to rotate · tap a satellite</span></figcaption>
+        <div class="marble" id="marble" aria-label="MARBLE/1.0 feed check"></div>
       </figure>
     </div>
 
-    <div class="stats" aria-label="Measured results">
-      <div class="stat"><div class="n">713<small>bytes</small></div><div class="l">Signed proof for a whole 2,000-image pass</div></div>
-      <div class="stat"><div class="n">~2<small>ms</small></div><div class="l">To record one image on an ARM processor</div></div>
-      <div class="stat"><div class="n">~5<small>ms</small></div><div class="l">From fire detection to signed alert</div></div>
-      <div class="stat"><div class="n">24<small>/ 24</small></div><div class="l">Automated tests passing, laptop and handset</div></div>
+    <div class="stats reveal" aria-label="Measured results">
+      <div class="stat"><div class="n gold">713<small>bytes</small></div><div class="l">Signed proof for a whole 2,000-image pass</div></div>
+      <div class="stat"><div class="n gold">~2<small>ms</small></div><div class="l">To record one image on an ARM processor</div></div>
+      <div class="stat"><div class="n gold">~5<small>ms</small></div><div class="l">From fire detection to signed alert</div></div>
+      <div class="stat"><div class="n gold">24<small>/ 24</small></div><div class="l">Automated tests passing, laptop and handset</div></div>
     </div>
     <div class="statnote">Measured on an Android ARM handset, synthetic images, 22 Oct 2026</div>
   </div>
@@ -231,31 +286,31 @@ footer a { color: var(--night-ink); }
 
 <main>
   <section>
-    <div class="inner statement">
+    <div class="inner statement reveal">
       <div class="eyebrow">The problem</div>
-      <h2>Once a satellite's AI decides, nobody on the ground can check it.</h2>
+      <h2>Once a satellite's AI decides, nobody on the ground can <em class="s">check</em> it.</h2>
       <p class="lede">Onboard AI saves bandwidth by throwing data away and acts faster by raising alerts in orbit. What it saw, what it decided and whether the record was changed later are invisible. As insurance payouts, emissions reports and security decisions start to depend on those calls, "trust us" stops being enough.</p>
     </div>
   </section>
 
   <section id="how" style="padding-top:0">
     <div class="inner">
-      <div class="eyebrow">How it works</div>
-      <h2 style="margin-top:14px">A flight recorder for onboard AI.</h2>
-      <ol class="steps">
+      <div class="reveal"><div class="eyebrow">How it works</div>
+      <h2 style="margin-top:16px">A flight recorder for <em class="s">onboard</em> AI.</h2></div>
+      <ol class="steps reveal">
         <li><h3>Record</h3><p>Each decision becomes a record: the image's fingerprint, the exact model weights, the score and the verdict.</p></li>
         <li><h3>Sign the pass</h3><p>Records chain into a Merkle tree. At the end of the pass the satellite signs one small summary.</p></li>
         <li><h3>Lock in alerts</h3><p>An alert is signed the moment it fires. The final pass must extend it, so history can't be rewritten afterwards, even by the key holder.</p></li>
         <li><h3>Verify anywhere</h3><p>Anyone with the public key checks the pass, or any single image, kept or discarded, on their own machine.</p></li>
         <li><h3>Re-run</h3><p>A second machine recomputes sampled decisions with the same model and flags any it wouldn't have made.</p></li>
       </ol>
-      <p class="note">Standard cryptography throughout: SHA-256, RFC 6962 Merkle trees and Ed25519. It sits beside your existing models and leaves the radio link and its security to the platform.</p>
+      <p class="note reveal">Standard cryptography throughout: SHA-256, RFC 6962 Merkle trees and Ed25519. It sits beside your existing models and leaves the radio link and its security to the platform.</p>
     </div>
   </section>
 
   <section style="padding-top:0">
     <div class="inner proof">
-      <figure class="receipt" aria-label="Example signed pass summary" style="margin:0">
+      <figure class="receipt reveal" aria-label="Example signed pass summary" style="margin:0">
         <div class="head"><span>bundle.json · signed pass summary</span><span class="seal">● signed</span></div>
         <dl>
           <dt>pass</dt><dd>pass-wildfire-0142</dd>
@@ -269,20 +324,37 @@ footer a { color: var(--night-ink); }
         </dl>
         <div class="foot">From the simulated sample pass in the verifier.</div>
       </figure>
-      <div style="display:grid;gap:22px">
+      <div class="reveal" style="display:grid;gap:24px">
         <div class="eyebrow">Don't take our word for it</div>
-        <h2>Check a pass in your browser in ten seconds.</h2>
+        <h2>Check a pass in your browser in <em class="s">ten seconds.</em></h2>
         <p class="lede">The verifier runs entirely on your device and loads no outside code. Try the tampered sample: its signature still checks out, and the verifier still catches the rewritten history and the swapped fire image.</p>
         <a class="btn foil" href="verify.html">Open the verifier <span class="arr">→</span></a>
       </div>
     </div>
   </section>
+</main>
 
-  <section id="evidence" style="padding-top:0">
+<div class="night e2e" id="sealed">
+  <div class="inner">
+    <div class="reveal" style="display:grid;gap:22px;max-width:900px">
+      <div class="eyebrow">Sealed end to end</div>
+      <h2>This page runs on its own <em class="s gold">proof.</em></h2>
+      <p class="lede">Nothing on the globe above is drawn on trust. Every file it uses arrives inside a MARBLE/1.0 envelope, chained to the one before and sealed by EDEN, and your browser checks each one before a single pixel is drawn. Change one byte and the page refuses it, and tells you.</p>
+    </div>
+    <div class="grid reveal">
+      <div class="card"><span class="k">Orbit data</span><h3>Every 6 hours, enveloped</h3><p>Public orbital elements from CelesTrak, hashed into the chain. Satellite positions are then modelled in your browser, not received.</p></div>
+      <div class="card"><span class="k">Real receptions</span><h3>Signed by EDEN, checked by you</h3><p>Recent receptions from the SatNOGS ground-station network, sealed with an Ed25519 signature over a Merkle root and verified on load.</p></div>
+      <div class="card"><span class="k">Earth, Sun and Moon</span><h3>Imagery sealed, sky computed</h3><p>The Earth imagery is hashed into the same chain. The Sun and Moon are computed from standard almanac formulas at this moment.</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="lightpart">
+  <section id="evidence">
     <div class="inner">
-      <div class="eyebrow">Evidence</div>
-      <h2 style="margin-top:14px">What we've measured, and what comes next.</h2>
-      <div class="tablewrap">
+      <div class="reveal"><div class="eyebrow">Evidence</div>
+      <h2 style="margin-top:16px">What we've measured, and what comes <em class="s">next.</em></h2></div>
+      <div class="tablewrap reveal">
         <table>
           <thead><tr><th>Claim</th><th>Figure</th><th>Status</th></tr></thead>
           <tbody>
@@ -291,6 +363,7 @@ footer a { color: var(--night-ink); }
             <tr><td>Fire alert signed and ready after detection</td><td class="fig">~5 ms</td><td><span class="label done">MEASURED</span></td></tr>
             <tr><td>Signed summary for a 2,000-image pass</td><td class="fig">713 B</td><td><span class="label done">MEASURED</span></td></tr>
             <tr><td>Proof about any single image, including discarded ones</td><td class="fig">~1 kB</td><td><span class="label done">MEASURED</span></td></tr>
+            <tr><td>Real satellite receptions sealed and checked in the browser, live on this page</td><td class="fig">every 6 h</td><td><span class="label done">LIVE · SATNOGS DATA</span></td></tr>
             <tr><td>History rewritten and re-signed with the real key is caught</td><td class="fig">caught</td><td><span class="label done">TESTED · SIMULATED ATTACK</span></td></tr>
             <tr><td>Corrupted onboard decision caught by a ground re-run</td><td class="fig">caught</td><td><span class="label done">TESTED · SIMULATED FAULT</span></td></tr>
             <tr><td>Real satellite imagery</td><td class="fig">—</td><td><span class="label next">NEXT</span></td></tr>
@@ -303,32 +376,32 @@ footer a { color: var(--night-ink); }
 
   <section id="who" style="padding-top:0">
     <div class="inner">
-      <div class="eyebrow">Who it's for</div>
-      <h2 style="margin-top:14px">Anyone who has to defend a machine's decision to someone else.</h2>
-      <dl class="who">
+      <div class="reveal"><div class="eyebrow">Who it's for</div>
+      <h2 style="margin-top:16px">Anyone who has to defend a machine's decision to <em class="s">someone else.</em></h2></div>
+      <dl class="who reveal">
         <div><dt>Satellite operators</dt><dd>Prove to customers what your onboard AI kept, discarded and flagged, for under a kilobyte per pass.</dd></div>
         <div><dt>Parametric insurers</dt><dd>Satellite-triggered payouts get a record both sides can check, so fewer disputes about the data.</dd></div>
         <div><dt>Emissions monitoring</dt><dd>Detections that hold up when the operator concerned disputes them.</dd></div>
         <div><dt>Defence and space security</dt><dd>Tamper-evident records of autonomous decisions, jamming and intrusions, with re-runs that expose faulty or manipulated ones.</dd></div>
-        <div><dt>Ground stations</dt><dd>A neutral record that a pass was delivered complete and unaltered.</dd></div>
+        <div><dt>Ground stations and RF sensing</dt><dd>A sealed receipt for every reception: what was heard, by which station, and when.</dd></div>
         <div><dt>AI assurance</dt><dd>The same engine proves any AI decision on any device. Orbit is simply the hardest place to do it.</dd></div>
       </dl>
     </div>
   </section>
 
   <section style="padding-top:0">
-    <div class="inner limits">
+    <div class="inner limits reveal">
       <div><div class="eyebrow">What a pass check proves</div><p>What the satellite decided, on which image, with which model version, in what order, and that none of it changed afterwards.</p></div>
       <div><div class="eyebrow">What it doesn't prove</div><p>That the decision was right: a verified fire alert proves the AI said "fire", not that there was one. Wall-clock time needs a trusted time source, which isn't in place yet.</p></div>
     </div>
   </section>
-</main>
+</div>
 
 <div class="night pilot-band" id="pilots">
   <div class="inner pilot">
-    <div style="display:grid;gap:22px">
+    <div class="reveal" style="display:grid;gap:24px">
       <div class="eyebrow">Pilots</div>
-      <h2>Fixed-price pilots, handled in writing.</h2>
+      <h2>Fixed-price pilots, handled <em class="s gold">in writing.</em></h2>
       <p class="lede">We run EDEN SSI on one of your recorded passes, or on a development board of your flight computer, over 8 to 12 weeks.</p>
       <ul>
         <li>Integration beside your existing onboard model</li>
@@ -338,17 +411,18 @@ footer a { color: var(--night-ink); }
       </ul>
       <p class="lede">Hardware makers: we also run joint tests with no fee either way.</p>
     </div>
-    <div class="offer">
+    <div class="offer reveal">
       <h3>Start a pilot</h3>
       <p>Email Daniel Clarke, founder, with your platform and one question you'd want answered.</p>
-      <p class="mail">danielclarke1661@gmail.com</p>
+      <p class="mail gold">danielclarke1661@gmail.com</p>
     </div>
   </div>
-  <div class="inner company" style="margin-top:72px">
+  <div class="inner company reveal" style="margin-top:88px">
     <div class="eyebrow">Company</div>
     <p class="lede">Eden OS and Refinery Ltd is a UK company building verification for automated decisions. Public evidence: <a href="https://github.com/EdenOSarchitect/EDEN-OS" style="color:var(--foil)">EDEN-OS</a> and <a href="https://github.com/EdenOSarchitect/eden-os-evidence" style="color:var(--foil)">eden-os-evidence</a> on GitHub. Founder ORCID: <a href="https://orcid.org/0009-0004-3797-2396" style="color:var(--foil)">0009-0004-3797-2396</a>.</p>
+    <p style="font-size:13px;color:var(--night-muted)">Orbital data: CelesTrak. Receptions: SatNOGS contributors, CC BY-SA 4.0. Earth imagery: NASA-based textures, credited in tex/CREDITS.txt. Land outlines: Natural Earth.</p>
   </div>
-  <footer style="margin-top:72px">
+  <footer style="margin-top:88px">
     <div class="inner">
       <span>© 2026 Eden OS and Refinery Ltd</span>
       <span>Don't recompute it. Verify it.</span>
@@ -364,6 +438,8 @@ footer a { color: var(--night-ink); }
   const ctx = cv.getContext("2d");
   const readout = document.getElementById("readout");
   const statusEl = document.getElementById("gstatus");
+  const dialEl = document.getElementById("dial");
+  const marbleEl = document.getElementById("marble");
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const C = { ink: "#edf1f4", muted: "#93a3b2", line: "#223142", foil: "#d8b064", sea: "#0e1925", rim: "#2b4156" };
   const D2R = Math.PI / 180, RE = 6371;
@@ -371,34 +447,177 @@ footer a { color: var(--night-ink); }
 
   /* ---------- view ---------- */
   let W = 0, H = 0, dpr = 1, cx = 0, cy = 0, r = 0;
-  let lon0 = -10 * D2R, lat0 = 22 * D2R, idleUntil = 0, dragging = null;
+  let lon0 = -10 * D2R, lat0 = 18 * D2R, idleUntil = 0, dragging = null;
   function size() {
     const b = cv.getBoundingClientRect(); dpr = Math.min(2, devicePixelRatio || 1);
     W = b.width; H = b.height; cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    cx = W / 2; cy = H / 2; r = Math.min(W, H) * 0.39;
+    cx = W / 2; cy = H / 2; r = Math.min(W, H) * 0.335;
+    if (EARTH) EARTH.resize(cv.width, cv.height);
   }
-  // geodetic (rad) + radius factor -> screen; returns [sx, sy, depth]
+  // geodetic (rad) + radius factor -> screen; returns [sx, sy, depth, r^2 on screen]
   function project(lat, lon, k) {
     const cl = Math.cos(lat), x = cl * Math.cos(lon), y = cl * Math.sin(lon), z = Math.sin(lat);
+    return projectVec([x, y, z], k);
+  }
+  function projectVec(v, k) {
+    const [x, y, z] = v;
     const x1 = x * Math.cos(lon0) + y * Math.sin(lon0), y1 = -x * Math.sin(lon0) + y * Math.cos(lon0);
     const x2 = x1 * Math.cos(lat0) + z * Math.sin(lat0), z2 = -x1 * Math.sin(lat0) + z * Math.cos(lat0);
-    return [cx + r * k * y1, cy - r * k * z2, x2 * k, (y1 * y1 + z2 * z2) * k * k];
+    return [cx + r * k * y1, cy - r * k * z2, x2 * k, (y1 * y1 + z2 * z2) * k * k, x2, y1, z2];
   }
-  const visibleSat = p => p[2] > 0 || p[3] > 1;   // in front of the Earth, or outside its disk
+  const visibleSat = p => p[2] > 0 || p[3] > 1;
+  const viewVec = () => [Math.cos(lat0) * Math.cos(lon0), Math.cos(lat0) * Math.sin(lon0), Math.sin(lat0)];
 
-  /* ---------- sun (approximate, good to ~1 deg) ---------- */
-  function sunVec(d) {
-    const start = Date.UTC(d.getUTCFullYear(), 0, 0), doy = (d - start) / 864e5;
-    const dec = -23.44 * D2R * Math.cos(2 * Math.PI / 365 * (doy + 10));
-    const hrs = d.getUTCHours() + d.getUTCMinutes() / 60 + d.getUTCSeconds() / 3600;
-    const slon = (12 - hrs) * 15 * D2R;
-    return [Math.cos(dec) * Math.cos(slon), Math.cos(dec) * Math.sin(slon), Math.sin(dec)];
+  /* ---------- Sun and Moon (low-precision almanac formulas: Sun ~0.01 deg, Moon ~0.3 deg) ---------- */
+  const OBL = 23.4397 * D2R;
+  const days = d => d.getTime() / 864e5 + 2440587.5 - 2451545.0;
+  const gmst = d => ((280.46061837 + 360.98564736629 * days(d)) % 360) * D2R;
+  function eclToFixed(lam, bet, d) {
+    const ra = Math.atan2(Math.sin(lam) * Math.cos(OBL) - Math.tan(bet) * Math.sin(OBL), Math.cos(lam));
+    const dec = Math.asin(Math.sin(bet) * Math.cos(OBL) + Math.cos(bet) * Math.sin(OBL) * Math.sin(lam));
+    const lon = ra - gmst(d);
+    return { v: [Math.cos(dec) * Math.cos(lon), Math.cos(dec) * Math.sin(lon), Math.sin(dec)], lat: dec, lon: Math.atan2(Math.sin(lon), Math.cos(lon)) };
   }
+  function sunAt(d) {
+    const n = days(d), g = (357.529 + 0.98560028 * n) * D2R, q = 280.459 + 0.98564736 * n;
+    const lam = (q + 1.915 * Math.sin(g) + 0.020 * Math.sin(2 * g)) * D2R;
+    return Object.assign(eclToFixed(lam, 0, d), { lam });
+  }
+  function moonAt(d) {
+    const n = days(d);
+    const L = (218.316 + 13.176396 * n) * D2R, M = (134.963 + 13.064993 * n) * D2R, F = (93.272 + 13.229350 * n) * D2R;
+    const lam = L + 6.289 * D2R * Math.sin(M), bet = 5.128 * D2R * Math.sin(F), dist = 385001 - 20905 * Math.cos(M);
+    const s = sunAt(d), el = Math.acos(Math.cos(bet) * Math.cos(lam - s.lam));
+    const frac = (1 - Math.cos(el)) / 2, waxing = Math.sin(lam - s.lam) > 0;
+    return Object.assign(eclToFixed(lam, bet, d), { dist, frac, waxing });
+  }
+  function phaseName(m) {
+    const f = m.frac;
+    if (f < 0.03) return "New moon"; if (f > 0.97) return "Full moon";
+    if (f > 0.47 && f < 0.53) return m.waxing ? "First quarter" : "Last quarter";
+    return (m.waxing ? "Waxing " : "Waning ") + (f < 0.5 ? "crescent" : "gibbous");
+  }
+  let SUN = sunAt(new Date()), MOON = moonAt(new Date()), lastAstro = 0;
 
-  /* ---------- land dots ---------- */
+  /* ---------- photoreal Earth: raw WebGL2, no outside code ----------
+     Ray-sphere in the fragment shader with the SAME orthographic projection as the 2D overlay
+     (project()), so satellites, stations and pings line up exactly with the planet. */
+  const EARTH = (() => {
+    const cvE = document.getElementById("earth");
+    let gl = null;
+    try { gl = cvE && cvE.getContext("webgl2", { alpha: true, premultipliedAlpha: true, antialias: false }); } catch (e) {}
+    if (!gl) return null;
+    const VS = `#version 300 es
+in vec2 p; void main(){ gl_Position = vec4(p, 0.0, 1.0); }`;
+    const FS = `#version 300 es
+precision highp float;
+uniform vec2 uC; uniform float uR, uDpr, uH, uT;
+uniform vec2 uRot; uniform vec3 uSun, uView; uniform vec4 uHas;
+uniform sampler2D tDay, tNight, tClouds, tSpec;
+out vec4 o;
+const float PI = 3.141592653589793;
+float hash(vec2 q){ return fract(sin(dot(q, vec2(127.1, 311.7))) * 43758.5453); }
+vec3 lin(vec3 c){ return pow(c, vec3(2.2)); }
+vec3 toEarth(vec3 v){
+  float cl = cos(uRot.y), sl = sin(uRot.y), co = cos(uRot.x), so = sin(uRot.x);
+  float x1 = v.x * cl - v.z * sl, z = v.x * sl + v.z * cl;
+  return vec3(x1 * co - v.y * so, x1 * so + v.y * co, z);
+}
+void main(){
+  vec2 css = vec2(gl_FragCoord.x / uDpr, uH - gl_FragCoord.y / uDpr);
+  float a = (css.x - uC.x) / uR, b = (uC.y - css.y) / uR, rho = length(vec2(a, b));
+  float pw = 1.25 / (uR * uDpr);
+  vec3 col = vec3(0.0); float alpha = 0.0;
+  float h = hash(floor(gl_FragCoord.xy / (1.6 * uDpr)));
+  if (h > 0.9968) { float s = (h - 0.9968) / 0.0032, tw = 0.6 + 0.4 * sin(uT * 1.1 + h * 97.0);
+    float st = s * s * tw * 0.95 * smoothstep(1.05, 1.6, rho); col += vec3(0.86, 0.9, 1.0) * st; alpha = st; }
+  if (rho < 1.0 + pw) {
+    float x2 = sqrt(max(0.0, 1.0 - rho * rho));
+    vec3 n = toEarth(vec3(x2, a, b));
+    float lat = asin(clamp(n.z, -1.0, 1.0)), lon = atan(n.y, n.x);
+    vec2 uv = vec2((lon + PI) / (2.0 * PI), (0.5 * PI - lat) / PI);
+    vec2 gx = dFdx(uv), gy = dFdy(uv);
+    if (abs(gx.x) > 0.5) gx.x -= sign(gx.x);
+    if (abs(gy.x) > 0.5) gy.x -= sign(gy.x);
+    float ndl = dot(n, uSun), lit = max(ndl, 0.0), dayMix = smoothstep(-0.10, 0.22, ndl);
+    vec3 day = lin(textureGrad(tDay, uv, gx, gy).rgb);
+    vec3 c = day * (0.03 + 1.18 * pow(lit, 0.85));
+    float spec = uHas.z > 0.5 ? textureGrad(tSpec, uv, gx, gy).r : smoothstep(0.015, 0.09, day.b - day.r);
+    vec3 hv = normalize(uSun + uView); float nh = max(dot(n, hv), 0.0);
+    c += vec3(1.0, 0.93, 0.80) * spec * (pow(nh, 220.0) * 0.55 + pow(nh, 24.0) * 0.025) * dayMix;
+    float cl = 0.0;
+    if (uHas.y > 0.5) { cl = textureGrad(tClouds, vec2(fract(uv.x + uT * 0.00035), uv.y), gx, gy).r; cl = smoothstep(0.10, 0.95, cl); }
+    if (uHas.x > 0.5) { vec3 L = lin(textureGrad(tNight, uv, gx, gy).rgb);
+      c += L * vec3(1.0, 0.76, 0.46) * 2.2 * (1.0 - smoothstep(-0.20, 0.05, ndl)) * (1.0 - 0.8 * cl); }
+    c = mix(c, vec3(0.015 + 1.05 * pow(lit, 0.9)), cl * 0.92);
+    float tw = max(0.0, 1.0 - abs(ndl) * 5.0);
+    c += vec3(1.0, 0.45, 0.2) * 0.018 * tw * (1.0 - 0.6 * cl);
+    float fres = pow(1.0 - x2, 2.4);
+    c += vec3(0.26, 0.52, 1.0) * fres * (0.08 + 0.92 * smoothstep(-0.25, 0.55, ndl)) * 0.9;
+    float e = 1.0 - smoothstep(1.0 - pw, 1.0 + pw, rho);
+    col = mix(col, c, e); alpha = mix(alpha, 1.0, e);
+  }
+  if (rho > 1.0 - pw) {
+    vec3 limb = toEarth(vec3(0.0, a / rho, b / rho));
+    float l = smoothstep(-0.35, 0.45, dot(limb, uSun)), d = max(rho - 1.0, 0.0);
+    float g = (exp(-d * 34.0) * (0.10 + 0.90 * l) * 0.95 + exp(-d * 9.0) * 0.14 * (0.15 + 0.85 * l)) * (1.0 - smoothstep(0.18, 0.42, d));
+    if (rho >= 1.0) { col += vec3(0.30, 0.56, 1.0) * g; alpha = max(alpha, clamp(g, 0.0, 1.0)); }
+  }
+  col = vec3(1.0) - exp(-col * 1.3);
+  o = vec4(pow(col, vec3(1.0 / 2.2)), alpha);
+}`;
+    function sh(type, src) { const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s);
+      if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s)); return s; }
+    let prog;
+    try {
+      prog = gl.createProgram(); gl.attachShader(prog, sh(gl.VERTEX_SHADER, VS)); gl.attachShader(prog, sh(gl.FRAGMENT_SHADER, FS));
+      gl.linkProgram(prog); if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(prog));
+    } catch (e) { console.warn("Earth shader:", e.message); return null; }
+    gl.useProgram(prog);
+    const buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+    const loc = gl.getAttribLocation(prog, "p"); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+    const U = {}; for (const k of ["uC", "uR", "uDpr", "uH", "uT", "uRot", "uSun", "uView", "uHas", "tDay", "tNight", "tClouds", "tSpec"]) U[k] = gl.getUniformLocation(prog, k);
+    const units = { day: 0, night: 1, clouds: 2, spec: 3 }, has = { day: false, night: false, clouds: false, spec: false };
+    gl.uniform1i(U.tDay, 0); gl.uniform1i(U.tNight, 1); gl.uniform1i(U.tClouds, 2); gl.uniform1i(U.tSpec, 3);
+    const aniso = gl.getExtension("EXT_texture_filter_anisotropic");
+    let lost = false;
+    cvE.addEventListener("webglcontextlost", e => { e.preventDefault(); lost = true; });
+    const maxTex = gl.getParameter(gl.MAX_TEXTURE_SIZE);
+    return {
+      maxTex,
+      get ok() { return !lost && has.day; },
+      setTexture(name, img) {
+        const t = gl.createTexture(); gl.activeTexture(gl.TEXTURE0 + units[name]); gl.bindTexture(gl.TEXTURE_2D, t);
+        gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false);
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
+        gl.generateMipmap(gl.TEXTURE_2D);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.REPEAT);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+        if (aniso) gl.texParameterf(gl.TEXTURE_2D, aniso.TEXTURE_MAX_ANISOTROPY_EXT, Math.min(8, gl.getParameter(aniso.MAX_TEXTURE_MAX_ANISOTROPY_EXT)));
+        has[name] = true;
+      },
+      resize(w, h) { cvE.width = w; cvE.height = h; gl.viewport(0, 0, w, h); },
+      draw(s) {
+        if (lost || !has.day) return;
+        gl.useProgram(prog);
+        gl.uniform2f(U.uC, s.cx, s.cy); gl.uniform1f(U.uR, s.r); gl.uniform1f(U.uDpr, s.dpr); gl.uniform1f(U.uH, s.H);
+        gl.uniform1f(U.uT, s.t); gl.uniform2f(U.uRot, s.lon0, s.lat0);
+        gl.uniform3fv(U.uSun, s.sun); gl.uniform3fv(U.uView, s.view);
+        gl.uniform4f(U.uHas, has.night ? 1 : 0, has.clouds ? 1 : 0, has.spec ? 1 : 0, 0);
+        gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT);
+        gl.drawArrays(gl.TRIANGLES, 0, 3);
+      },
+    };
+  })();
+
+
+  /* ---------- land dots (only for the fallback globe) ---------- */
   const NPTS = 7000, GA = Math.PI * (3 - Math.sqrt(5));
-  let dots = [];   // {lat, lon, x, y, z}
+  let dots = [];
   function pointInRing(lon, lat, ring) {
     let inside = false;
     for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
@@ -432,7 +651,7 @@ footer a { color: var(--night-ink); }
   }
 
   /* ---------- satellites ---------- */
-  let sats = [], mode = "loading", dataNote = "", selected = -1, userPicked = false;
+  let sats = [], mode = "loading", selected = -1, userPicked = false;
   function parseTLE(text) {
     const L = text.split(/\r?\n/).map(s => s.trimEnd()).filter(Boolean), out = [];
     for (let i = 0; i + 2 < L.length + 1; i++) {
@@ -447,14 +666,12 @@ footer a { color: var(--night-ink); }
     return out;
   }
   function tleEpoch(rec) { return new Date((rec.jdsatepoch - 2440587.5) * 864e5); }
-  // illustrative fallback: circular sun-synchronous-style orbits, clearly labelled
   function demoSats() {
     const out = [];
     for (let k = 0; k < 28; k++) out.push({ name: "Illustrative orbit " + (k + 1), hl: k % 5 === 0,
       demo: { inc: (97.4 + (k % 4) * 0.4) * D2R, raan: (k * 37 % 360) * D2R, ph: (k * 71 % 360) * D2R, alt: 500 + (k * 53) % 300 } });
     return out;
   }
-  function gmstOf(d) { return typeof satellite !== "undefined" ? satellite.gstime(d) : 0; }
   function stateOf(s, d) {
     if (s.demo) {
       const a = RE + s.demo.alt, n = Math.sqrt(398600.4418 / (a * a * a)), t = d.getTime() / 1000;
@@ -467,69 +684,89 @@ footer a { color: var(--night-ink); }
     }
     const pv = satellite.propagate(s.rec, d);
     if (!pv || !pv.position || isNaN(pv.position.x)) return null;
-    const g = satellite.eciToGeodetic(pv.position, gmstOf(d));
+    const g = satellite.eciToGeodetic(pv.position, satellite.gstime(d));
     const v = pv.velocity; return { lat: g.latitude, lon: g.longitude, alt: g.height, v: Math.hypot(v.x, v.y, v.z) };
   }
   let lastProp = 0, lastTrail = 0;
   function update(now) {
     const d = new Date();
-    if (now - lastProp > 250) {
-      for (const s of sats) s.st = stateOf(s, d);
-      lastProp = now;
-    }
+    if (now - lastAstro > 1000) { SUN = sunAt(d); MOON = moonAt(d); lastAstro = now; }
+    if (now - lastProp > 250) { for (const s of sats) s.st = stateOf(s, d); lastProp = now; }
     if (now - lastTrail > 4000) {
       for (const s of sats) { s.trail = []; for (let k = 12; k >= 1; k--) { const st = stateOf(s, new Date(d - k * 25000)); if (st) s.trail.push(st); } }
-      if (selected >= 0) { const s = sats[selected]; s.orbit = []; for (let k = 0; k <= 120; k++) { const st = stateOf(s, new Date(+d + (k - 60) * 50000)); if (st) s.orbit.push(st); } }
+      if (selected >= 0 && sats[selected]) { const s = sats[selected]; s.orbit = []; for (let k = 0; k <= 120; k++) { const st = stateOf(s, new Date(+d + (k - 60) * 50000)); if (st) s.orbit.push(st); } }
       lastTrail = now;
     }
   }
 
-  /* ---------- draw ---------- */
-  function draw() {
-    ctx.clearRect(0, 0, W, H);
-    // atmosphere glow + sea disk
-    const g = ctx.createRadialGradient(cx, cy, r * 0.96, cx, cy, r * 1.22);
-    g.addColorStop(0, "rgba(90,140,190,0.22)"); g.addColorStop(1, "rgba(90,140,190,0)");
-    ctx.fillStyle = g; ctx.beginPath(); ctx.arc(cx, cy, r * 1.22, 0, 2 * Math.PI); ctx.fill();
-    ctx.fillStyle = C.sea; ctx.beginPath(); ctx.arc(cx, cy, r, 0, 2 * Math.PI); ctx.fill();
-    ctx.strokeStyle = C.rim; ctx.lineWidth = 1; ctx.stroke();
-    // graticule
-    ctx.strokeStyle = C.line; ctx.lineWidth = 0.6;
-    for (let la = -60; la <= 60; la += 30) line(Array.from({ length: 73 }, (_, i) => [la * D2R, (i * 5 - 180) * D2R]), 1);
-    for (let lo = -180; lo < 180; lo += 30) line(Array.from({ length: 37 }, (_, i) => [(i * 5 - 90) * D2R, lo * D2R]), 1);
-    // land dots, lit by the sun
-    const sv = sunVec(new Date()), ds = Math.max(1, r / 170);
-    for (const p of dots) {
-      const q = project(p.lat, p.lon, 1); if (q[2] <= 0) continue;
-      const lit = p.v[0] * sv[0] + p.v[1] * sv[1] + p.v[2] * sv[2] > 0;
-      ctx.fillStyle = lit ? "rgba(214,224,232," + (0.35 + 0.55 * q[2]) + ")" : "rgba(120,140,160," + (0.18 + 0.25 * q[2]) + ")";
-      ctx.fillRect(q[0] - ds / 2, q[1] - ds / 2, ds, ds);
+  /* ---------- the Moon, drawn per pixel with its real phase ---------- */
+  const moonCv = document.createElement("canvas"), mctx = moonCv.getContext("2d");
+  let moonKey = "";
+  function hash2(x, y) { const s = Math.sin(x * 127.1 + y * 311.7) * 43758.5453; return s - Math.floor(s); }
+  function renderMoon(px, sunView) {
+    const key = px + "|" + sunView.map(x => x.toFixed(2)).join(",");
+    if (key === moonKey) return; moonKey = key;
+    const n = Math.max(8, Math.round(px * 2 * dpr)); moonCv.width = moonCv.height = n;
+    const img = mctx.createImageData(n, n), R = n / 2;
+    for (let j = 0; j < n; j++) for (let i = 0; i < n; i++) {
+      const a = (i + 0.5 - R) / R, b = (R - j - 0.5) / R, q = a * a + b * b; if (q > 1) continue;
+      const z = Math.sqrt(1 - q);
+      const lit = Math.max(0, z * sunView[0] + a * sunView[1] + b * sunView[2]);
+      const mare = 0.78 + 0.22 * (Math.sin(a * 5.1 + b * 3.3) * Math.cos(b * 4.7 - a * 1.9) * 0.5 + 0.5) - 0.06 * hash2(i, j);
+      const v = Math.min(1, Math.pow(lit, 0.75) * mare * 1.05 + 0.035);
+      const e = Math.min(1, (1 - Math.sqrt(q)) * R * 1.2);
+      const k = (j * n + i) * 4; img.data[k] = 236 * v; img.data[k + 1] = 232 * v; img.data[k + 2] = 222 * v; img.data[k + 3] = 255 * e;
     }
-    // selected satellite's orbit
+    mctx.putImageData(img, 0, 0);
+  }
+
+  /* ---------- draw ---------- */
+  let gl3d = false;
+  function draw(now) {
+    ctx.clearRect(0, 0, W, H);
+    if (gl3d && EARTH && EARTH.ok) {
+      EARTH.draw({ cx, cy, r, dpr, H, t: now / 1000, lon0, lat0, sun: SUN.v, view: viewVec() });
+    } else {
+      const g = ctx.createRadialGradient(cx, cy, r * 0.96, cx, cy, r * 1.22);
+      g.addColorStop(0, "rgba(90,140,190,0.22)"); g.addColorStop(1, "rgba(90,140,190,0)");
+      ctx.fillStyle = g; ctx.beginPath(); ctx.arc(cx, cy, r * 1.22, 0, 2 * Math.PI); ctx.fill();
+      ctx.fillStyle = C.sea; ctx.beginPath(); ctx.arc(cx, cy, r, 0, 2 * Math.PI); ctx.fill();
+      ctx.strokeStyle = C.rim; ctx.lineWidth = 1; ctx.stroke();
+      ctx.strokeStyle = C.line; ctx.lineWidth = 0.6;
+      for (let la = -60; la <= 60; la += 30) line(Array.from({ length: 73 }, (_, i) => [la * D2R, (i * 5 - 180) * D2R]), 1);
+      for (let lo = -180; lo < 180; lo += 30) line(Array.from({ length: 37 }, (_, i) => [(i * 5 - 90) * D2R, lo * D2R]), 1);
+      const sv = SUN.v, ds = Math.max(1, r / 170);
+      for (const p of dots) {
+        const q = project(p.lat, p.lon, 1); if (q[2] <= 0) continue;
+        const lit = p.v[0] * sv[0] + p.v[1] * sv[1] + p.v[2] * sv[2] > 0;
+        ctx.fillStyle = lit ? "rgba(214,224,232," + (0.35 + 0.55 * q[2]) + ")" : "rgba(120,140,160," + (0.18 + 0.25 * q[2]) + ")";
+        ctx.fillRect(q[0] - ds / 2, q[1] - ds / 2, ds, ds);
+      }
+    }
+    drawDial(now);
     if (selected >= 0 && sats[selected] && sats[selected].orbit) {
-      ctx.strokeStyle = "rgba(216,176,100,0.55)"; ctx.lineWidth = 1; ctx.setLineDash([3, 4]);
-      const pts = sats[selected].orbit.map(st => project(st.lat, st.lon, 1 + st.alt / RE));
+      ctx.strokeStyle = "rgba(216,176,100,0.6)"; ctx.lineWidth = 1; ctx.setLineDash([3, 4]);
       ctx.beginPath(); let pen = false;
-      for (const q of pts) { if (visibleSat(q)) { pen ? ctx.lineTo(q[0], q[1]) : ctx.moveTo(q[0], q[1]); pen = true; } else pen = false; }
+      for (const st of sats[selected].orbit) { const q = project(st.lat, st.lon, 1 + st.alt / RE); if (visibleSat(q)) { pen ? ctx.lineTo(q[0], q[1]) : ctx.moveTo(q[0], q[1]); pen = true; } else pen = false; }
       ctx.stroke(); ctx.setLineDash([]);
     }
-    // satellites with short trails
     sats.forEach((s, i) => {
       if (!s.st) return;
       const k = 1 + s.st.alt / RE, q = project(s.st.lat, s.st.lon, k); s.scr = visibleSat(q) ? q : null;
       if (!s.scr) return;
       if (s.trail && s.trail.length) {
-        ctx.strokeStyle = s.hl ? "rgba(216,176,100,0.5)" : "rgba(237,241,244,0.28)"; ctx.lineWidth = 1;
+        ctx.strokeStyle = s.hl ? "rgba(216,176,100,0.55)" : "rgba(237,241,244,0.3)"; ctx.lineWidth = 1;
         ctx.beginPath(); let pen = false;
         for (const st of s.trail) { const t = project(st.lat, st.lon, 1 + st.alt / RE); if (visibleSat(t)) { pen ? ctx.lineTo(t[0], t[1]) : ctx.moveTo(t[0], t[1]); pen = true; } }
         if (pen) { ctx.lineTo(q[0], q[1]); ctx.stroke(); }
       }
       const rad = (s.hl ? 2.6 : 1.8) * (q[2] > 0 ? 1 : 0.7);
-      ctx.fillStyle = s.hl ? C.foil : C.ink; ctx.globalAlpha = q[2] > 0 ? 1 : 0.45;
+      if (s.hl && q[2] > 0) { ctx.fillStyle = "rgba(216,176,100,0.18)"; ctx.beginPath(); ctx.arc(q[0], q[1], rad * 3, 0, 2 * Math.PI); ctx.fill(); }
+      ctx.fillStyle = s.hl ? C.foil : C.ink; ctx.globalAlpha = q[2] > 0 ? 1 : 0.4;
       ctx.beginPath(); ctx.arc(q[0], q[1], rad, 0, 2 * Math.PI); ctx.fill(); ctx.globalAlpha = 1;
       if (i === selected) { ctx.strokeStyle = C.foil; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.arc(q[0], q[1], 8, 0, 2 * Math.PI); ctx.stroke(); }
     });
-    if (typeof drawReceipts === "function") drawReceipts(performance.now());
+    if (typeof drawReceipts === "function") drawReceipts(now);
   }
   function line(pts, k) {
     ctx.beginPath(); let pen = false;
@@ -537,22 +774,76 @@ footer a { color: var(--night-ink); }
     ctx.stroke();
   }
 
-  /* ---------- readout ---------- */
+  /* ---------- the sun dial: a bezel with the true Sun and Moon directions ---------- */
+  function dirOnScreen(v) { const p = projectVec(v, 1); let dx = p[5], dy = -p[6]; const m = Math.hypot(dx, dy); return m < 1e-3 ? [0.7071, -0.7071, p[4]] : [dx / m, dy / m, p[4]]; }
+  function drawDial(now) {
+    const R1 = r * 1.3, R2 = Math.min(r * 1.42, Math.min(W, H) / 2 - 14);
+    // bezel ring and ticks, turning with the Earth's spin
+    ctx.save(); ctx.translate(cx, cy);
+    ctx.strokeStyle = "rgba(216,176,100,0.22)"; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.arc(0, 0, R1, 0, 2 * Math.PI); ctx.stroke();
+    ctx.strokeStyle = "rgba(216,176,100,0.08)"; ctx.beginPath(); ctx.arc(0, 0, R2, 0, 2 * Math.PI); ctx.stroke();
+    const spin = -lon0;
+    for (let k = 0; k < 96; k++) {
+      const a = spin + k * Math.PI / 48, major = k % 4 === 0, big = k % 24 === 0;
+      const l = big ? 11 : major ? 7 : 3.5;
+      ctx.strokeStyle = big ? "rgba(216,176,100,0.75)" : major ? "rgba(216,176,100,0.42)" : "rgba(216,176,100,0.18)";
+      ctx.beginPath(); ctx.moveTo(Math.cos(a) * R1, Math.sin(a) * R1); ctx.lineTo(Math.cos(a) * (R1 + l), Math.sin(a) * (R1 + l)); ctx.stroke();
+    }
+    ctx.restore();
+    // Sun marker on the bezel
+    const s = dirOnScreen(SUN.v), sx = cx + s[0] * R1, sy = cy + s[1] * R1;
+    const glow = ctx.createRadialGradient(sx, sy, 0, sx, sy, 26);
+    glow.addColorStop(0, "rgba(255,226,160,0.85)"); glow.addColorStop(0.25, "rgba(255,200,110,0.35)"); glow.addColorStop(1, "rgba(255,190,90,0)");
+    ctx.fillStyle = glow; ctx.beginPath(); ctx.arc(sx, sy, 26, 0, 2 * Math.PI); ctx.fill();
+    ctx.fillStyle = "#fff1cf"; ctx.beginPath(); ctx.arc(sx, sy, 4.2, 0, 2 * Math.PI); ctx.fill();
+    ctx.strokeStyle = "rgba(255,226,160,0.7)"; ctx.lineWidth = 1;
+    for (let k = 0; k < 8; k++) { const a = k * Math.PI / 4 + now / 9000; ctx.beginPath(); ctx.moveTo(sx + Math.cos(a) * 7, sy + Math.sin(a) * 7); ctx.lineTo(sx + Math.cos(a) * 10.5, sy + Math.sin(a) * 10.5); ctx.stroke(); }
+    label("SUN", sx, sy, s, 20);
+    // Moon, outside the bezel at its true direction, lit by the Sun
+    const m = dirOnScreen(MOON.v), mr = Math.max(7, r * 0.075), md = (R1 + R2) / 2 + (R2 - R1) * 0.1;
+    const mx = cx + m[0] * md, my = cy + m[1] * md;
+    const toV = v => { const p = projectVec(v, 1); return [p[4], p[5], p[6]]; };
+    renderMoon(Math.round(mr), toV(SUN.v));
+    ctx.globalAlpha = m[2] < -0.2 ? 0.75 : 1;
+    ctx.drawImage(moonCv, mx - mr, my - mr, mr * 2, mr * 2); ctx.globalAlpha = 1;
+    ctx.strokeStyle = "rgba(237,241,244,0.18)"; ctx.beginPath(); ctx.arc(mx, my, mr + 3, 0, 2 * Math.PI); ctx.stroke();
+    label("MOON", mx, my, m, mr + 10);
+  }
+  function label(t, x, y, d, off) {
+    ctx.font = "500 9.5px 'IBM Plex Mono', ui-monospace, monospace"; ctx.fillStyle = "rgba(216,176,100,0.85)";
+    ctx.textAlign = d[0] > 0.3 ? "left" : d[0] < -0.3 ? "right" : "center"; ctx.textBaseline = d[1] > 0.3 ? "top" : d[1] < -0.3 ? "bottom" : "middle";
+    ctx.fillText(t, x + d[0] * off, y + d[1] * off);
+  }
+
+  /* ---------- readouts ---------- */
+  const fdeg = (x, p, n) => `${Math.abs(x / D2R).toFixed(1)}°${x >= 0 ? p : n}`;
   function setReadout() {
     if (mode === "loading") return;
     if (!sats.length) { readout.innerHTML = '<div class="rk">Orbit data unavailable</div>'; return; }
     const s = sats[selected]; if (!s || !s.st) return;
-    const f = (x, n = 1) => x.toFixed(n);
     readout.innerHTML = "";
     const row = (cls, txt) => { const d = document.createElement("div"); d.className = cls; d.textContent = txt; readout.append(d); };
     row("rk", mode === "live" ? "Modelled position · now" : "Illustrative orbit");
     row("rn", s.name);
-    row("rv", `alt ${f(s.st.alt, 0)} km · ${f(s.st.v, 2)} km/s`);
-    row("rv", `${f(Math.abs(s.st.lat / D2R))}°${s.st.lat >= 0 ? "N" : "S"}  ${f(Math.abs(s.st.lon / D2R))}°${s.st.lon >= 0 ? "E" : "W"}`);
+    row("rv", `alt ${s.st.alt.toFixed(0)} km · ${s.st.v.toFixed(2)} km/s`);
+    row("rv", `${fdeg(s.st.lat, "N", "S")}  ${fdeg(s.st.lon, "E", "W")}`);
+  }
+  function setDial() {
+    if (!dialEl) return;
+    const d = new Date(), hh = String(d.getUTCHours()).padStart(2, "0"), mm = String(d.getUTCMinutes()).padStart(2, "0"), ss = String(d.getUTCSeconds()).padStart(2, "0");
+    dialEl.innerHTML = "";
+    const row = (cls, txt) => { const e = document.createElement("div"); e.className = cls; e.textContent = txt; dialEl.append(e); };
+    row("rk", "Sun dial · computed now");
+    row("rn", `${hh}:${mm}:${ss} UTC`);
+    row("rv", `☉ overhead ${fdeg(SUN.lat, "N", "S")} ${fdeg(SUN.lon, "E", "W")}`);
+    row("rv", `☾ ${phaseName(MOON)} · ${Math.round(MOON.frac * 100)}% lit`);
+    row("rv", `☾ ${Math.round(MOON.dist).toLocaleString("en-GB")} km away`);
   }
   function pickNext() {
     const hl = sats.map((s, i) => [s, i]).filter(([s]) => s.hl);
     const pool = hl.length ? hl : sats.map((s, i) => [s, i]);
+    if (!pool.length) return;
     const cur = pool.findIndex(([, i]) => i === selected);
     selected = pool[(cur + 1) % pool.length][1]; lastTrail = 0;
   }
@@ -631,19 +922,43 @@ footer a { color: var(--night-ink); }
         return ok ? [true, "Signature valid"] : [false, "Signature invalid"];
       } catch (e) { return [false, "File could not be checked"]; }
     }
-    return { check };
+    const sha256hex = async u => hex(await sha("SHA-256", u));
+    // MARBLE/1.0 feed: hash chain exactly as telemetry.py builds it, then EDEN's signature over the whole feed
+    async function checkFeed(doc, pinned) {
+      if (!(window.crypto && crypto.subtle)) return [false, "Checking the feed needs HTTPS"];
+      try {
+        if (doc.schema !== "EDEN-MARBLE-FEED-v1") return [false, "Unknown feed format"];
+        if (pinned && pinned !== doc.pub) return [false, "Feed key is not EDEN's published key"];
+        const pub = unhex(doc.pub);
+        if (doc.key !== hex(await sha("SHA-256", pub)).slice(0, 16)) return [false, "Key id mismatch"];
+        if (!Array.isArray(doc.stream) || doc.count !== doc.stream.length || !doc.stream.length) return [false, "Envelope count mismatch"];
+        let prev = "0".repeat(64);
+        for (let i = 0; i < doc.stream.length; i++) {
+          const m = doc.stream[i].marble, led = m.ledger;
+          if (m.schema !== "MARBLE/1.0" || m.sequence !== i || led.chain_index !== i || led.previous_hash !== prev) return [false, "Chain broken at envelope " + i];
+          const copy = JSON.parse(JSON.stringify(doc.stream[i])); delete copy.marble.ledger.packet_hash;
+          if (hex(await sha("SHA-256", cat(enc.encode("MARBLE/1.0\0"), enc.encode(canon(copy))))) !== led.packet_hash) return [false, "Envelope " + i + " was altered"];
+          prev = led.packet_hash;
+        }
+        if (doc.head !== prev) return [false, "Chain head mismatch"];
+        const body = {}; for (const k of Object.keys(doc)) if (k !== "sig") body[k] = doc[k];
+        const ok = await edVerify(pub, cat(enc.encode("EDEN-MARBLE-FEED-v1\0"), enc.encode(canon(body))), unhex(doc.sig));
+        return ok ? [true, "Chain verified"] : [false, "Feed signature invalid"];
+      } catch (e) { return [false, "Feed could not be checked"]; }
+    }
+    return { check, checkFeed, sha256hex };
   })();
 
   let rx = [], rxIdx = -1, rxSince = 0, rxDoc = null;
   const TEAL = "#5fd4b4";
   const rxPanel = document.getElementById("rxpanel"), rxStatus = document.getElementById("rxstatus");
   async function loadReceipts() {
-    let doc, pinned = null;
-    try { doc = JSON.parse(await getText("receptions.json")); } catch (e) { return; }   // stage not switched on yet
-    try { pinned = (await getText("eden_pubkey.txt")).trim(); } catch (e) {}
-    const [ok, why] = await EDV.check(doc, pinned);
+    let doc;
+    try { doc = JSON.parse(await sealedText("receptions.json")); }
+    catch (e) { if (MB.state === "ok" && MB.files["receptions.json"]) { rxPanel.hidden = false; rxPanel.className = "glass rxpanel bad"; rxPanel.textContent = "Real receptions: " + e.message + ". Not shown."; } return; }
+    const [ok, why] = await EDV.check(doc, MB.pinned);
     rxPanel.hidden = false;
-    if (!ok) { rxPanel.className = "rxpanel bad"; rxPanel.textContent = "Real receptions: " + why + ". Not shown."; return; }
+    if (!ok) { rxPanel.className = "glass rxpanel bad"; rxPanel.textContent = "Real receptions: " + why + ". Not shown."; return; }
     rxDoc = doc;
     rx = doc.records.map(r => {
       let rec = null; try { rec = satellite.twoline2satrec(r.tle1, r.tle2); if (rec.error) rec = null; } catch (e) {}
@@ -662,7 +977,7 @@ footer a { color: var(--night-ink); }
     if (!rx.length) return;
     rxIdx = (rxIdx + 1) % rx.length; rxSince = now;
     const x = rx[rxIdx], r = x.r, when = x.mid.toISOString().slice(0, 16).replace("T", " ");
-    rxPanel.className = "rxpanel"; rxPanel.innerHTML = "";
+    rxPanel.className = "glass rxpanel"; rxPanel.innerHTML = "";
     const row = (cls, txt) => { const d = document.createElement("div"); d.className = cls; d.textContent = txt; rxPanel.append(d); return d; };
     row("rk", "Received · signed ✓");
     row("rn", r.sat);
@@ -694,26 +1009,103 @@ footer a { color: var(--night-ink); }
     }
   }
 
+
   /* ---------- loop ---------- */
-  let lastFrame = 0, lastReadout = 0, lastCycle = 0;
-  function render() { update(performance.now()); draw(); }
+  let lastFrame = 0, lastReadout = 0, lastCycle = 0, visible = true;
+  new IntersectionObserver(es => { visible = es[0].isIntersecting; }).observe(cv);
+  function render() { const n = performance.now(); update(n); draw(n); }
   function frame(now) {
     const dt = lastFrame ? Math.min(100, now - lastFrame) : 16; lastFrame = now;
-    if (!dragging && now > idleUntil) lon0 -= dt * 0.00006;
-    update(now); draw();
-    if (now - lastReadout > 500) { setReadout(); lastReadout = now; }
-    if (!userPicked && now - lastCycle > 7000) { if (sats.length) pickNext(); lastCycle = now; }
+    if (visible && !document.hidden) {
+      if (!dragging && now > idleUntil) lon0 -= dt * 0.00005;
+      update(now); draw(now);
+      if (now - lastReadout > 500) { setReadout(); setDial(); lastReadout = now; }
+      if (!userPicked && now - lastCycle > 7000) { if (sats.length) pickNext(); lastCycle = now; }
+    }
     requestAnimationFrame(frame);
   }
 
-  /* ---------- data ---------- */
+  /* ---------- MARBLE: every file the globe uses must arrive inside a verified envelope ---------- */
+  const MB = { state: "loading", why: "", doc: null, files: {}, pinned: null };
   async function getText(url) { const r = await fetch(url, { cache: "no-cache" }); if (!r.ok) throw new Error(r.status); return r.text(); }
+  async function loadMarble() {
+    try { MB.pinned = (await getText("eden_pubkey.txt?t=" + Date.now())).trim(); } catch (e) {}
+    let doc;
+    try { doc = JSON.parse(await getText("globe.marble.json?t=" + Date.now())); }
+    catch (e) { MB.state = "absent"; MB.why = "This feed hasn't been sealed yet"; renderMarble(); return; }
+    const [ok, why] = await EDV.checkFeed(doc, MB.pinned);
+    MB.doc = doc; MB.state = ok ? "ok" : "bad"; MB.why = why;
+    if (ok) for (const e of doc.stream) MB.files[e.marble.payload.path] = { env: e.marble, verified: null };
+    renderMarble();
+  }
+  // Fetch a file the globe uses. With a verified feed, the bytes must match their envelope or they are refused.
+  async function sealed(path) {
+    if (MB.state === "bad") throw new Error("MARBLE feed failed");
+    const f = MB.files[path];
+    if (MB.state === "ok" && !f) throw new Error("not in the MARBLE feed");
+    const q = f ? "?m=" + f.env.payload.sha256.slice(0, 16) : "?t=" + Math.floor(Date.now() / 6e5);
+    const res = await fetch(path + q, { cache: "no-cache" }); if (!res.ok) throw new Error(res.status);
+    const buf = new Uint8Array(await res.arrayBuffer());
+    if (f) { f.verified = (await EDV.sha256hex(buf)) === f.env.payload.sha256; renderMarble(); if (!f.verified) throw new Error("does not match its MARBLE envelope"); }
+    return buf;
+  }
+  const sealedText = async p => new TextDecoder().decode(await sealed(p));
+  function renderMarble() {
+    if (!marbleEl) return;
+    marbleEl.innerHTML = "";
+    const head = document.createElement("div"); head.className = "mhead";
+    const pill = document.createElement("span"); pill.className = "pill " + MB.state;
+    pill.textContent = { ok: "Chain verified", bad: "Feed failed", absent: "Not sealed yet", loading: "Checking…" }[MB.state];
+    const t = document.createElement("span"); t.className = "mt";
+    if (MB.state === "ok") t.textContent = `MARBLE/1.0 · ${MB.doc.count} envelopes · sealed by EDEN key ${MB.doc.key} · ${MB.doc.sealed_at.slice(0, 16).replace("T", " ")} UTC`;
+    else t.textContent = "MARBLE/1.0 · " + MB.why + (MB.state === "bad" ? ". Live data refused." : "");
+    head.append(t, pill); marbleEl.append(head);
+    if (MB.state !== "ok") return;
+    for (const e of MB.doc.stream) {
+      const m = e.marble, f = MB.files[m.payload.path];
+      const row = document.createElement("div"); row.className = "mrow";
+      const cells = [String(m.sequence).padStart(2, "0"), m.event_kind, m.payload.detail, f.verified === null ? "·" : f.verified ? "✓ sealed" : "✗ refused"];
+      cells.forEach((c, i) => { const s = document.createElement("span"); s.textContent = c; if (i === 3) s.className = f.verified === null ? "wait" : f.verified ? "okc" : "badc"; row.append(s); });
+      row.title = m.payload.path + " · sha256 " + m.payload.sha256 + " · packet " + m.ledger.packet_hash;
+      marbleEl.append(row);
+    }
+  }
+
+  /* ---------- Earth imagery ---------- */
+  async function loadEarth() {
+    if (!EARTH) return false;
+    const big = r * 2 * dpr > 760 && EARTH.maxTex >= 4096;
+    async function bitmap(names) {
+      for (const n of names) {
+        if (MB.state === "ok" && !MB.files[n]) continue;
+        try { const buf = await sealed(n); return await createImageBitmap(new Blob([buf], { type: "image/jpeg" })); } catch (e) {}
+      }
+      return null;
+    }
+    const day = await bitmap(big ? ["tex/day_4k.jpg", "tex/day_2k.jpg"] : ["tex/day_2k.jpg"]);
+    if (!day) return false;
+    EARTH.setTexture("day", day);
+    const [night, clouds, spec] = await Promise.all([
+      bitmap(big ? ["tex/night_4k.jpg", "tex/night_2k.jpg"] : ["tex/night_2k.jpg"]),
+      bitmap(big ? ["tex/clouds_4k.jpg", "tex/clouds_2k.jpg"] : ["tex/clouds_2k.jpg"]),
+      bitmap(["tex/spec_2k.jpg"])]);
+    if (night) EARTH.setTexture("night", night);
+    if (clouds) EARTH.setTexture("clouds", clouds);
+    if (spec) EARTH.setTexture("spec", spec);
+    return true;
+  }
+
+  /* ---------- start ---------- */
   async function init() {
     size(); addEventListener("resize", () => { size(); if (reduce) render(); });
-    try { buildDots(JSON.parse(await getText("land.geojson"))); } catch (e) { dots = []; }
+    if (!reduce) requestAnimationFrame(frame);
+    await loadMarble();
+    gl3d = await loadEarth().catch(() => false);
+    if (!gl3d) { try { buildDots(JSON.parse(await sealedText("land.geojson"))); } catch (e) { dots = []; } }
+    document.documentElement.classList.toggle("photoreal", gl3d);
     try {
       if (typeof satellite === "undefined") throw new Error("no sgp4");
-      sats = parseTLE(await getText("tle.txt"));
+      sats = parseTLE(await sealedText("tle.txt"));
       if (!sats.length) throw new Error("no sats");
       mode = "live";
       const newest = Math.max(...sats.map(s => tleEpoch(s.rec).getTime()));
@@ -721,15 +1113,23 @@ footer a { color: var(--night-ink); }
       statusEl.textContent = `Live: ${sats.length} Earth-observation satellites · orbital data ${hrs < 1 ? "under an hour" : hrs + " h"} old · positions modelled, not received`;
     } catch (e) {
       sats = demoSats(); mode = "demo";
-      statusEl.textContent = "Illustrative orbits: live orbital data didn't load here";
+      statusEl.textContent = MB.state === "bad" ? "Illustrative orbits: the MARBLE feed failed its check, so live data was refused" : /MARBLE/.test(e.message) ? "Illustrative orbits: the orbit data didn't match its MARBLE envelope, so it was refused" : "Illustrative orbits: live orbital data didn't load here";
     }
-    pickNext(); render(); setReadout();
-    if (!reduce) requestAnimationFrame(frame);
-    if (typeof loadReceipts === "function" && mode === "live") loadReceipts().then(() => { if (reduce) render(); }).catch(() => {});
+    pickNext(); render(); setReadout(); setDial();
+    if (mode === "live") loadReceipts().then(() => { if (reduce) render(); }).catch(() => {});
   }
   init();
 })();
 
+(() => {
+  document.documentElement.classList.add("js");
+  setTimeout(() => document.querySelectorAll(".reveal").forEach(el => el.classList.add("in")), 3000);
+  const top = document.getElementById("topbar");
+  const onScroll = () => top.classList.toggle("scrolled", scrollY > 24);
+  addEventListener("scroll", onScroll, { passive: true }); onScroll();
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { rootMargin: "0px 0px -8% 0px" });
+  document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+})();
 </script>
 
 </body>
