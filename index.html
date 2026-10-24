@@ -168,6 +168,13 @@ nav .btn { padding: 9px 18px; font-size: 14px; }
 .e2e .card h3 { color: var(--night-ink); }
 .e2e .card p { color: var(--night-muted); font-size: 15px; }
 
+.why { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 48px; }
+.wcard { display: grid; gap: 14px; align-content: start; padding: 30px 28px; border-radius: 18px; background: linear-gradient(180deg, #0c131b, #070b10); color: var(--night-ink); text-decoration: none; border: 1px solid #1c2733; box-shadow: 0 40px 70px -40px rgba(5, 8, 12, .6); transition: transform .5s var(--ease), border-color .4s; }
+.wcard:hover { transform: translateY(-4px); border-color: rgba(216, 176, 100, .55); }
+.wcard .wn { font-family: var(--font-display); font-weight: 720; font-stretch: 70%; font-size: clamp(52px, 6vw, 84px); line-height: .9; }
+.wcard .wt { color: #c9d3dc; font-size: 16px; line-height: 1.5; }
+.wcard .ws { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--night-muted); }
+@media (max-width: 960px) { .why { grid-template-columns: 1fr; } }
 .tablewrap { overflow-x: auto; margin-top: 40px; border-top: 1px solid var(--ink); }
 table { border-collapse: collapse; width: 100%; min-width: 600px; }
 th, td { text-align: left; padding: 17px 16px 17px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
@@ -237,6 +244,7 @@ footer a { color: var(--night-ink); }
           <svg viewBox="0 0 26 26" aria-hidden="true"><defs><linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#f6e2ab"/><stop offset=".5" stop-color="#d8b064"/><stop offset="1" stop-color="#8e6a24"/></linearGradient></defs><circle cx="13" cy="13" r="11.5" fill="none" stroke="url(#bg)" stroke-width="1.2"/><ellipse cx="13" cy="13" rx="11.5" ry="4.2" fill="none" stroke="url(#bg)" stroke-width=".8" transform="rotate(-24 13 13)"/><circle cx="13" cy="13" r="3" fill="url(#bg)"/></svg>
           <b>EDEN</b><span>Refinery</span></a>
         <nav aria-label="Main">
+          <a href="#why">Why now</a>
           <a href="#how">How it works</a>
           <a href="#sealed">Sealed end to end</a>
           <a href="#evidence">Evidence</a>
@@ -290,6 +298,31 @@ footer a { color: var(--night-ink); }
       <div class="eyebrow">The problem</div>
       <h2>Once a satellite's AI decides, nobody on the ground can <em class="s">check</em> it.</h2>
       <p class="lede">Onboard AI saves bandwidth by throwing data away and acts faster by raising alerts in orbit. What it saw, what it decided and whether the record was changed later are invisible. As insurance payouts, emissions reports and security decisions start to depend on those calls, "trust us" stops being enough.</p>
+    </div>
+  </section>
+
+  <section id="why" style="padding-top:0">
+    <div class="inner">
+      <div class="reveal" style="display:grid;gap:22px;max-width:980px">
+        <div class="eyebrow">Why now</div>
+        <h2>The world's AI is about to need a <em class="s">custodian.</em></h2>
+        <p class="lede">Gartner now says the hard part of AI isn't building agents. It's proving what they did, under what authority, and that the record wasn't changed afterwards. EDEN is that evidence layer: independent, cryptographic, and light enough to run in orbit.</p>
+      </div>
+      <div class="why reveal">
+        <a class="wcard" href="https://www.gartner.com/en/newsroom/press-releases/2026-09-15-gartner-unveils-top-strategic-predictions-for-2027-and-beyond" rel="noopener" target="_blank">
+          <span class="wn gold">80%</span>
+          <span class="wt">of Global 500 companies will contractually make their CIO or Chief AI Officer the "Evidence Custodian" for AI accountability by 2030.</span>
+          <span class="ws">Gartner · Top Strategic Predictions · 15 Sep 2026 ↗</span></a>
+        <a class="wcard" href="https://www.gartner.com/en/newsroom/press-releases/2026-09-15-gartner-unveils-top-strategic-predictions-for-2027-and-beyond" rel="noopener" target="_blank">
+          <span class="wn gold">2030</span>
+          <span class="wt">is when Gartner expects insurers, not regulators, to be driving AI governance. Insurers pay on evidence, not assurances.</span>
+          <span class="ws">Gartner · Top Strategic Predictions · 15 Sep 2026 ↗</span></a>
+        <a class="wcard" href="https://www.newelectronics.co.uk/content/news/over-40-of-agentic-ai-projects-could-be-cancelled-by-2027" rel="noopener" target="_blank">
+          <span class="wn gold">40%+</span>
+          <span class="wt">of agentic AI projects will be cancelled by the end of 2027, with inadequate risk controls among the reasons Gartner gives.</span>
+          <span class="ws">Gartner, as reported by New Electronics ↗</span></a>
+      </div>
+      <p class="note reveal">An Evidence Custodian has to identify, collect and preserve digital evidence of what AI did. EDEN produces exactly that: a sealed record of each decision, the model version, the input and the time, that anyone can check without trusting whoever ran the system. We prove it first in orbit, where it's hardest, then beside enterprise agents, observing and never altering them.</p>
     </div>
   </section>
 
@@ -385,6 +418,9 @@ footer a { color: var(--night-ink); }
         <div><dt>Defence and space security</dt><dd>Tamper-evident records of autonomous decisions, jamming and intrusions, with re-runs that expose faulty or manipulated ones.</dd></div>
         <div><dt>Ground stations and RF sensing</dt><dd>A sealed receipt for every reception: what was heard, by which station, and when.</dd></div>
         <div><dt>AI assurance</dt><dd>The same engine proves any AI decision on any device. Orbit is simply the hardest place to do it.</dd></div>
+        <div><dt>Evidence Custodians</dt><dd>CIOs and Chief AI Officers who must preserve proof of what their AI agents did, in a form a court, auditor or insurer will accept.</dd></div>
+        <div><dt>AI insurers</dt><dd>Underwrite AI risk on sealed decision records rather than the insured's own logs.</dd></div>
+        <div><dt>Agent platforms</dt><dd>Make EDEN receipts the evidence layer your governance, identity and orchestration tools point to.</dd></div>
       </dl>
     </div>
   </section>
