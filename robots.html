@@ -95,7 +95,7 @@ footer{padding:40px 0 60px;color:var(--muted);font-size:13px}
 
 <div class="eye">Robots and drones</div>
 <h1>A flight recorder for every machine <em>that decides.</em></h1>
-<p class="lede">When a robot or drone acts on its own, someone will eventually ask what it saw, what it decided and who was in control. EDEN seals the answer as it happens, in a record that anyone can check and nobody can quietly rewrite. Explore two concept units below, then run the recorder yourself.</p>
+<p class="lede">Robots and drones now make their own choices. When something goes wrong, everyone asks three questions: what did it see, what did it decide, and who was in control? EDEN records the answers as they happen, in a record anyone can check and nobody can quietly rewrite. Spin the models, open them up, then try to cheat.</p>
 
 <div class="tabs" role="tablist">
   <button role="tab" data-model="humanoid" aria-selected="true">ED-01 humanoid</button>
@@ -125,8 +125,8 @@ footer{padding:40px 0 60px;color:var(--muted);font-size:13px}
     <div class="btns">
       <button id="bRun" class="primary"><span id="runLabel">Run shift</span></button>
       <button id="bSeal">Seal</button>
-      <button id="bWit">Send seal to witness</button>
-      <button id="bTam" class="warn">Insider rewrites history</button>
+      <button id="bWit">Send to witness</button>
+      <button id="bTam" class="warn">Try to cheat</button>
       <button id="bReset">Reset</button>
     </div>
     <div class="logwrap"><table class="log"><thead><tr><th>#</th><th>Kind</th><th>What happened</th><th>Leaf hash</th></tr></thead><tbody id="log"></tbody></table></div>
@@ -134,37 +134,37 @@ footer{padding:40px 0 60px;color:var(--muted);font-size:13px}
   <div>
     <div class="eye" style="margin-top:8px">Verification</div>
     <div id="status" class="status" style="margin-top:12px"></div>
-    <p class="note">The machines are simulated. The cryptography is real: every entry is hashed with SHA-256 on your device, sealed under an RFC 6962 Merkle root and, where your browser supports it, signed with Ed25519.</p>
+    <p class="note">The robot and drone are simulated. The cryptography is real: every entry is fingerprinted with SHA-256 on your device, locked into a Merkle tree and, where your browser supports it, signed with Ed25519.</p>
   </div>
 </div>
 
 <section>
   <div class="eye">Where the record lives</div>
-  <h2>The log stays on the machine. <em>Only the seal travels.</em></h2>
-  <p class="lede">The record is ordinary data, so it can live wherever suits the operation. Moving it doesn't weaken it: the protection comes from the seals and the witnesses, not from where it's stored.</p>
+  <h2>The record stays on the machine. <em>Only the seal travels.</em></h2>
+  <p class="lede">The full record stays on board. Only a tiny seal goes out. Wherever the record ends up, it stays honest, because the seals and witnesses protect it, not the storage.</p>
   <div class="g4">
-    <div class="card"><h3>On the device</h3><p>The robot's or drone's own storage. The full log (~7.5 MB per robot-hour, measured) never has to leave.</p></div>
-    <div class="card"><h3>On the operator's servers</h3><p>Beside existing logs and fleet systems, uploaded when the machine docks.</p></div>
-    <div class="card"><h3>With a client or auditor</h3><p>Handed over as an evidence pack that anyone can verify with an open-source tool.</p></div>
-    <div class="card"><h3>Split</h3><p>Full log on board, seals of a few hundred bytes over the air. That matters when every byte of airtime counts.</p></div>
+    <div class="card"><h3>On the device</h3><p>The machine keeps its own complete record: about 7.5 MB an hour (measured). It never has to leave.</p></div>
+    <div class="card"><h3>On the operator's servers</h3><p>Copied to the fleet's systems whenever the machine docks.</p></div>
+    <div class="card"><h3>With a client or auditor</h3><p>Handed over as an evidence pack anyone can check with a free, open-source tool.</p></div>
+    <div class="card"><h3>Split</h3><p>The full record on board, seals of a few hundred bytes over the radio. Ideal when every byte of airtime counts.</p></div>
   </div>
 </section>
 
 <section>
   <div class="eye">Who holds the witness seals</div>
   <h2>Anyone with no reason to <em>help you cheat.</em></h2>
-  <p class="lede">A witness keeps a copy of each seal and refuses any later version that contradicts it. The more independent the witnesses, the stronger the guarantee.</p>
+  <p class="lede">A witness keeps a copy of every seal. If anyone turns up later with a different story, the witness refuses it. More independent witnesses means stronger proof.</p>
   <div class="chips"><span>Insurers</span><span>Auditors and assurance firms</span><span>Customers and site owners</span><span>Regulators and airspace authorities</span><span>Public transparency logs</span><span>Several at once</span></div>
   <div class="g2">
-    <div class="card"><h3>What the record proves</h3><ul class="tick"><li>What the machine saw (fingerprints of sensor data)</li><li>What it decided, with which model version</li><li>Who approved or took control, and in what order</li><li>That nothing was changed or removed after a seal reached a witness</li></ul></div>
-    <div class="card"><h3>What it doesn't prove</h3><ul class="tick cross"><li>That a decision was right</li><li>That a sensor was telling the truth</li><li>Wall-clock time, until anchored to a trusted time source</li><li>Anything about content it never saw</li></ul></div>
+    <div class="card"><h3>What the record proves</h3><ul class="tick"><li>What the machine saw, as fingerprints of its sensor data</li><li>What it decided, and which AI version decided it</li><li>Who approved or took control, and in what order</li><li>That nothing was changed or deleted once a witness held the seal</li></ul></div>
+    <div class="card"><h3>What it doesn't prove</h3><ul class="tick cross"><li>That a decision was right</li><li>That a sensor told the truth</li><li>Exact clock time, until a trusted time source is added</li><li>Anything it never saw</li></ul></div>
   </div>
 </section>
 
 <section>
   <div class="eye">Concept units</div>
   <h2>Designed to be built, <em>recorded from day one.</em></h2>
-  <p class="lede">ED-01 and VPD-001 are original EDEN concept designs. They aren't products for sale yet. The specifications on this page are realistic engineering targets for units that could be produced. The flight recorder is the part that exists and is tested today.</p>
+  <p class="lede">ED-01 and VPD-001 are EDEN's own concept designs, not products for sale yet. The specs here are realistic engineering targets for machines that could genuinely be built. The recorder inside them is real, and tested today.</p>
   <div class="g2">
     <figure><img src="ed01-sheet.jpg" alt="ED-01 Marble humanoid concept sheet: white and grey armour, gold trim, blue visor lights" loading="lazy" width="1212" height="1298"><figcaption>ED-01 "Marble" concept art. Target specifications on this page supersede the sheet's figures.</figcaption></figure>
     <figure><img src="vpd001-sheet.jpg" alt="VPD-001 ducted quadcopter concept sheet: four blue-lit ducted rotors around a black dome" loading="lazy" width="1536" height="1024"><figcaption>VPD-001 concept art. Target specifications on this page supersede the sheet's figures.</figcaption></figure>
@@ -174,8 +174,8 @@ footer{padding:40px 0 60px;color:var(--muted);font-size:13px}
 <section>
   <div class="cta">
     <div class="eye">For robot and drone makers</div>
-    <h2>If your machine had an incident tomorrow, <em>could you prove what it did?</em></h2>
-    <p class="lede" style="margin:0">An EDEN Evidence Check shows exactly what your current logs can and can't prove, in 5 working days, for a £495 founding price. Hardware makers: joint tests on your platform, no fee either way.</p>
+    <h2>If your machine had an accident tomorrow, <em>could you prove what it did?</em></h2>
+    <p class="lede" style="margin:0">An EDEN Evidence Check shows exactly what your current records can and can't prove. Five working days, £495 founding price. Robot and drone makers: joint testing on your platform, no fee either way.</p>
     <a class="btn" href="index.html#audit">Start an Evidence Check</a>
   </div>
 </section>

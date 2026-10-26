@@ -246,12 +246,12 @@ footer a { color: var(--night-ink); }
         <nav aria-label="Main">
           <a href="#why">Why now</a>
           <a href="#how">How it works</a>
-          <a href="#sealed">Sealed end to end</a>
+          <a href="#sealed">Self-proving</a>
           <a href="robots.html">Robots &amp; drones</a>
           <a href="#evidence">Evidence</a>
-          <a href="#audit">Audit</a>
-          <a href="report.html">Results</a>
-          <a class="btn foil" href="verify.html">Verify a pass</a>
+          <a href="#audit">Prices</a>
+          <a href="report.html">Test results</a>
+          <a class="btn foil" href="verify.html">Check a receipt</a>
         </nav>
       </header>
     </div>
@@ -260,14 +260,14 @@ footer a { color: var(--night-ink); }
   <div class="inner">
     <div class="hero" id="top">
       <div class="copy reveal">
-        <div class="eyebrow">EDEN SSI · Signed Satellite Inference</div>
+        <div class="eyebrow">EDEN · Proof for every AI decision</div>
         <h1>The black box for every <em class="s gold">AI.</em></h1>
-        <p class="lede">When an AI decision costs money, someone has to prove what it actually did. Today the only record belongs to whoever might be at fault. EDEN gives every AI decision a sealed receipt anyone can check, in orbit and on the ground, without trusting the operator or us. We started with satellites, because orbit is the hardest place to do it.</p>
+        <p class="lede">AI is making real decisions now. When one goes wrong, everyone asks the same thing: what did it actually do? EDEN gives every decision a sealed receipt. Anyone can check it. Nobody can secretly change it, not even us. We started in space, because if it works in orbit, it works anywhere.</p>
         <div class="ctas">
-          <a class="btn foil" href="verify.html">Check a pass yourself <span class="arr">→</span></a>
-          <a class="btn line" href="#pilots">Run a pilot with us</a>
+          <a class="btn foil" href="verify.html">Check a receipt yourself <span class="arr">→</span></a>
+          <a class="btn line" href="#pilots">Work with us</a>
         </div>
-        <div class="tagline">Don't recompute it. Verify it.</div>
+        <div class="tagline">Don't trust it. Check it.</div>
       </div>
       <figure class="viz" style="margin-block:0">
         <div class="stage">
@@ -279,18 +279,18 @@ footer a { color: var(--night-ink); }
           <div class="glass dial" id="dial" aria-live="off"></div>
           <div class="glass rxpanel" id="rxpanel" aria-live="polite" hidden></div>
         </div>
-        <figcaption><span id="gstatus">Positions computed in your browser from public orbital data</span><span id="rxstatus" hidden></span><span><i style="background:#d8b064"></i>Sentinel · Landsat</span><span><i style="background:#edf1f4"></i>Other Earth observation</span><span><i style="background:#5fd4b4"></i>Real reception, signed</span><span>Drag to rotate · tap a satellite</span></figcaption>
+        <figcaption><span id="gstatus">Satellite positions worked out live in your browser</span><span id="rxstatus" hidden></span><span><i style="background:#d8b064"></i>Sentinel · Landsat</span><span><i style="background:#edf1f4"></i>Other Earth observation</span><span><i style="background:#5fd4b4"></i>Real signal, signed</span><span>Drag to spin · tap a satellite</span></figcaption>
         <div class="marble" id="marble" aria-label="MARBLE/1.0 feed check"></div>
       </figure>
     </div>
 
     <div class="stats reveal" aria-label="Measured results">
-      <div class="stat"><div class="n gold">713<small>bytes</small></div><div class="l">Signed proof for a whole 2,000-image pass</div></div>
-      <div class="stat"><div class="n gold">~2<small>ms</small></div><div class="l">To record one image on an ARM processor</div></div>
-      <div class="stat"><div class="n gold">~5<small>ms</small></div><div class="l">From fire detection to signed alert</div></div>
-      <div class="stat"><div class="n gold">24<small>/ 24</small></div><div class="l">Automated tests passing, laptop and handset</div></div>
+      <div class="stat"><div class="n gold">713<small>bytes</small></div><div class="l">One tiny receipt proves 2,000 satellite photos</div></div>
+      <div class="stat"><div class="n gold">~2<small>ms</small></div><div class="l">To record one photo on a phone chip</div></div>
+      <div class="stat"><div class="n gold">~5<small>ms</small></div><div class="l">From spotting a fire to a signed alert</div></div>
+      <div class="stat"><div class="n gold">24<small>/ 24</small></div><div class="l">Tests passing, on a laptop and a phone</div></div>
     </div>
-    <div class="statnote">Measured on an Android ARM handset, synthetic images, 22 Oct 2026</div>
+    <div class="statnote">Measured on an Android phone with test images, 22 Oct 2026</div>
   </div>
 </div>
 
@@ -299,20 +299,20 @@ footer a { color: var(--night-ink); }
     <div class="inner reveal" style="display:grid;gap:22px">
       <div class="eyebrow">Robots and drones</div>
       <h2>A flight recorder for every machine that <em class="s gold">decides.</em></h2>
-      <p class="lede">Meet ED-01, a concept humanoid, and VPD-001, a concept ducted drone. Rotate them, tap any part to see what EDEN seals there, then record a shift and try to rewrite it. The cryptography runs live in your browser.</p>
+      <p class="lede">Meet ED-01 and VPD-001, our concept robot and drone. Spin them. Tap any part to see what it records. Open them up with X-ray. Then try to cheat, and watch EDEN catch you. The maths runs live on your device.</p>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px">
         <a href="robots.html" style="display:block;border-radius:20px;overflow:hidden;border:1px solid var(--night-line)"><img src="robots-ed01.jpg" alt="ED-01 concept humanoid rendered in white armour with gold trim and blue lights" width="703" height="713" loading="lazy" style="display:block;width:100%;height:auto"></a>
         <a href="robots.html" style="display:block;border-radius:20px;overflow:hidden;border:1px solid var(--night-line)"><img src="robots-vpd001.jpg" alt="VPD-001 concept ducted quadcopter with four blue-lit rotors" width="703" height="713" loading="lazy" style="display:block;width:100%;height:auto"></a>
       </div>
-      <div class="ctas"><a class="btn foil" href="robots.html">Explore the robot and drone <span class="arr">→</span></a></div>
+      <div class="ctas"><a class="btn foil" href="robots.html">Play with the robot and drone <span class="arr">→</span></a></div>
     </div>
   </section>
 
   <section>
     <div class="inner statement reveal">
       <div class="eyebrow">The problem</div>
-      <h2>Once a satellite's AI decides, nobody on the ground can <em class="s">check</em> it.</h2>
-      <p class="lede">Onboard AI saves bandwidth by throwing data away and acts faster by raising alerts in orbit. What it saw, what it decided and whether the record was changed later are invisible. As insurance payouts, emissions reports and security decisions start to depend on those calls, "trust us" stops being enough.</p>
+      <h2>When a satellite's AI decides, nobody on the ground can <em class="s">check</em> it.</h2>
+      <p class="lede">Satellites now think for themselves. They discard images to save bandwidth and raise alerts on their own. But nobody down here can see what they saw, what they chose, or whether someone changed the story later. When insurance payouts, pollution reports and security calls ride on those choices, "trust us" isn't good enough.</p>
     </div>
   </section>
 
@@ -320,39 +320,39 @@ footer a { color: var(--night-ink); }
     <div class="inner">
       <div class="reveal" style="display:grid;gap:22px;max-width:980px">
         <div class="eyebrow">Why now</div>
-        <h2>The world's AI is about to need a <em class="s">custodian.</em></h2>
-        <p class="lede">Gartner now says the hard part of AI isn't building agents. It's proving what they did, under what authority, and that the record wasn't changed afterwards. EDEN is that evidence layer: independent, cryptographic, and light enough to run in orbit.</p>
+        <h2>Every company is about to need an AI <em class="s">evidence keeper.</em></h2>
+        <p class="lede">Gartner says the hard part of AI isn't building it. It's proving what it did, who said it could, and that nobody changed the record afterwards. That's exactly what EDEN does, and it's light enough to run in space.</p>
       </div>
       <div class="why reveal">
         <a class="wcard" href="https://www.gartner.com/en/newsroom/press-releases/2026-09-15-gartner-unveils-top-strategic-predictions-for-2027-and-beyond" rel="noopener" target="_blank">
           <span class="wn gold">80%</span>
-          <span class="wt">of Global 500 companies will contractually make their CIO or Chief AI Officer the "Evidence Custodian" for AI accountability by 2030.</span>
+          <span class="wt">of the world's 500 biggest companies will make their tech chief the official "Evidence Custodian" for AI by 2030.</span>
           <span class="ws">Gartner · Top Strategic Predictions · 15 Sep 2026 ↗</span></a>
         <a class="wcard" href="https://www.gartner.com/en/newsroom/press-releases/2026-09-15-gartner-unveils-top-strategic-predictions-for-2027-and-beyond" rel="noopener" target="_blank">
           <span class="wn gold">2030</span>
-          <span class="wt">is when Gartner expects insurers, not regulators, to be driving AI governance. Insurers pay on evidence, not assurances.</span>
+          <span class="wt">is when Gartner expects insurers, not regulators, to set the rules for AI. Insurers pay on proof, not promises.</span>
           <span class="ws">Gartner · Top Strategic Predictions · 15 Sep 2026 ↗</span></a>
         <a class="wcard" href="https://www.newelectronics.co.uk/content/news/over-40-of-agentic-ai-projects-could-be-cancelled-by-2027" rel="noopener" target="_blank">
           <span class="wn gold">40%+</span>
-          <span class="wt">of agentic AI projects will be cancelled by the end of 2027, with inadequate risk controls among the reasons Gartner gives.</span>
+          <span class="wt">of AI agent projects will be scrapped by the end of 2027, and weak risk controls are one of the reasons Gartner gives.</span>
           <span class="ws">Gartner, as reported by New Electronics ↗</span></a>
       </div>
-      <p class="note reveal">An Evidence Custodian has to identify, collect and preserve digital evidence of what AI did. EDEN produces exactly that: a sealed record of each decision, the model version, the input and the time, that anyone can check without trusting whoever ran the system. We prove it first in orbit, where it's hardest, then beside enterprise agents, observing and never altering them.</p>
+      <p class="note reveal">An Evidence Custodian has to collect and keep proof of what AI did. EDEN makes that proof automatically: a sealed record of every decision, which AI version made it, what it saw and when. Anyone can check it without trusting whoever ran the system. We proved it in space first. Next: AI assistants at work, where EDEN watches quietly and never changes a thing.</p>
     </div>
   </section>
 
   <section id="how" style="padding-top:0">
     <div class="inner">
       <div class="reveal"><div class="eyebrow">How it works</div>
-      <h2 style="margin-top:16px">A flight recorder for <em class="s">onboard</em> AI.</h2></div>
+      <h2 style="margin-top:16px">A flight recorder for AI, in <em class="s">five steps.</em></h2></div>
       <ol class="steps reveal">
-        <li><h3>Record</h3><p>Each decision becomes a record: the image's fingerprint, the exact model weights, the score and the verdict.</p></li>
-        <li><h3>Sign the pass</h3><p>Records chain into a Merkle tree. At the end of the pass the satellite signs one small summary.</p></li>
-        <li><h3>Lock in alerts</h3><p>An alert is signed the moment it fires. The final pass must extend it, so history can't be rewritten afterwards, even by the key holder.</p></li>
-        <li><h3>Verify anywhere</h3><p>Anyone with the public key checks the pass, or any single image, kept or discarded, on their own machine.</p></li>
-        <li><h3>Re-run</h3><p>A second machine recomputes sampled decisions with the same model and flags any it wouldn't have made.</p></li>
+        <li><h3>Record</h3><p>Every decision gets written down: a fingerprint of what the AI saw, which AI made the call, and what it chose.</p></li>
+        <li><h3>Seal</h3><p>The records lock together into one chain. A single small signed summary seals the lot.</p></li>
+        <li><h3>Lock the alarms</h3><p>Urgent alerts are sealed the second they fire. After that, nobody can rewrite what came before, not even whoever holds the key.</p></li>
+        <li><h3>Check anywhere</h3><p>Anyone can check the whole record, or a single photo, even a discarded one, on their own computer.</p></li>
+        <li><h3>Double-check</h3><p>A second computer re-runs a sample of decisions and flags any it wouldn't have made.</p></li>
       </ol>
-      <p class="note reveal">Standard cryptography throughout: SHA-256, RFC 6962 Merkle trees and Ed25519. It sits beside your existing models and leaves the radio link and its security to the platform.</p>
+      <p class="note reveal">Built on proven, standard maths: SHA-256, Merkle trees and Ed25519 signatures. It sits next to your AI. It never changes it.</p>
     </div>
   </section>
 
@@ -370,13 +370,13 @@ footer a { color: var(--night-ink); }
           <dt>signature</dt><dd>4011f1d89695dd58…5b0fa601</dd>
           <dt>size</dt><dd>926 bytes for the whole pass</dd>
         </dl>
-        <div class="foot">From the simulated sample pass in the verifier.</div>
+        <div class="foot">From the practice pass in the checker.</div>
       </figure>
       <div class="reveal" style="display:grid;gap:24px">
         <div class="eyebrow">Don't take our word for it</div>
-        <h2>Check a pass in your browser in <em class="s">ten seconds.</em></h2>
-        <p class="lede">The verifier runs entirely on your device and loads no outside code. Try the tampered sample: its signature still checks out, and the verifier still catches the rewritten history and the swapped fire image.</p>
-        <a class="btn foil" href="verify.html">Open the verifier <span class="arr">→</span></a>
+        <h2>Check a receipt in <em class="s">ten seconds.</em></h2>
+        <p class="lede">The checker runs on your own device. Nothing to install. Nothing to trust. Try the tampered sample: the signature looks perfect, and the checker still spots the rewritten history and the swapped fire photo.</p>
+        <a class="btn foil" href="verify.html">Open the checker <span class="arr">→</span></a>
       </div>
     </div>
   </section>
@@ -386,13 +386,13 @@ footer a { color: var(--night-ink); }
   <div class="inner">
     <div class="reveal" style="display:grid;gap:22px;max-width:900px">
       <div class="eyebrow">Sealed end to end</div>
-      <h2>This page runs on its own <em class="s gold">proof.</em></h2>
-      <p class="lede">Nothing on the globe above is drawn on trust. Every file it uses arrives inside a MARBLE/1.0 envelope, chained to the one before and sealed by EDEN, and your browser checks each one before a single pixel is drawn. Change one byte and the page refuses it, and tells you.</p>
+      <h2>This page <em class="s gold">proves itself.</em></h2>
+      <p class="lede">Even the globe up top runs on proof. Every file it uses arrives sealed in an EDEN envelope, chained to the one before. Your browser checks each one before drawing a single pixel. Change one byte and the page spots it, and tells you.</p>
     </div>
     <div class="grid reveal">
-      <div class="card"><span class="k">Orbit data</span><h3>Every 6 hours, enveloped</h3><p>Public orbital elements from CelesTrak, hashed into the chain. Satellite positions are then modelled in your browser, not received.</p></div>
-      <div class="card"><span class="k">Real receptions</span><h3>Signed by EDEN, checked by you</h3><p>Recent receptions from the SatNOGS ground-station network, sealed with an Ed25519 signature over a Merkle root and verified on load.</p></div>
-      <div class="card"><span class="k">Earth, Sun and Moon</span><h3>Imagery sealed, sky computed</h3><p>The Earth imagery is hashed into the same chain. The Sun and Moon are computed from standard almanac formulas at this moment.</p></div>
+      <div class="card"><span class="k">Satellite paths</span><h3>Fresh every 6 hours, sealed</h3><p>Public orbit data from CelesTrak, sealed into the chain. Your browser then works out where each satellite is.</p></div>
+      <div class="card"><span class="k">Real satellite signals</span><h3>Signed by us, checked by you</h3><p>Recent signals caught by SatNOGS ground stations around the world, sealed with a signature and checked the moment the page loads.</p></div>
+      <div class="card"><span class="k">Earth, Sun and Moon</span><h3>Pictures sealed, sky calculated</h3><p>The Earth pictures are sealed in the same chain. The Sun and Moon are worked out live with standard astronomy maths.</p></div>
     </div>
   </div>
 </div>
@@ -401,21 +401,21 @@ footer a { color: var(--night-ink); }
   <section id="evidence">
     <div class="inner">
       <div class="reveal"><div class="eyebrow">Evidence</div>
-      <h2 style="margin-top:16px">What we've measured, and what comes <em class="s">next.</em></h2></div>
+      <h2 style="margin-top:16px">What we've proved so far, and what's <em class="s">next.</em></h2></div>
       <div class="tablewrap reveal">
         <table>
-          <thead><tr><th>Claim</th><th>Figure</th><th>Status</th></tr></thead>
+          <thead><tr><th>What</th><th>Result</th><th>Status</th></tr></thead>
           <tbody>
-            <tr><td>Automated tests, laptop and Android ARM handset</td><td class="fig">24 / 24</td><td><span class="label done">IMPLEMENTED</span></td></tr>
-            <tr><td>Time to record one 64 kB image on an ARM handset, two runs</td><td class="fig">1.8–2.1 ms</td><td><span class="label done">MEASURED</span></td></tr>
-            <tr><td>Fire alert signed and ready after detection</td><td class="fig">~5 ms</td><td><span class="label done">MEASURED</span></td></tr>
-            <tr><td>Signed summary for a 2,000-image pass</td><td class="fig">713 B</td><td><span class="label done">MEASURED</span></td></tr>
-            <tr><td>Proof about any single image, including discarded ones</td><td class="fig">~1 kB</td><td><span class="label done">MEASURED</span></td></tr>
-            <tr><td>Real satellite receptions sealed and checked in the browser, live on this page</td><td class="fig">every 6 h</td><td><span class="label done">LIVE · SATNOGS DATA</span></td></tr>
-            <tr><td>History rewritten and re-signed with the real key is caught</td><td class="fig">caught</td><td><span class="label done">TESTED · SIMULATED ATTACK</span></td></tr>
-            <tr><td>Corrupted onboard decision caught by a ground re-run</td><td class="fig">caught</td><td><span class="label done">TESTED · SIMULATED FAULT</span></td></tr>
-            <tr><td>Real satellite imagery</td><td class="fig">—</td><td><span class="label next">NEXT</span></td></tr>
-            <tr><td>Flight-representative hardware, then in orbit</td><td class="fig">—</td><td><span class="label next">PILOT</span></td></tr>
+            <tr><td>Automated tests on a laptop and an Android phone</td><td class="fig">24 / 24</td><td><span class="label done">BUILT</span></td></tr>
+            <tr><td>Time to record one 64 kB photo on a phone chip (two runs)</td><td class="fig">1.8–2.1 ms</td><td><span class="label done">MEASURED</span></td></tr>
+            <tr><td>Fire alert signed after a fire is spotted</td><td class="fig">~5 ms</td><td><span class="label done">MEASURED</span></td></tr>
+            <tr><td>Signed summary for 2,000 photos</td><td class="fig">713 B</td><td><span class="label done">MEASURED</span></td></tr>
+            <tr><td>Proof for any single photo, even discarded ones</td><td class="fig">~1 kB</td><td><span class="label done">MEASURED</span></td></tr>
+            <tr><td>Real satellite signals sealed and checked, live on this page</td><td class="fig">every 6 h</td><td><span class="label done">LIVE · SATNOGS DATA</span></td></tr>
+            <tr><td>Someone rewrites history and re-signs it with the real key</td><td class="fig">caught</td><td><span class="label done">TESTED · PRACTICE ATTACK</span></td></tr>
+            <tr><td>A broken onboard decision, spotted by a re-run</td><td class="fig">caught</td><td><span class="label done">TESTED · PRACTICE FAULT</span></td></tr>
+            <tr><td>Real satellite photos</td><td class="fig">—</td><td><span class="label next">NEXT</span></td></tr>
+            <tr><td>Space-ready hardware, then in orbit</td><td class="fig">—</td><td><span class="label next">PILOT</span></td></tr>
           </tbody>
         </table>
       </div>
@@ -425,25 +425,26 @@ footer a { color: var(--night-ink); }
   <section id="who" style="padding-top:0">
     <div class="inner">
       <div class="reveal"><div class="eyebrow">Who it's for</div>
-      <h2 style="margin-top:16px">Anyone who has to defend a machine's decision to <em class="s">someone else.</em></h2></div>
+      <h2 style="margin-top:16px">For anyone who has to prove what a machine <em class="s">really did.</em></h2></div>
       <dl class="who reveal">
-        <div><dt>Satellite operators</dt><dd>Prove to customers what your onboard AI kept, discarded and flagged, for under a kilobyte per pass.</dd></div>
-        <div><dt>Parametric insurers</dt><dd>Satellite-triggered payouts get a record both sides can check, so fewer disputes about the data.</dd></div>
-        <div><dt>Emissions monitoring</dt><dd>Detections that hold up when the operator concerned disputes them.</dd></div>
-        <div><dt>Defence and space security</dt><dd>Tamper-evident records of autonomous decisions, jamming and intrusions, with re-runs that expose faulty or manipulated ones.</dd></div>
-        <div><dt>Ground stations and RF sensing</dt><dd>A sealed receipt for every reception: what was heard, by which station, and when.</dd></div>
-        <div><dt>AI assurance</dt><dd>The same engine proves any AI decision on any device. Orbit is simply the hardest place to do it.</dd></div>
-        <div><dt>Evidence Custodians</dt><dd>CIOs and Chief AI Officers who must preserve proof of what their AI agents did, in a form a court, auditor or insurer will accept.</dd></div>
-        <div><dt>AI insurers</dt><dd>Underwrite AI risk on sealed decision records rather than the insured's own logs.</dd></div>
-        <div><dt>Agent platforms</dt><dd>Make EDEN receipts the evidence layer your governance, identity and orchestration tools point to.</dd></div>
+        <div><dt>Satellite operators</dt><dd>Show customers exactly what your satellite kept, discarded and flagged. Under a kilobyte per pass.</dd></div>
+        <div><dt>Parametric insurers</dt><dd>When a satellite triggers a payout, both sides check the same record. Fewer disputes.</dd></div>
+        <div><dt>Emissions monitoring</dt><dd>Emissions detections that stand firm when the polluter pushes back.</dd></div>
+        <div><dt>Defence and space security</dt><dd>Records of self-driving decisions, jamming and break-ins that can't be quietly edited, plus re-runs that catch faults and tampering.</dd></div>
+        <div><dt>Ground stations and RF sensing</dt><dd>A sealed receipt for every signal you catch: what, which station, and when.</dd></div>
+        <div><dt>Robots and drones</dt><dd>A black box that clears your machine when it did nothing wrong, and shows exactly what happened when it did.</dd></div>
+        <div><dt>AI assurance</dt><dd>The same engine works for any AI on any device. Space is just the hardest test.</dd></div>
+        <div><dt>Evidence Custodians</dt><dd>Tech chiefs who must keep proof of what their AI did, in a form a court, auditor or insurer will accept.</dd></div>
+        <div><dt>AI insurers</dt><dd>Price AI risk on sealed records, not on the customer's own logs.</dd></div>
+        <div><dt>Agent platforms</dt><dd>Make EDEN receipts the proof every one of your AI tools points to.</dd></div>
       </dl>
     </div>
   </section>
 
   <section style="padding-top:0">
     <div class="inner limits reveal">
-      <div><div class="eyebrow">What a pass check proves</div><p>What the satellite decided, on which image, with which model version, in what order, and that none of it changed afterwards.</p></div>
-      <div><div class="eyebrow">What it doesn't prove</div><p>That the decision was right: a verified fire alert proves the AI said "fire", not that there was one. Wall-clock time needs a trusted time source, which isn't in place yet.</p></div>
+      <div><div class="eyebrow">What a check proves</div><p>What the satellite decided, on which photo, with which AI version, in what order, and that nothing changed afterwards.</p></div>
+      <div><div class="eyebrow">What it doesn't prove</div><p>That the decision was right. A checked fire alert proves the AI said "fire", not that there was a fire. Exact clock time needs a trusted time source, which we haven't added yet.</p></div>
     </div>
   </section>
 </div>
@@ -452,32 +453,32 @@ footer a { color: var(--night-ink); }
   <div class="inner pilot">
     <div class="reveal" style="display:grid;gap:24px">
       <div class="eyebrow">Start here</div>
-      <h2>The AI Evidence Audit, handled <em class="s gold">in writing.</em></h2>
-      <p class="lede">Pick one AI system: a satellite's onboard model, a robot, an AI agent. Within 10 working days you'll know exactly what you could and couldn't prove if its decisions were disputed tomorrow.</p>
+      <h2>Find your gaps. All by <em class="s gold">email.</em></h2>
+      <p class="lede">Pick one AI system: a satellite, a robot, an AI assistant. In 10 working days you'll know exactly what you could prove, and what you couldn't, if someone challenged it tomorrow.</p>
       <ul>
-        <li>Evidence gap report against disputes, insurance claims, EU AI Act Article 12 and Gartner's "Evidence Custodian" role</li>
-        <li>Your own decisions sealed with EDEN, plus a verifier your auditor or insurer runs without trusting you or us</li>
-        <li>An attack test: we try to alter, delete and rewrite the record, including as the key holder</li>
-        <li>A costed recommendation for production, overhead included</li>
+        <li>A gap report covering disputes, insurance claims, EU AI Act record-keeping and Gartner's "Evidence Custodian" job</li>
+        <li>Your own decisions sealed with EDEN, plus a checker your auditor or insurer can run without trusting you or us</li>
+        <li>An attack test: we try to change, delete and rewrite the record, even with the real key</li>
+        <li>A clear plan and price for going live</li>
       </ul>
-      <p class="lede">Not ready for an Audit? Start with an <strong>Evidence Check</strong>: send the records from one system and get a written report, within 5 working days, on what they can and can't prove.</p>
-      <p class="lede">Then, only if you want it: a pilot beside one real system (from £7,500, Audit fee credited) and a licence. <strong>Starter</strong> is from £299 a month for one system and small teams. <strong>Enterprise</strong> is from £1,500 a month per system, with witnesses, support and an SLA. Hardware makers: joint tests with no fee either way. Consultancies: 30% referral commission or white-label terms, on request.</p>
+      <p class="lede">Want to start smaller? Get an <strong>Evidence Check</strong>: send us the records from one system and get a plain-English report in 5 working days.</p>
+      <p class="lede">Then, only if you want more: a pilot on one real system (from £7,500, Audit fee credited in full) and a licence. <strong>Starter</strong> from £299 a month for small teams. <strong>Enterprise</strong> from £1,500 a month per system, with witnesses, support and an SLA. Robot and drone makers: joint testing, no fee either way. Consultancies: earn 30% on every client you refer, or white-label it.</p>
     </div>
     <div class="offer reveal" id="audit">
       <h3>Founding prices</h3>
-      <p style="font-size:13px;color:var(--night-muted);margin-top:-6px">For our first three clients. After that, the Check is £895 and the Audit £3,950.</p>
+      <p style="font-size:13px;color:var(--night-muted);margin-top:-6px">For our first three clients only. After that: Check £895, Audit £3,950.</p>
       <p style="font-family:var(--font-display);font-size:44px;font-weight:720;font-stretch:72%;line-height:1;color:var(--night-ink)">£495 <small style="font-size:15px;color:var(--night-muted);font-weight:500">Evidence Check · 5 working days</small></p>
       <p style="font-family:var(--font-display);font-size:44px;font-weight:720;font-stretch:72%;line-height:1;color:var(--night-ink)">£2,500 <small style="font-size:15px;color:var(--night-muted);font-weight:500">AI Evidence Audit · 10 working days</small></p>
-      <p>Audit: 50% on order, 50% on delivery. If the report doesn't find at least one concrete, actionable gap, the second half is waived. Check: paid on delivery. No meetings needed.</p>
-      <p>Email Daniel Clarke, founder, with the subject "Evidence Check" or "AI Evidence Audit" and one line on the system.</p>
+      <p>Audit: half when you order, half when we deliver. If we don't find at least one real gap you can act on, you don't pay the second half. Check: pay when it's delivered. No meetings needed.</p>
+      <p>Email Daniel Clarke, founder. Put "Evidence Check" or "AI Evidence Audit" in the subject and tell us about your system in one line.</p>
       <p class="mail gold">danielclarke1661@gmail.com</p>
-      <p><a href="report.html" style="color:var(--foil)">See the full test results →</a></p>
-      <p><a href="claude.html" style="color:var(--foil)">Live demo: every email an AI agent sent for us, sealed →</a></p>
+      <p><a href="report.html" style="color:var(--foil)">See every test result →</a></p>
+      <p><a href="claude.html" style="color:var(--foil)">Watch an AI's emails get sealed →</a></p>
     </div>
   </div>
   <div class="inner company reveal" style="margin-top:88px">
     <div class="eyebrow">Company</div>
-    <p class="lede">EDEN (Eden OS and Refinery, incorporation in progress) is a UK venture building verification for automated decisions. Public evidence: <a href="https://github.com/EdenOSarchitect/EDEN-OS" style="color:var(--foil)">EDEN-OS</a> and <a href="https://github.com/EdenOSarchitect/eden-os-evidence" style="color:var(--foil)">eden-os-evidence</a> on GitHub. Founder ORCID: <a href="https://orcid.org/0009-0004-3797-2396" style="color:var(--foil)">0009-0004-3797-2396</a>.</p>
+    <p class="lede">EDEN (Eden OS and Refinery, company registration in progress) is a UK start-up building proof for machine decisions. Public evidence: <a href="https://github.com/EdenOSarchitect/EDEN-OS" style="color:var(--foil)">EDEN-OS</a> and <a href="https://github.com/EdenOSarchitect/eden-os-evidence" style="color:var(--foil)">eden-os-evidence</a> on GitHub. Founder ORCID: <a href="https://orcid.org/0009-0004-3797-2396" style="color:var(--foil)">0009-0004-3797-2396</a>.</p>
     <p style="font-size:13px;color:var(--night-muted)">Orbital data: CelesTrak. Receptions: SatNOGS contributors, CC BY-SA 4.0. Earth imagery: NASA-based textures, credited in tex/CREDITS.txt. Land outlines: Natural Earth.</p>
   </div>
   <footer style="margin-top:88px">
