@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:">
+<title>EDEN Robots and Drones</title>
+<meta name="description" content="A flight recorder for every machine that decides: an interactive humanoid and drone showing what EDEN seals, where the record lives and who witnesses it.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+:root{--bg:#06090d;--panel:#0d141c;--panel2:#111b25;--ink:#eef2f5;--muted:#8d9cab;--line:rgba(160,185,210,.14);--foil:#d8b064;--blue:#4aa3ff;--ok:#5fcf92;--bad:#ff8a5c;
+--gold:linear-gradient(100deg,#f6e2ab 0%,#d8b064 38%,#a77c34 62%,#ecd08e 100%)}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:radial-gradient(1400px 700px at 75% -10%,#132232 0%,var(--bg) 60%);background-color:var(--bg);color:var(--ink);font:16px/1.6 "IBM Plex Sans",system-ui,sans-serif;overflow-x:hidden}
+.w{max-width:1200px;margin:0 auto;padding:0 20px}
+a{color:var(--foil)}code,pre{font-family:"IBM Plex Mono",ui-monospace,monospace}
+header.top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0;flex-wrap:wrap}
+header.top b{font-family:Archivo,sans-serif;letter-spacing:.2em;font-size:14px}
+header.top nav{display:flex;gap:18px;flex-wrap:wrap;font-size:14px}header.top nav a{color:#c8d3dd;text-decoration:none}header.top nav a:hover{color:var(--foil)}
+.eye{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+h1{font-family:Archivo,sans-serif;font-weight:760;font-stretch:78%;font-size:clamp(40px,7.2vw,86px);line-height:.98;margin:14px 0 20px;letter-spacing:-.01em}
+h1 em,h2 em{font-family:"Instrument Serif",serif;font-weight:400;font-style:italic;background:var(--gold);-webkit-background-clip:text;background-clip:text;color:transparent}
+h2{font-family:Archivo,sans-serif;font-weight:720;font-stretch:85%;font-size:clamp(28px,4.2vw,46px);line-height:1.05;margin:8px 0 14px}
+h3{font-family:Archivo,sans-serif;font-weight:680;font-size:21px;margin:6px 0 8px}
+.lede{font-size:clamp(17px,2.1vw,20px);color:#c8d3dd;max-width:780px}
+section{padding:64px 0;border-top:1px solid var(--line)}
+/* viewer */
+.tabs{display:inline-flex;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:4px;margin:26px 0 14px}
+.tabs button{all:unset;cursor:pointer;padding:10px 18px;border-radius:999px;font-size:14px;color:#c8d3dd}
+.tabs button[aria-selected="true"]{background:var(--gold);color:#0b0f14;font-weight:600}
+.viewer{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:18px}
+.stagebox{position:relative;border:1px solid var(--line);border-radius:22px;overflow:hidden;background:radial-gradient(70% 70% at 50% 40%,#16222e 0%,#0a1016 65%,#070b10 100%);min-height:520px}
+#stage{display:block;width:100%;height:100%;min-height:520px;touch-action:none;cursor:grab}
+#stage:active{cursor:grabbing}
+#hotspots{position:absolute;inset:0;pointer-events:none}
+.hot{all:unset;pointer-events:auto;position:absolute;left:-14px;top:-14px;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font:600 12px "IBM Plex Mono",monospace;color:#0b0f14;
+background:var(--gold);box-shadow:0 0 0 6px rgba(216,176,100,.18),0 0 22px rgba(216,176,100,.5);cursor:pointer;transition:opacity .2s}
+.hot::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:1px solid rgba(216,176,100,.6);animation:ping 2.2s infinite}
+.hot.on{background:#fff;box-shadow:0 0 0 7px rgba(74,163,255,.25),0 0 26px rgba(74,163,255,.7)}
+@keyframes ping{0%{transform:scale(.8);opacity:.9}100%{transform:scale(1.8);opacity:0}}
+.hint{position:absolute;left:16px;bottom:14px;font:12px "IBM Plex Mono",monospace;color:var(--muted);pointer-events:none}
+.unit{position:absolute;right:16px;top:14px;text-align:right;pointer-events:none}
+.unit b{display:block;font-family:Archivo,sans-serif;font-size:20px;letter-spacing:.06em}.unit span{font-size:12px;color:var(--muted)}
+.side{display:grid;gap:18px;align-content:start}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px}
+#part pre{background:#05080c;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:12px;white-space:pre-wrap;word-break:break-all;color:#cfe0ee}
+#part .meas{font-size:13px;color:var(--foil)}
+.spec{width:100%;border-collapse:collapse;font-size:14px}.spec td{padding:6px 0;border-bottom:1px solid var(--line);vertical-align:top}.spec td:first-child{color:var(--muted);width:42%}
+.note{font-size:12px;color:var(--muted);margin:10px 0 0}
+/* recorder */
+.rec{margin-top:18px;display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:18px}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.btns button{all:unset;cursor:pointer;padding:10px 16px;border-radius:999px;border:1px solid var(--line);background:var(--panel2);font-size:14px}
+.btns button:disabled{opacity:.35;cursor:default}
+.btns button.primary{background:var(--gold);color:#0b0f14;font-weight:600;border-color:transparent}
+.btns button.warn{border-color:rgba(255,138,92,.5);color:#ffc3ab}
+.logwrap{max-height:320px;overflow:auto;border:1px solid var(--line);border-radius:12px}
+table.log{width:100%;border-collapse:collapse;font-size:13px}table.log td,table.log th{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left}
+table.log th{position:sticky;top:0;background:var(--panel2);color:var(--muted);font-weight:500}
+table.log td:last-child code{color:#9fc6ea}table.log tr.bad td{color:var(--bad);background:rgba(255,138,92,.06)}
+.empty{color:var(--muted);text-align:center;padding:22px}
+.status{border-radius:14px;padding:16px;background:var(--panel);border:1px solid var(--line);font-size:14px;line-height:1.6}
+.status.ok{border-color:rgba(95,207,146,.4)}.status.bad{border-color:rgba(255,138,92,.6);background:rgba(255,138,92,.06)}
+.status code{color:#cfe0ee;word-break:break-all}.okc{color:var(--ok);font-weight:600}.badc{color:var(--bad);font-weight:700}
+/* grids */
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:22px}.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px}
+.card p{margin:6px 0 0;color:#c8d3dd;font-size:15px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}.chips span{border:1px solid rgba(216,176,100,.4);border-radius:999px;padding:8px 14px;font-size:14px}
+ul.tick{list-style:none;padding:0;margin:10px 0 0}ul.tick li{padding:6px 0 6px 26px;position:relative;color:#c8d3dd}
+ul.tick li::before{content:"✓";position:absolute;left:0;color:var(--ok)}ul.cross li::before{content:"–";color:var(--muted)}
+figure{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:18px;overflow:hidden}figure img{display:block;width:100%;height:auto}
+figcaption{padding:12px 16px;font-size:13px;color:var(--muted)}
+.cta{background:linear-gradient(135deg,#17222d,#0e1620);border:1px solid rgba(216,176,100,.45);border-radius:22px;padding:32px;display:grid;gap:12px}
+.btn{display:inline-block;background:var(--gold);color:#0b0f14;font-weight:600;text-decoration:none;padding:12px 22px;border-radius:999px;width:max-content}
+footer{padding:40px 0 60px;color:var(--muted);font-size:13px}
+#nogl{padding:40px;text-align:center;color:var(--muted)}
+@media (max-width:900px){.viewer,.rec{grid-template-columns:1fr}.g4{grid-template-columns:1fr 1fr}.g3{grid-template-columns:1fr}.g2{grid-template-columns:1fr}
+ .stagebox,#stage{min-height:440px}}
+@media (max-width:520px){.g4{grid-template-columns:1fr}.stagebox,#stage{min-height:400px}}
+</style>
+</head>
+<body>
+<div class="w">
+<header class="top"><b>EDEN</b><nav><a href="index.html">Home</a><a href="claude.html">AI agent demo</a><a href="report.html">Test results</a><a href="index.html#audit">Evidence Check</a></nav></header>
+
+<div class="eye">Robots and drones</div>
+<h1>A flight recorder for every machine <em>that decides.</em></h1>
+<p class="lede">When a robot or drone acts on its own, someone will eventually ask what it saw, what it decided and who was in control. EDEN seals the answer as it happens, in a record that anyone can check and nobody can quietly rewrite. Explore two concept units below, then run the recorder yourself.</p>
+
+<div class="tabs" role="tablist">
+  <button role="tab" data-model="humanoid" aria-selected="true">ED-01 humanoid</button>
+  <button role="tab" data-model="drone" aria-selected="false">VPD-001 drone</button>
+</div>
+
+<div class="viewer">
+  <div class="stagebox">
+    <canvas id="stage" aria-label="Interactive 3D model. Drag to rotate, tap a numbered point to learn what EDEN records there."></canvas>
+    <div id="hotspots"></div>
+    <div class="unit" id="unitTag"><b>ED-01 · MARBLE</b><span>concept humanoid</span></div>
+    <div class="hint">Drag to rotate · pinch or scroll to zoom · tap a number</div>
+    <div id="nogl" hidden>Your browser couldn't start 3D graphics. The recorder below still works.</div>
+  </div>
+  <div class="side">
+    <div class="card" id="part"></div>
+    <div class="card" id="specCard"></div>
+  </div>
+</div>
+
+<div class="rec">
+  <div>
+    <div class="eye" style="margin-top:8px">Run the recorder</div>
+    <div class="btns">
+      <button id="bRun" class="primary"><span id="runLabel">Run shift</span></button>
+      <button id="bSeal">Seal</button>
+      <button id="bWit">Send seal to witness</button>
+      <button id="bTam" class="warn">Insider rewrites history</button>
+      <button id="bReset">Reset</button>
+    </div>
+    <div class="logwrap"><table class="log"><thead><tr><th>#</th><th>Kind</th><th>What happened</th><th>Leaf hash</th></tr></thead><tbody id="log"></tbody></table></div>
+  </div>
+  <div>
+    <div class="eye" style="margin-top:8px">Verification</div>
+    <div id="status" class="status" style="margin-top:12px"></div>
+    <p class="note">The machines are simulated. The cryptography is real: every entry is hashed with SHA-256 on your device, sealed under an RFC 6962 Merkle root and, where your browser supports it, signed with Ed25519.</p>
+  </div>
+</div>
+
+<section>
+  <div class="eye">Where the record lives</div>
+  <h2>The log stays on the machine. <em>Only the seal travels.</em></h2>
+  <p class="lede">The record is ordinary data, so it can live wherever suits the operation. Moving it doesn't weaken it: the protection comes from the seals and the witnesses, not from where it's stored.</p>
+  <div class="g4">
+    <div class="card"><h3>On the device</h3><p>The robot's or drone's own storage. The full log (~7.5 MB per robot-hour, measured) never has to leave.</p></div>
+    <div class="card"><h3>On the operator's servers</h3><p>Beside existing logs and fleet systems, uploaded when the machine docks.</p></div>
+    <div class="card"><h3>With a client or auditor</h3><p>Handed over as an evidence pack that anyone can verify with an open-source tool.</p></div>
+    <div class="card"><h3>Split</h3><p>Full log on board, seals of a few hundred bytes over the air. That matters when every byte of airtime counts.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="eye">Who holds the witness seals</div>
+  <h2>Anyone with no reason to <em>help you cheat.</em></h2>
+  <p class="lede">A witness keeps a copy of each seal and refuses any later version that contradicts it. The more independent the witnesses, the stronger the guarantee.</p>
+  <div class="chips"><span>Insurers</span><span>Auditors and assurance firms</span><span>Customers and site owners</span><span>Regulators and airspace authorities</span><span>Public transparency logs</span><span>Several at once</span></div>
+  <div class="g2">
+    <div class="card"><h3>What the record proves</h3><ul class="tick"><li>What the machine saw (fingerprints of sensor data)</li><li>What it decided, with which model version</li><li>Who approved or took control, and in what order</li><li>That nothing was changed or removed after a seal reached a witness</li></ul></div>
+    <div class="card"><h3>What it doesn't prove</h3><ul class="tick cross"><li>That a decision was right</li><li>That a sensor was telling the truth</li><li>Wall-clock time, until anchored to a trusted time source</li><li>Anything about content it never saw</li></ul></div>
+  </div>
+</section>
+
+<section>
+  <div class="eye">Concept units</div>
+  <h2>Designed to be built, <em>recorded from day one.</em></h2>
+  <p class="lede">ED-01 and VPD-001 are original EDEN concept designs. They aren't products for sale yet. The specifications on this page are realistic engineering targets for units that could be produced. The flight recorder is the part that exists and is tested today.</p>
+  <div class="g2">
+    <figure><img src="ed01-sheet.jpg" alt="ED-01 Marble humanoid concept sheet: white and grey armour, gold trim, blue visor lights" loading="lazy" width="1212" height="1298"><figcaption>ED-01 "Marble" concept art. Target specifications on this page supersede the sheet's figures.</figcaption></figure>
+    <figure><img src="vpd001-sheet.jpg" alt="VPD-001 ducted quadcopter concept sheet: four blue-lit ducted rotors around a black dome" loading="lazy" width="1536" height="1024"><figcaption>VPD-001 concept art. Target specifications on this page supersede the sheet's figures.</figcaption></figure>
+  </div>
+</section>
+
+<section>
+  <div class="cta">
+    <div class="eye">For robot and drone makers</div>
+    <h2>If your machine had an incident tomorrow, <em>could you prove what it did?</em></h2>
+    <p class="lede" style="margin:0">An EDEN Evidence Check shows exactly what your current logs can and can't prove, in 5 working days, for a £495 founding price. Hardware makers: joint tests on your platform, no fee either way.</p>
+    <a class="btn" href="index.html#audit">Start an Evidence Check</a>
+  </div>
+</section>
+
+<footer>© 2026 EDEN · Daniel Clarke · Concept units are illustrative. Measured figures come from the <a href="report.html">EDEN test report</a>.</footer>
+</div>
+<script src="robots.js"></script>
+</body>
+</html>
