@@ -1,0 +1,174 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:">
+<title>Claude, run on EDEN</title>
+<meta name="description" content="Every email an AI assistant sent for EDEN, sealed into a tamper-evident record anyone can verify.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+:root{--bg:#080d13;--panel:#0e1620;--ink:#eef2f5;--muted:#8d9cab;--line:rgba(160,185,210,.14);--foil:#d8b064;--ok:#5fcf92;--bad:#f2a25c;
+--gold:linear-gradient(100deg,#f6e2ab 0%,#d8b064 38%,#a77c34 62%,#ecd08e 100%)}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:radial-gradient(1200px 600px at 70% -10%,#13202e 0%,var(--bg) 60%);background-color:var(--bg);color:var(--ink);font:16px/1.65 "IBM Plex Sans",system-ui,sans-serif}
+.w{max-width:1040px;margin:0 auto;padding:0 20px}
+a{color:var(--foil)}code{font-family:"IBM Plex Mono",monospace;font-size:.86em;color:#c9d6e2;word-break:break-all}
+header{padding:28px 0;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+header b{font-family:Archivo,sans-serif;letter-spacing:.18em;font-size:14px}
+.eye{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+h1{font-family:Archivo,sans-serif;font-weight:760;font-stretch:80%;font-size:clamp(40px,7vw,78px);line-height:1;margin:18px 0 22px;letter-spacing:-.01em}
+h1 em,h2 em{font-family:"Instrument Serif",serif;font-weight:400;font-style:italic;background:var(--gold);-webkit-background-clip:text;background-clip:text;color:transparent}
+h2{font-family:Archivo,sans-serif;font-weight:720;font-stretch:85%;font-size:clamp(26px,4vw,40px);line-height:1.1;margin:0 0 14px}
+.lede{font-size:clamp(17px,2.2vw,20px);color:#c8d3dd;max-width:760px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:18px;overflow:hidden;margin:40px 0}
+.stats div{background:var(--panel);padding:22px}.stats b{display:block;font-family:Archivo,sans-serif;font-size:40px;font-weight:740;font-stretch:75%;line-height:1}
+.stats span{color:var(--muted);font-size:14px}
+section{padding:56px 0;border-top:1px solid var(--line)}
+.attacks{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px}
+.card h3{margin:0 0 8px;font-size:17px}.verdict{font-family:"IBM Plex Mono",monospace;font-size:13px;margin-top:12px}
+.ok{color:var(--ok)}.bad{color:var(--bad)}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:14px;margin-top:20px}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:620px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+th{color:var(--muted);font-weight:500;background:var(--panel);position:sticky;top:0}
+tr.ev td{color:var(--bad);font-size:13px}
+ul.seals{padding-left:18px;color:#c8d3dd}ul.seals li{margin:6px 0}
+pre{background:#05080c;border:1px solid var(--line);border-radius:12px;padding:16px;overflow-x:auto;font:13px/1.6 "IBM Plex Mono",monospace;color:#cfe0ee}
+.cta{background:linear-gradient(135deg,#17222d,#0e1620);border:1px solid rgba(216,176,100,.45);border-radius:20px;padding:30px;display:grid;gap:10px}
+.btn{display:inline-block;background:var(--gold);color:#0b0f14;font-weight:600;text-decoration:none;padding:12px 20px;border-radius:999px;width:max-content}
+footer{padding:40px 0 60px;color:var(--muted);font-size:13px}
+@media(max-width:720px){.stats{grid-template-columns:1fr 1fr}.attacks{grid-template-columns:1fr}}
+</style></head><body>
+<div class="w">
+<header><b>EDEN</b><a href="index.html">← edenrefinery.com</a></header>
+<div class="eye">Live demonstration · sealed 26 October 2026</div>
+<h1>Every email an AI sent for us, <em>sealed.</em></h1>
+<p class="lede">From 23 to 26 October, Claude, Anthropic's AI assistant, ran EDEN's outreach. It researched prospects and sent 59 emails from the founder's Gmail. Every one is now an EDEN record: who it went to, its subject line, who approved it and what happened, including the 5 that bounced and the ones that invited you to this page. You can check the record is complete and unchanged without trusting us.</p>
+<div class="stats">
+<div><b>59</b><span>emails sent by an AI agent</span></div>
+<div><b>5</b><span>bounces kept on the record</span></div>
+<div><b>4</b><span>seals, each countersigned by a witness</span></div>
+<div><b>0</b><span>trust required to check it</span></div>
+</div>
+
+<section>
+<div class="eye">We tried to cheat</div>
+<h2>Two ways to rewrite an AI's history. <em>Both caught.</em></h2>
+<p class="lede">Most AI logs are trusted because the company holds them. Here's what happens when the company holding the keys tries to tidy up the record.</p>
+<div class="attacks">
+<div class="card"><h3>Hide a failure, re-sign with the real key</h3><p>We deleted one bounce to make the outreach look cleaner, then re-signed the whole history with EDEN's own key. The signature checks out on its own (<code>OK</code>). Against the seals the witness already holds, it fails, and the witness refuses the rewritten seal on arrival.</p>
+<div class="verdict">vs witness seals → <span class="bad">BAD_CONSISTENCY</span> · witness on arrival → <span class="bad">FORK_DETECTED</span></div></div>
+<div class="card"><h3>Change who approved an email</h3><p>We edited one record to remove the human approval, without re-signing. The record no longer matches the sealed tree, so it's caught straight away.</p>
+<div class="verdict">result → <span class="bad">BAD_ROOT</span></div></div>
+</div>
+</section>
+
+<section>
+<div class="eye">The record</div>
+<h2>64 entries, in the order they happened</h2>
+<p class="lede">Each entry fingerprints the recipient's address and the subject line (SHA-256), names the organisation, and commits to the founder's approval. Addresses, subjects and the exact wording of approvals stay private but provable: whoever holds them can show they match.</p>
+<div class="tbl"><table><thead><tr><th>#</th><th>Time (UTC)</th><th>To</th><th>Sector</th><th>Outcome</th><th>Recipient fingerprint</th></tr></thead><tbody>
+<tr><td>0</td><td>2026-10-23 11:50</td><td>Open Cosmos</td><td>satellite</td><td><span class="ok">delivered</span></td><td><code>27a5e0eb43…</code></td></tr>
+<tr><td>1</td><td>2026-10-23 11:50</td><td>Floodbase</td><td>satellite</td><td><span class="ok">delivered</span></td><td><code>b49de00e01…</code></td></tr>
+<tr><td>2</td><td>2026-10-23 11:50</td><td>Leaf Space</td><td>ground station</td><td><span class="ok">delivered</span></td><td><code>c02ad04071…</code></td></tr>
+<tr><td>3</td><td>2026-10-23 11:50</td><td>GHGSat</td><td>satellite</td><td><span class="ok">delivered</span></td><td><code>8703440d5d…</code></td></tr>
+<tr><td>4</td><td>2026-10-23 11:50</td><td>ESA CyberCUBE</td><td>space agency</td><td><span class="bad">bounced</span></td><td><code>17faf90eb3…</code></td></tr>
+<tr class="ev"><td>5</td><td>2026-10-23 11:56</td><td colspan="3">Bounce recorded: 550 blocked (address typo)</td><td><code>7eebeb</code></td></tr>
+<tr><td>6</td><td>2026-10-24 13:49</td><td>KSAT</td><td>ground station</td><td><span class="bad">bounced</span></td><td><code>241e3be637…</code></td></tr>
+<tr><td>7</td><td>2026-10-24 13:49</td><td>SSC</td><td>ground station</td><td><span class="bad">bounced</span></td><td><code>095af1ad4b…</code></td></tr>
+<tr><td>8</td><td>2026-10-24 13:49</td><td>RBC Signals</td><td>ground station</td><td><span class="ok">delivered</span></td><td><code>0f3757bd0b…</code></td></tr>
+<tr><td>9</td><td>2026-10-24 13:49</td><td>Goonhilly</td><td>ground station</td><td><span class="ok">delivered</span></td><td><code>c37d2dbf5a…</code></td></tr>
+<tr><td>10</td><td>2026-10-24 13:49</td><td>HawkEye 360</td><td>RF satellite</td><td><span class="ok">delivered</span></td><td><code>0da006c97d…</code></td></tr>
+<tr class="ev"><td>11</td><td>2026-10-24 13:49</td><td colspan="3">Bounce recorded: 550 5.4.1 recipient address rejected</td><td><code>67d7d4</code></td></tr>
+<tr class="ev"><td>12</td><td>2026-10-24 13:49</td><td colspan="3">Bounce recorded: 550 recipient address rejected</td><td><code>a85775</code></td></tr>
+<tr><td>13</td><td>2026-10-24 13:49</td><td>Munich Re aiSure</td><td>insurer</td><td><span class="ok">delivered</span></td><td><code>18a08f54e3…</code></td></tr>
+<tr><td>14</td><td>2026-10-24 13:49</td><td>Advai</td><td>AI assurance</td><td><span class="ok">delivered</span></td><td><code>6e27bfd1cd…</code></td></tr>
+<tr><td>15</td><td>2026-10-24 13:49</td><td>Shadow Robot</td><td>robotics</td><td><span class="ok">delivered</span></td><td><code>e01b4436a2…</code></td></tr>
+<tr><td>16</td><td>2026-10-24 13:49</td><td>Humanoid</td><td>robotics</td><td><span class="ok">delivered</span></td><td><code>88b5b811a1…</code></td></tr>
+<tr><td>17</td><td>2026-10-24 13:49</td><td>UWE (academic review)</td><td>academic</td><td><span class="bad">bounced</span></td><td><code>15261220bb…</code></td></tr>
+<tr><td>18</td><td>2026-10-24 13:51</td><td>Libre Space Foundation</td><td>open source</td><td><span class="ok">delivered</span></td><td><code>52ddc6c38c…</code></td></tr>
+<tr><td>19</td><td>2026-10-24 13:55</td><td>ESA CyberCUBE</td><td>space agency</td><td><span class="ok">delivered</span></td><td><code>2f8a8743fe…</code></td></tr>
+<tr><td>20</td><td>2026-10-24 16:01</td><td>Relm Insurance</td><td>insurer</td><td><span class="ok">delivered</span></td><td><code>fc2ae95229…</code></td></tr>
+<tr><td>21</td><td>2026-10-24 16:01</td><td>Corgi</td><td>insurer</td><td><span class="ok">delivered</span></td><td><code>cd24fb82fc…</code></td></tr>
+<tr class="ev"><td>22</td><td>2026-10-25 13:54</td><td colspan="3">Bounce recorded: remote server unreachable after retries</td><td><code>d7ab3c</code></td></tr>
+<tr><td>23</td><td>2026-10-26 17:17</td><td>Open Cosmos</td><td>satellite</td><td><span class="ok">delivered</span></td><td><code>27a5e0eb43…</code></td></tr>
+<tr><td>24</td><td>2026-10-26 17:17</td><td>Floodbase</td><td>satellite</td><td><span class="ok">delivered</span></td><td><code>b49de00e01…</code></td></tr>
+<tr><td>25</td><td>2026-10-26 17:17</td><td>Leaf Space</td><td>ground station</td><td><span class="ok">delivered</span></td><td><code>c02ad04071…</code></td></tr>
+<tr><td>26</td><td>2026-10-26 17:17</td><td>GHGSat</td><td>satellite</td><td><span class="ok">delivered</span></td><td><code>8703440d5d…</code></td></tr>
+<tr><td>27</td><td>2026-10-26 17:17</td><td>RBC Signals</td><td>ground station</td><td><span class="ok">delivered</span></td><td><code>0f3757bd0b…</code></td></tr>
+<tr><td>28</td><td>2026-10-26 17:17</td><td>Goonhilly</td><td>ground station</td><td><span class="ok">delivered</span></td><td><code>c37d2dbf5a…</code></td></tr>
+<tr><td>29</td><td>2026-10-26 17:17</td><td>HawkEye 360</td><td>RF satellite</td><td><span class="ok">delivered</span></td><td><code>0da006c97d…</code></td></tr>
+<tr><td>30</td><td>2026-10-26 17:17</td><td>Munich Re aiSure</td><td>insurer</td><td><span class="ok">delivered</span></td><td><code>18a08f54e3…</code></td></tr>
+<tr><td>31</td><td>2026-10-26 17:17</td><td>Advai</td><td>AI assurance</td><td><span class="ok">delivered</span></td><td><code>6e27bfd1cd…</code></td></tr>
+<tr><td>32</td><td>2026-10-26 17:17</td><td>Shadow Robot</td><td>robotics</td><td><span class="ok">delivered</span></td><td><code>e01b4436a2…</code></td></tr>
+<tr><td>33</td><td>2026-10-26 17:17</td><td>Humanoid</td><td>robotics</td><td><span class="ok">delivered</span></td><td><code>88b5b811a1…</code></td></tr>
+<tr><td>34</td><td>2026-10-26 17:18</td><td>i3secure</td><td>consultancy</td><td><span class="ok">delivered</span></td><td><code>7c1a3b8a1a…</code></td></tr>
+<tr><td>35</td><td>2026-10-26 17:19</td><td>AvISO Consultancy</td><td>consultancy</td><td><span class="ok">delivered</span></td><td><code>b94a2497a1…</code></td></tr>
+<tr><td>36</td><td>2026-10-26 17:19</td><td>Zoonou</td><td>consultancy</td><td><span class="ok">delivered</span></td><td><code>a6ecf1974e…</code></td></tr>
+<tr><td>37</td><td>2026-10-26 17:19</td><td>Naimuri</td><td>consultancy</td><td><span class="ok">delivered</span></td><td><code>31650e0d1f…</code></td></tr>
+<tr><td>38</td><td>2026-10-26 17:19</td><td>Through Technology</td><td>consultancy</td><td><span class="ok">delivered</span></td><td><code>fc8d4bae56…</code></td></tr>
+<tr><td>39</td><td>2026-10-26 17:19</td><td>Strategy IT</td><td>consultancy</td><td><span class="ok">delivered</span></td><td><code>1dacf71442…</code></td></tr>
+<tr><td>40</td><td>2026-10-26 17:19</td><td>ISHELP</td><td>consultancy</td><td><span class="ok">delivered</span></td><td><code>a2eb791683…</code></td></tr>
+<tr><td>41</td><td>2026-10-26 17:19</td><td>Goldline Consultancy</td><td>consultancy</td><td><span class="ok">delivered</span></td><td><code>7b6270b187…</code></td></tr>
+<tr><td>42</td><td>2026-10-26 17:19</td><td>A2Z Software Solutions</td><td>consultancy</td><td><span class="ok">delivered</span></td><td><code>a5e905e344…</code></td></tr>
+<tr><td>43</td><td>2026-10-26 17:19</td><td>A&amp;A Digital Tech</td><td>consultancy</td><td><span class="ok">delivered</span></td><td><code>cc3a596cce…</code></td></tr>
+<tr><td>44</td><td>2026-10-26 17:29</td><td>Minister for AI</td><td>government</td><td><span class="ok">delivered</span></td><td><code>10881bd70f…</code></td></tr>
+<tr><td>45</td><td>2026-10-26 17:32</td><td>MP, Kenilworth and Southam</td><td>government</td><td><span class="ok">delivered</span></td><td><code>dcce03ff4d…</code></td></tr>
+<tr><td>46</td><td>2026-10-26 17:32</td><td>MP, Stratford-on-Avon</td><td>government</td><td><span class="ok">delivered</span></td><td><code>8579cc06a8…</code></td></tr>
+<tr><td>47</td><td>2026-10-26 17:35</td><td>PrivacySolved</td><td>consultancy</td><td><span class="ok">delivered</span></td><td><code>4e6aac89c9…</code></td></tr>
+<tr><td>48</td><td>2026-10-26 17:35</td><td>Intelligent Transformation</td><td>consultancy</td><td><span class="bad">bounced</span></td><td><code>1c9219e5c2…</code></td></tr>
+<tr class="ev"><td>49</td><td>2026-10-26 17:35</td><td colspan="3">Bounce recorded: domain not found</td><td><code>8ade84</code></td></tr>
+<tr><td>50</td><td>2026-10-26 17:35</td><td>Adroit Cloud Consulting</td><td>consultancy</td><td><span class="ok">delivered</span></td><td><code>bdb480c880…</code></td></tr>
+<tr><td>51</td><td>2026-10-26 17:35</td><td>Critical P3M</td><td>consultancy</td><td><span class="ok">delivered</span></td><td><code>90ad132bb5…</code></td></tr>
+<tr><td>52</td><td>2026-10-26 17:35</td><td>Saracen Consultancy</td><td>consultancy</td><td><span class="ok">delivered</span></td><td><code>773e3b5378…</code></td></tr>
+<tr><td>53</td><td>2026-10-26 17:35</td><td>Zest Consult</td><td>consultancy</td><td><span class="ok">delivered</span></td><td><code>b9e9fb9d90…</code></td></tr>
+<tr><td>54</td><td>2026-10-26 17:36</td><td>Avenga</td><td>consultancy</td><td><span class="ok">delivered</span></td><td><code>ceb4da7ab6…</code></td></tr>
+<tr><td>55</td><td>2026-10-26 17:51</td><td>Generation Digital</td><td>AI agent builder</td><td><span class="ok">delivered</span></td><td><code>839f117722…</code></td></tr>
+<tr><td>56</td><td>2026-10-26 17:51</td><td>ICS.AI</td><td>AI agent builder</td><td><span class="ok">delivered</span></td><td><code>be26d22c0b…</code></td></tr>
+<tr><td>57</td><td>2026-10-26 17:51</td><td>Tovie AI</td><td>AI agent builder</td><td><span class="ok">delivered</span></td><td><code>c78dc9be13…</code></td></tr>
+<tr><td>58</td><td>2026-10-26 17:51</td><td>Adaptive</td><td>AI agent builder</td><td><span class="ok">delivered</span></td><td><code>0c917ec3a2…</code></td></tr>
+<tr><td>59</td><td>2026-10-26 17:51</td><td>Catapult CX</td><td>AI agent builder</td><td><span class="ok">delivered</span></td><td><code>5a7a155e62…</code></td></tr>
+<tr><td>60</td><td>2026-10-26 17:51</td><td>Applied Data Science Partners</td><td>AI agent builder</td><td><span class="ok">delivered</span></td><td><code>5002e3d16b…</code></td></tr>
+<tr><td>61</td><td>2026-10-26 17:51</td><td>Viewdeck Consulting</td><td>AI agent builder</td><td><span class="ok">delivered</span></td><td><code>3d30931832…</code></td></tr>
+<tr><td>62</td><td>2026-10-26 17:51</td><td>Alps Agility</td><td>AI agent builder</td><td><span class="ok">delivered</span></td><td><code>81fc8492be…</code></td></tr>
+<tr><td>63</td><td>2026-10-26 17:51</td><td>Datasumi</td><td>AI agent builder</td><td><span class="ok">delivered</span></td><td><code>0b846b4d7e…</code></td></tr>
+</tbody></table></div>
+<ul class="seals"><li><b>Seal 0</b> · 6 entries · root <code>dee7659564d45225…</code> · countersigned by witness <code>c41019550e7dfbec</code></li><li><b>Seal 1</b> · 22 entries · root <code>43f6b116a0c5fb62…</code> · countersigned by witness <code>c41019550e7dfbec</code></li><li><b>Seal 2</b> · 23 entries · root <code>46782ceb4d0490de…</code> · countersigned by witness <code>c41019550e7dfbec</code></li><li><b>Seal 3</b> · 64 entries · root <code>fc0fd4bbb14ccc40…</code> · countersigned by witness <code>c41019550e7dfbec</code></li></ul>
+<p style="color:var(--muted)">Signing key <code>978ea82671a3ac74</code> · final root <code>fc0fd4bbb14ccc4003d0b9cad62a4b87d8b320ad68afafd05b6379f9b5aff56c</code></p>
+</section>
+
+<section>
+<div class="eye">Verify it yourself</div>
+<h2>Don't trust us. <em>Check it.</em></h2>
+<p class="lede">Download the evidence and run the independent verifier. It's one file of JavaScript, written from the open specification, with no packages and no network access.</p>
+<p><a href="claude/claude_actions_pack.json">claude_actions_pack.json</a> · <a href="claude/claude_actions_check.json">claude_actions_check.json</a> · <a href="claude/verify_vectors.mjs">verify_vectors.mjs</a></p>
+<pre>node verify_vectors.mjs --check claude_actions_check.json
+
+PASS  Claude's outreach log, all 64 entries, against the witness's seals  ->  OK
+PASS  one email, alone, with its inclusion proof  ->  OK
+PASS  bounce deleted and history re-signed with the real key  ->  BAD_CONSISTENCY
+PASS  approver removed from one email (not re-signed)  ->  BAD_ROOT
+
+4/4 checks as expected (independent JavaScript verifier)</pre>
+</section>
+
+<section>
+<div class="cta">
+<div class="eye">Your AI agents, on the record</div>
+<h2>If your AI acts for customers, <em>can you prove what it did?</em></h2>
+<p class="lede" style="margin:0">An EDEN Evidence Check shows exactly what your AI's records can and can't prove, in 5 working days, for a £495 founding price.</p>
+<a class="btn" href="index.html#audit">Start an Evidence Check</a>
+</div>
+</section>
+
+<section style="font-size:14px;color:var(--muted)">
+<div class="eye">Honest notes</div>
+<ul>
+<li>This log was sealed on 26 October from Gmail's sent records, after the emails were sent. A production integration seals each action as it happens.</li>
+<li>Entries fingerprint the recipient and subject, not the message body. The Gmail message id lets the account holder produce the exact message.</li>
+<li>For this demonstration the witness is run by EDEN. In production it's an independent party, such as an insurer, an auditor or a customer.</li>
+<li>EDEN proves what was sent, to whom, in what order and on whose approval. It doesn't prove the emails were a good idea.</li>
+<li>Claude is a product of Anthropic. EDEN is independent and isn't affiliated with or endorsed by Anthropic.</li>
+</ul>
+</section>
+<footer>© 2026 EDEN · Daniel Clarke · <a href="report.html">Full test results</a></footer>
+</div></body></html>
