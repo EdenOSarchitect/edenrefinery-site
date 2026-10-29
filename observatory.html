@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<title>EDEN Observatory</title>
+<meta name="description" content="Float in orbit among the real satellites and stars, in their positions right now. Spot the ISS, Starlink, GPS and the constellations, then seal your logbook as an EDEN record anyone can check.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+:root{--bg:#03060a;--panel:rgba(10,16,23,.86);--panel2:rgba(17,27,37,.92);--ink:#eef2f5;--muted:#8d9cab;--line:rgba(160,185,210,.16);--foil:#d8b064;--blue:#4aa3ff;--ok:#5fcf92;--bad:#ff8a5c;
+--gold:linear-gradient(100deg,#f6e2ab 0%,#d8b064 38%,#a77c34 62%,#ecd08e 100%)}
+*{box-sizing:border-box}html,body{height:100%}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 "IBM Plex Sans",system-ui,sans-serif;overflow:hidden;overscroll-behavior:none}
+a{color:var(--foil)}code{font-family:"IBM Plex Mono",ui-monospace,monospace}
+button{font:inherit}
+#sky{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:none;cursor:grab}
+#sky:active{cursor:grabbing}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
+/* top bar */
+.top{position:fixed;left:0;right:0;top:0;display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding:max(12px,env(safe-area-inset-top)) 14px 0;pointer-events:none;z-index:5}
+.top>*{pointer-events:auto}
+.brand{display:flex;flex-direction:column;gap:2px;text-decoration:none;color:var(--ink)}
+.brand b{font-family:Archivo,sans-serif;letter-spacing:.22em;font-size:13px}
+.brand span{font:11px "IBM Plex Mono",monospace;color:var(--muted);letter-spacing:.12em;text-transform:uppercase}
+#hud{font:12px/1.55 "IBM Plex Mono",monospace;color:#c8d3dd;text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:8px 11px;max-width:min(430px,62vw);backdrop-filter:blur(8px)}
+#hud b{color:var(--ink);font-weight:500}#hud .gold{color:var(--foil)}
+.chipbar{display:flex;gap:8px}
+.chip{all:unset;cursor:pointer;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:8px 13px;font:12px "IBM Plex Mono",monospace;color:#dfe7ee;backdrop-filter:blur(8px);white-space:nowrap}
+.chip:hover,.chip[aria-pressed="true"]{border-color:var(--foil);color:var(--foil)}
+.chip .n{color:var(--foil)}
+/* reticle + labels */
+#reticle{position:fixed;left:50%;top:50%;width:46px;height:46px;margin:-23px 0 0 -23px;pointer-events:none;opacity:.5;z-index:2}
+#reticle::before,#reticle::after{content:"";position:absolute;background:rgba(216,176,100,.8)}
+#reticle::before{left:50%;top:0;bottom:0;width:1px;-webkit-mask:linear-gradient(#000 0 34%,transparent 34% 66%,#000 66%);mask:linear-gradient(#000 0 34%,transparent 34% 66%,#000 66%)}
+#reticle::after{top:50%;left:0;right:0;height:1px;-webkit-mask:linear-gradient(90deg,#000 0 34%,transparent 34% 66%,#000 66%);mask:linear-gradient(90deg,#000 0 34%,transparent 34% 66%,#000 66%)}
+#labels{position:fixed;inset:0;pointer-events:none;z-index:3;overflow:hidden}
+.lab{position:absolute;left:0;top:0;font:11px "IBM Plex Mono",monospace;color:#dfe7ee;white-space:nowrap;text-shadow:0 0 4px #000,0 0 8px #000;transform:translate(10px,-50%)}
+.lab.star{color:#b9c7d6}.lab.iss{color:var(--foil)}
+.ring{position:absolute;left:0;top:0;width:34px;height:34px;margin:-17px 0 0 -17px;border:1.5px solid var(--foil);border-radius:50%;box-shadow:0 0 14px rgba(216,176,100,.55)}
+.ring::after{content:"";position:absolute;inset:-7px;border:1px solid rgba(216,176,100,.45);border-radius:50%;animation:ping 2s infinite}
+@keyframes ping{0%{transform:scale(.8);opacity:.9}100%{transform:scale(1.6);opacity:0}}
+.arrow{position:absolute;left:0;top:0;width:0;height:0;border:8px solid transparent;border-left:14px solid var(--foil);margin:-8px 0 0 -7px;filter:drop-shadow(0 0 6px rgba(216,176,100,.7))}
+/* bottom controls */
+.ctrl{position:fixed;left:50%;transform:translateX(-50%);bottom:max(14px,env(safe-area-inset-bottom));display:flex;gap:8px;z-index:5;flex-wrap:wrap;justify-content:center;width:max-content;max-width:calc(100vw - 20px)}
+.btn{all:unset;cursor:pointer;user-select:none;-webkit-user-select:none;touch-action:none;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px 14px;font:13px "IBM Plex Sans",sans-serif;color:#dfe7ee;text-align:center;backdrop-filter:blur(8px);min-width:44px}
+.btn:hover{border-color:rgba(216,176,100,.6)}.btn.on,.btn:active{border-color:var(--foil);color:var(--foil)}
+.btn small{display:block;font:10px "IBM Plex Mono",monospace;color:var(--muted);letter-spacing:.06em}
+.hint{position:fixed;left:14px;bottom:max(16px,env(safe-area-inset-bottom));font:11px "IBM Plex Mono",monospace;color:var(--muted);z-index:4;max-width:240px;pointer-events:none}
+/* side sheets */
+.sheet{position:fixed;right:14px;top:86px;width:min(380px,calc(100vw - 28px));max-height:calc(100vh - 170px);overflow:auto;background:var(--panel2);border:1px solid var(--line);border-radius:18px;padding:16px 16px 14px;z-index:6;backdrop-filter:blur(10px);display:none;box-shadow:0 20px 60px rgba(0,0,0,.45)}
+.sheet.open{display:block}
+.sheet h3{font-family:Archivo,sans-serif;font-weight:700;font-size:20px;margin:2px 0 4px;letter-spacing:.01em}
+.sheet .eye{font:11px "IBM Plex Mono",monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.sheet p{margin:8px 0;color:#c8d3dd;font-size:14px}
+.sheet .x{all:unset;cursor:pointer;position:absolute;right:12px;top:10px;color:var(--muted);font-size:20px;line-height:1;padding:4px 6px}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:3px 14px;font:12.5px "IBM Plex Mono",monospace;margin:10px 0}
+.kv span{color:var(--muted)}.kv b{font-weight:500;color:var(--ink)}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.act{all:unset;cursor:pointer;background:var(--gold);color:#0b0f14;font-weight:600;font-size:13px;border-radius:999px;padding:9px 15px}
+.act.ghost{background:transparent;color:var(--ink);border:1px solid var(--line);font-weight:500}
+.act.ghost:hover{border-color:var(--foil)}
+.act[disabled]{opacity:.4;pointer-events:none}
+.goals{list-style:none;padding:0;margin:10px 0 4px}
+.goals li{display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px solid var(--line);font-size:14px;color:#c8d3dd}
+.goals li i{flex:0 0 18px;height:18px;border-radius:50%;border:1.5px solid var(--muted);margin-top:2px;font-style:normal;display:grid;place-items:center;font-size:11px}
+.goals li.done{color:var(--ink)}.goals li.done i{background:var(--ok);border-color:var(--ok);color:#06210f}
+.goals li small{display:block;color:var(--muted);font-size:12px}
+table.log{width:100%;border-collapse:collapse;font:11.5px "IBM Plex Mono",monospace;margin-top:8px}
+table.log td{padding:5px 4px;border-bottom:1px solid var(--line);vertical-align:top;color:#c8d3dd}
+table.log td:first-child{color:var(--muted);width:24px}table.log td:last-child{color:var(--muted)}
+table.log tr.bad td{color:var(--bad)}
+.status{margin-top:12px;padding:10px 12px;border-radius:12px;font-size:13px;background:rgba(255,255,255,.04);border:1px solid var(--line);color:#c8d3dd;word-break:break-word}
+.status.ok{border-color:rgba(95,207,146,.5);color:#bff0d3}.status.bad{border-color:rgba(255,138,92,.6);color:#ffd1bd}
+.toast{position:fixed;left:50%;bottom:calc(max(14px,env(safe-area-inset-bottom)) + 66px);transform:translateX(-50%);background:var(--panel2);border:1px solid var(--foil);color:var(--ink);border-radius:999px;padding:8px 16px;font-size:13px;z-index:8;opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap;max-width:calc(100vw - 24px);overflow:hidden;text-overflow:ellipsis}
+.toast.show{opacity:1}
+#loading{position:fixed;inset:0;display:grid;place-items:center;background:var(--bg);z-index:20;transition:opacity .6s}
+#loading div{text-align:center}#loading b{font-family:Archivo,sans-serif;letter-spacing:.24em;font-size:14px}
+#loading p{font:12px "IBM Plex Mono",monospace;color:var(--muted)}
+#loading.gone{opacity:0;pointer-events:none}
+.fine{font-size:12px!important;color:var(--muted)!important}
+@media (max-width:640px){
+  #hud{max-width:calc(100vw - 28px);font-size:11px;padding:7px 9px}
+  .top{flex-wrap:wrap}.brand{display:none}
+  .chipbar{width:100%;justify-content:flex-end;order:-1}
+  .sheet{top:auto;bottom:calc(max(14px,env(safe-area-inset-bottom)) + 64px);right:10px;left:10px;width:auto;max-height:52vh}
+  .hint{display:none}
+  .btn{padding:8px 0;font-size:12px;min-width:0;flex:1 1 0;border-radius:12px}.btn small{font-size:9px}
+  .ctrl{gap:5px;width:calc(100vw - 16px);flex-wrap:nowrap}
+  .toast{white-space:normal;text-align:center;border-radius:14px;width:calc(100vw - 32px)}
+}
+</style>
+</head>
+<body>
+<canvas id="sky" aria-label="A live 3D view from orbit: Earth, the real satellites in their calculated positions now, and the real stars and constellations. Drag to look, scroll or pinch to zoom, tap anything to identify it."></canvas>
+<div id="labels"></div>
+<div id="reticle"></div>
+
+<div class="top">
+  <a class="brand" href="index.html"><b>EDEN</b><span>Observatory · live</span></a>
+  <div id="hud">Loading the sky…</div>
+  <div class="chipbar">
+    <button class="chip" id="cGoals" aria-pressed="false">Spotter's list <span class="n" id="gN">0/9</span></button>
+    <button class="chip" id="cLog" aria-pressed="false">Logbook <span class="n" id="lN">0</span></button>
+    <button class="chip" id="cAbout" aria-pressed="false">?</button>
+  </div>
+</div>
+
+<div class="ctrl" role="toolbar" aria-label="Controls">
+  <button class="btn" id="bBack" title="Drift backwards (S)">◀<small>DRIFT</small></button>
+  <button class="btn" id="bFwd" title="Drift forwards (W)">▶<small>DRIFT</small></button>
+  <button class="btn" id="bAlt" title="Change orbit (O)"><span id="altName">Low orbit</span><small>ORBIT</small></button>
+  <button class="btn" id="bOut" title="Zoom out (−)">−<small>ZOOM</small></button>
+  <button class="btn" id="bIn" title="Zoom in (+)">+<small>ZOOM</small></button>
+  <button class="btn" id="bHome" title="Look ahead (H)">⌂<small>AHEAD</small></button>
+</div>
+<div class="hint">Drag to look · scroll to zoom · tap anything to identify it · W/S drift · O change orbit</div>
+
+<section class="sheet" id="info" aria-live="polite"><button class="x" data-close="info" aria-label="Close">×</button><div id="infoBody"></div></section>
+
+<section class="sheet" id="goals"><button class="x" data-close="goals" aria-label="Close">×</button>
+  <div class="eye">Spotter's list</div><h3>Things to find tonight</h3>
+  <p class="fine">Everything here is really up there right now. Tap it to log it.</p>
+  <ul class="goals" id="goalList"></ul>
+</section>
+
+<section class="sheet" id="log"><button class="x" data-close="log" aria-label="Close">×</button>
+  <div class="eye">Your logbook</div><h3>Sealed as you go</h3>
+  <p class="fine">Every sighting is fingerprinted (SHA-256) on your device. Seal the logbook and anyone can check that nothing was added, removed or changed afterwards.</p>
+  <table class="log"><tbody id="logBody"></tbody></table>
+  <div class="row">
+    <button class="act" id="bSeal" disabled>Seal my logbook</button>
+    <button class="act ghost" id="bCheck" disabled>Check it</button>
+    <button class="act ghost" id="bCheat" disabled>Try to cheat</button>
+    <button class="act ghost" id="bSave" disabled>Download</button>
+  </div>
+  <div class="status" id="logStatus">Spot something to start your logbook.</div>
+</section>
+
+<section class="sheet" id="about"><button class="x" data-close="about" aria-label="Close">×</button>
+  <div class="eye">What you are looking at</div><h3>Real sky, real time</h3>
+  <p><b>Satellites:</b> positions calculated in your browser right now from public orbit data (CelesTrak), refreshed every 6 hours, using the standard SGP4 model. Accurate to a few kilometres; this is a calculation, not live tracking. Satellites are drawn as dots and icons, not to scale.</p>
+  <p><b>Stars and constellations:</b> real positions of 5,044 stars visible to the eye, with the IAU constellation figures and borders (d3-celestial, BSD licence).</p>
+  <p><b>Earth:</b> maps based on NASA imagery, lit by the Sun where it is right now. Clouds are a fixed picture, not today's weather.</p>
+  <p><b>Your orbit:</b> real two-body gravity. You orbit Earth like a satellite does.</p>
+  <p><b>Your logbook:</b> a real EDEN record. Sightings are hashed into a Merkle tree (RFC 6962) and sealed with an Ed25519 signature, all on your device. The observing is a game; the seal is real cryptography.</p>
+  <p class="fine">Credits: CelesTrak (orbits), d3-celestial by Olaf Frohn (stars, BSD-3), satellite.js (MIT), Solar System Scope (Earth maps, CC BY 4.0) and three.js examples, based on NASA imagery.</p>
+</section>
+
+<div class="toast" id="toast"></div>
+<div id="loading"><div><b>EDEN</b><p id="loadMsg">Calculating where everything is right now…</p></div></div>
+
+<script type="module" src="game/game.js"></script>
+</body>
+</html>

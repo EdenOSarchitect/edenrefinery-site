@@ -20,6 +20,17 @@ jobs:
         run: |
           curl -fsSL "https://celestrak.org/NORAD/elements/gp.php?GROUP=resource&FORMAT=tle" -o tle.new
           if [ "$(grep -c '^1 ' tle.new)" -gt 10 ]; then mv tle.new tle.txt; else echo "Download looked wrong; keeping old data"; fi
+      - name: Satellite constellations for the Observatory (CelesTrak)
+        run: |
+          : > sats.new
+          for g in stations starlink oneweb gps-ops galileo glo-ops beidou iridium-NEXT planet weather resource geo; do
+            if curl -fsSL "https://celestrak.org/NORAD/elements/gp.php?GROUP=$g&FORMAT=tle" -o g.tmp && [ "$(grep -c '^1 ' g.tmp)" -gt 0 ]; then
+              echo "# GROUP $g" >> sats.new; cat g.tmp >> sats.new
+            else echo "Group $g: download failed or empty; skipping"; fi
+            sleep 3
+          done
+          rm -f g.tmp
+          if [ "$(grep -c '^1 ' sats.new)" -gt 1000 ]; then mv sats.new sats.txt; else echo "Download looked wrong; keeping old data"; rm -f sats.new; fi
       - name: Land outlines (Natural Earth, once)
         run: |
           [ -s land.geojson ] || curl -fsSL "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_110m_land.geojson" -o land.geojson || echo "Land download failed"
@@ -44,5 +55,5 @@ jobs:
         run: |
           git config user.name "orbit-data-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add -A tle.txt land.geojson receptions.json eden_pubkey.txt globe.marble.json tex 2>/dev/null || true
+          git add -A tle.txt sats.txt land.geojson receptions.json eden_pubkey.txt globe.marble.json tex 2>/dev/null || true
           git diff --cached --quiet || (git commit -m "Refresh orbital data" && git pull --rebase && git push)
