@@ -1,20 +1,20 @@
 {
  "schema": "EDEN-MARBLE-FEED-v1",
  "what": "Every file the edenrefinery.com globe uses, each in a MARBLE/1.0 envelope, hash-chained and sealed by EDEN. Satellite positions drawn from these files are modelled, not received.",
- "sealed_at": "2026-11-07T13:06:15Z",
+ "sealed_at": "2026-11-07T21:53:53Z",
  "count": 10,
- "head": "67759934ee4b5e008d809d31bd0af18534daf008fc34385939cedf29e0946259",
+ "head": "41e209b6d0569d68615f176ffdaf80511f9d4bde0ef45126b570a48e68000649",
  "pub": "bf0155e868b2df48ede42a0e1bbe7b41d5fc4a267c2cc36686964c65ac2ada33",
  "key": "40f497df261b1a10",
  "stream": [
   {
    "marble": {
     "schema": "MARBLE/1.0",
-    "event_id": "ed59166d-447b-415d-86ae-8a26b490b221",
+    "event_id": "49c69266-6784-4724-8a49-d237499e1bef",
     "event_kind": "ORBIT_DATA",
     "sequence": 0,
     "time": {
-     "wall_utc": "2026-11-07T13:06:15Z",
+     "wall_utc": "2026-11-07T21:53:53Z",
      "label": "UNTRUSTED"
     },
     "source": {
@@ -56,18 +56,18 @@
     "ledger": {
      "previous_hash": "0000000000000000000000000000000000000000000000000000000000000000",
      "chain_index": 0,
-     "packet_hash": "687ddb4ae590f633f423225604ddda2c0fd263aa65d0cabbd9b9185c7f1902a3"
+     "packet_hash": "5da42588c8bae3f78fb8776b711e928594348c06fe03836f8fcb02b856ddd8b0"
     }
    }
   },
   {
    "marble": {
     "schema": "MARBLE/1.0",
-    "event_id": "f31846e6-5bc6-4b2c-b7d4-586ea5443511",
+    "event_id": "2ddfbcf4-4bb7-4a1b-b553-edc39e46242a",
     "event_kind": "RECEPTIONS",
     "sequence": 1,
     "time": {
-     "wall_utc": "2026-11-07T13:06:15Z",
+     "wall_utc": "2026-11-07T21:53:53Z",
      "label": "UNTRUSTED"
     },
     "source": {
@@ -76,21 +76,21 @@
      "operator_version": "1"
     },
     "state": {
-     "input_hash": "7392ff83827bfe6cefea0d6adc4587bb3cc67d00885941ea4aa11f67821946ee",
+     "input_hash": "f6c967d0b3daaba5d6c036cf417462850f4c57821dea775f9496a0fb1e881f55",
      "output_hash": null,
      "dimension": null
     },
     "payload": {
      "path": "receptions.json",
-     "bytes": 31055,
-     "sha256": "7392ff83827bfe6cefea0d6adc4587bb3cc67d00885941ea4aa11f67821946ee",
+     "bytes": 30888,
+     "sha256": "f6c967d0b3daaba5d6c036cf417462850f4c57821dea775f9496a0fb1e881f55",
      "detail": "60 real receptions · SatNOGS · EDEN-signed"
     },
     "chrysalis": {
      "status": "NOT_MEASURED"
     },
     "bandwidth": {
-     "raw": 31055,
+     "raw": 30888,
      "effective": null,
      "compression_ratio": null,
      "state": "DELIVERED",
@@ -99,7 +99,7 @@
     "keep": {
      "projected": true,
      "projection_score": null,
-     "state_hash": "7392ff83827bfe6cefea0d6adc4587bb3cc67d00885941ea4aa11f67821946ee"
+     "state_hash": "f6c967d0b3daaba5d6c036cf417462850f4c57821dea775f9496a0fb1e881f55"
     },
     "entropy": {
      "status": "NOT_MEASURED"
@@ -107,20 +107,20 @@
     "receipt": null,
     "note": "observes, never alters",
     "ledger": {
-     "previous_hash": "687ddb4ae590f633f423225604ddda2c0fd263aa65d0cabbd9b9185c7f1902a3",
+     "previous_hash": "5da42588c8bae3f78fb8776b711e928594348c06fe03836f8fcb02b856ddd8b0",
      "chain_index": 1,
-     "packet_hash": "b9919ad676545329741d8aad6c830293d71d88fa476ef73d9225452d62cd6182"
+     "packet_hash": "455cdb769edbd004b014a54cd341ffe75e7334ed8be623b3c69521fda2ea142c"
     }
    }
   },
   {
    "marble": {
     "schema": "MARBLE/1.0",
-    "event_id": "10e18956-8063-4117-b514-a78f677ce51a",
+    "event_id": "a701ff75-4bdc-4767-ab27-4dd18ada4772",
     "event_kind": "LAND_OUTLINES",
     "sequence": 2,
     "time": {
-     "wall_utc": "2026-11-07T13:06:15Z",
+     "wall_utc": "2026-11-07T21:53:53Z",
      "label": "UNTRUSTED"
     },
     "source": {
@@ -160,20 +160,20 @@
     "receipt": null,
     "note": "observes, never alters",
     "ledger": {
-     "previous_hash": "b9919ad676545329741d8aad6c830293d71d88fa476ef73d9225452d62cd6182",
+     "previous_hash": "455cdb769edbd004b014a54cd341ffe75e7334ed8be623b3c69521fda2ea142c",
      "chain_index": 2,
-     "packet_hash": "b544eef3325ce8492da852d70f98efce9adcbb508147d9af23bf92c8932edf27"
+     "packet_hash": "b1a1f1d36abbf74dd888b1c38412e1650e283343400321664ec59a670306963f"
     }
    }
   },
   {
    "marble": {
     "schema": "MARBLE/1.0",
-    "event_id": "660e3578-f0e5-4771-a7af-41fca71e15eb",
+    "event_id": "76e67ee3-cd6b-46e9-bc9b-2905a4b42ef1",
     "event_kind": "EARTH_IMAGERY",
     "sequence": 3,
     "time": {
-     "wall_utc": "2026-11-07T13:06:15Z",
+     "wall_utc": "2026-11-07T21:53:53Z",
      "label": "UNTRUSTED"
     },
     "source": {
@@ -213,20 +213,20 @@
     "receipt": null,
     "note": "observes, never alters",
     "ledger": {
-     "previous_hash": "b544eef3325ce8492da852d70f98efce9adcbb508147d9af23bf92c8932edf27",
+     "previous_hash": "b1a1f1d36abbf74dd888b1c38412e1650e283343400321664ec59a670306963f",
      "chain_index": 3,
-     "packet_hash": "146ea98680af25da19b983943ad4dbb5df29ae50219deecaa33ea5fe0a430535"
+     "packet_hash": "7930fba21d67b8d834910203f8788c8b418114fa92d5ebe961c4696f81b949dd"
     }
    }
   },
   {
    "marble": {
     "schema": "MARBLE/1.0",
-    "event_id": "5d14b4ef-bd2b-4bb3-b1cc-8f7dbdd4afdf",
+    "event_id": "0a9f72bd-8145-4c6d-9d72-31466b97a612",
     "event_kind": "EARTH_IMAGERY",
     "sequence": 4,
     "time": {
-     "wall_utc": "2026-11-07T13:06:15Z",
+     "wall_utc": "2026-11-07T21:53:53Z",
      "label": "UNTRUSTED"
     },
     "source": {
@@ -266,20 +266,20 @@
     "receipt": null,
     "note": "observes, never alters",
     "ledger": {
-     "previous_hash": "146ea98680af25da19b983943ad4dbb5df29ae50219deecaa33ea5fe0a430535",
+     "previous_hash": "7930fba21d67b8d834910203f8788c8b418114fa92d5ebe961c4696f81b949dd",
      "chain_index": 4,
-     "packet_hash": "59987356ceaf7f5963745cdcc8ae03e48466f1608e9d3128d6e9c66d4122eab9"
+     "packet_hash": "55b5cb7d728d724b24198437d1c5788b3b3fbd0a005a521aa2455c70776419f5"
     }
    }
   },
   {
    "marble": {
     "schema": "MARBLE/1.0",
-    "event_id": "16813f1c-49ed-4c53-8078-29c22e60206e",
+    "event_id": "ef7eaa53-a4c2-4fb6-9d19-960c430e89ea",
     "event_kind": "EARTH_IMAGERY",
     "sequence": 5,
     "time": {
-     "wall_utc": "2026-11-07T13:06:15Z",
+     "wall_utc": "2026-11-07T21:53:53Z",
      "label": "UNTRUSTED"
     },
     "source": {
@@ -319,20 +319,20 @@
     "receipt": null,
     "note": "observes, never alters",
     "ledger": {
-     "previous_hash": "59987356ceaf7f5963745cdcc8ae03e48466f1608e9d3128d6e9c66d4122eab9",
+     "previous_hash": "55b5cb7d728d724b24198437d1c5788b3b3fbd0a005a521aa2455c70776419f5",
      "chain_index": 5,
-     "packet_hash": "97044e1f6ca24714380ed7c5dc451bb2d9e1fb63b04808fbc670fbbe3afcabd2"
+     "packet_hash": "afe40723bd66e0880a42cd09f674c2da42b1e07aabec4678d4b47eca9eab9cc1"
     }
    }
   },
   {
    "marble": {
     "schema": "MARBLE/1.0",
-    "event_id": "e13ab7fb-0e58-41b2-bb9e-2a4441c62671",
+    "event_id": "ff67ab3e-c2e0-459b-89ac-c9aa7bead5fc",
     "event_kind": "EARTH_IMAGERY",
     "sequence": 6,
     "time": {
-     "wall_utc": "2026-11-07T13:06:15Z",
+     "wall_utc": "2026-11-07T21:53:53Z",
      "label": "UNTRUSTED"
     },
     "source": {
@@ -372,20 +372,20 @@
     "receipt": null,
     "note": "observes, never alters",
     "ledger": {
-     "previous_hash": "97044e1f6ca24714380ed7c5dc451bb2d9e1fb63b04808fbc670fbbe3afcabd2",
+     "previous_hash": "afe40723bd66e0880a42cd09f674c2da42b1e07aabec4678d4b47eca9eab9cc1",
      "chain_index": 6,
-     "packet_hash": "6ab912eb3e5c58adbcc80616fb9645167148507788038c87721c5add7e9c0585"
+     "packet_hash": "e24a131bd3df9d98c3b431807457cb1751dddacfcbd5bb686a3fd115cea1d2c1"
     }
    }
   },
   {
    "marble": {
     "schema": "MARBLE/1.0",
-    "event_id": "23cc8178-7054-4c54-ae7e-d02f3456740a",
+    "event_id": "21a5d799-fc67-4f00-893a-1a05f7ac1c77",
     "event_kind": "EARTH_IMAGERY",
     "sequence": 7,
     "time": {
-     "wall_utc": "2026-11-07T13:06:15Z",
+     "wall_utc": "2026-11-07T21:53:53Z",
      "label": "UNTRUSTED"
     },
     "source": {
@@ -425,20 +425,20 @@
     "receipt": null,
     "note": "observes, never alters",
     "ledger": {
-     "previous_hash": "6ab912eb3e5c58adbcc80616fb9645167148507788038c87721c5add7e9c0585",
+     "previous_hash": "e24a131bd3df9d98c3b431807457cb1751dddacfcbd5bb686a3fd115cea1d2c1",
      "chain_index": 7,
-     "packet_hash": "9e728eb72afa97f461f9de9332f5bb36ff049bff853a5e08c2a7d9903305cbe6"
+     "packet_hash": "76827058b4df02dc94d83f7335f483a7debb39380bfa390832af16abaa791072"
     }
    }
   },
   {
    "marble": {
     "schema": "MARBLE/1.0",
-    "event_id": "a7597a6f-fe2a-4cfb-8301-9178a5834b78",
+    "event_id": "407e3e71-24a8-48d5-b1db-84568d731064",
     "event_kind": "EARTH_IMAGERY",
     "sequence": 8,
     "time": {
-     "wall_utc": "2026-11-07T13:06:15Z",
+     "wall_utc": "2026-11-07T21:53:53Z",
      "label": "UNTRUSTED"
     },
     "source": {
@@ -478,20 +478,20 @@
     "receipt": null,
     "note": "observes, never alters",
     "ledger": {
-     "previous_hash": "9e728eb72afa97f461f9de9332f5bb36ff049bff853a5e08c2a7d9903305cbe6",
+     "previous_hash": "76827058b4df02dc94d83f7335f483a7debb39380bfa390832af16abaa791072",
      "chain_index": 8,
-     "packet_hash": "a79b9967e513eed3fcb000fe2135eae951cb1f7dcc079a6445a4c508c6860b89"
+     "packet_hash": "4e4651be90a555692cdb9fd22560781cd497e7fbb5d8098bc5c8f47a6a273f09"
     }
    }
   },
   {
    "marble": {
     "schema": "MARBLE/1.0",
-    "event_id": "0eaa05b2-55d3-41ec-b859-08b9a9c72146",
+    "event_id": "405e9d5a-5518-44f6-b279-4b27940741e5",
     "event_kind": "EARTH_IMAGERY",
     "sequence": 9,
     "time": {
-     "wall_utc": "2026-11-07T13:06:15Z",
+     "wall_utc": "2026-11-07T21:53:53Z",
      "label": "UNTRUSTED"
     },
     "source": {
@@ -531,12 +531,12 @@
     "receipt": null,
     "note": "observes, never alters",
     "ledger": {
-     "previous_hash": "a79b9967e513eed3fcb000fe2135eae951cb1f7dcc079a6445a4c508c6860b89",
+     "previous_hash": "4e4651be90a555692cdb9fd22560781cd497e7fbb5d8098bc5c8f47a6a273f09",
      "chain_index": 9,
-     "packet_hash": "67759934ee4b5e008d809d31bd0af18534daf008fc34385939cedf29e0946259"
+     "packet_hash": "41e209b6d0569d68615f176ffdaf80511f9d4bde0ef45126b570a48e68000649"
     }
    }
   }
  ],
- "sig": "27b32594c4d47afb3d35c6ff9f4f353e0e02dea166082e897f03d639243d145fd11d707d56e03cda41ed702e7bd505d624dd70d8ff47ad148f8aeb015016530c"
+ "sig": "a6f4b781a32ce506aae03a8945d34e394a292eeb5ed46ad4622e81a0a89d4fd17cb306f0c4b307ae7692c60a346a448ea4249e4f1b6896c35627547dcb55480a"
 }
