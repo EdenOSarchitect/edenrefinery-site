@@ -91,6 +91,28 @@
     "modelled_70b_audit_usd_per_year_eden": "357-1234",
     "modelled_assumptions": "1,000,000 decisions/day, EDEN verifies all + re-runs 1%, H100 USD 1.99-6.88/h at 40% utilisation"
    }
+  },
+  {
+   "v": 1,
+   "log": "edenrefinery.com/bench/verify-vs-rerun",
+   "i": 4,
+   "t": "2026-11-09T16:39:19Z",
+   "kind": "benchmark",
+   "actor": "github-actions",
+   "input": null,
+   "model": null,
+   "body": {
+    "what": "benchmark: check every decision of a pass vs re-run a 0.09 GFLOP stand-in AI per image",
+    "runner": "Linux x86_64",
+    "tiles": 1000,
+    "rerun_us_per_decision": 6826,
+    "verify_all_ns_per_decision": 2233,
+    "verify_one_us": 235,
+    "checking_cheaper_x": 3057,
+    "modelled_70b_audit_usd_per_year_rerun_all": "35701-123430",
+    "modelled_70b_audit_usd_per_year_eden": "357-1234",
+    "modelled_assumptions": "1,000,000 decisions/day, EDEN verifies all + re-runs 1%, H100 USD 1.99-6.88/h at 40% utilisation"
+   }
   }
  ],
  "seals": [
@@ -145,6 +167,19 @@
    "prev_seal": "14963f2a0c9229fb6c8fef7f19a0f564825c7f092a4ffcbc9388c6be9eb22175",
    "note": "weekly benchmark",
    "sig": "d78e41d7b11a6e43bc457fecbd3e016900ea3178b225de5617ed14ca64db6f25c8c8b646fdaf7269eb99c10decb1e0396290551ddc412fdb7d0cff693bbdd800"
+  },
+  {
+   "v": 1,
+   "type": "seal",
+   "log": "edenrefinery.com/bench/verify-vs-rerun",
+   "seq": 4,
+   "n": 5,
+   "root": "05e8509e74080036677c335a1db1b2bb65a2f9a8949bcf8ccfe6951b66763fb5",
+   "t": "2026-11-09T16:39:19Z",
+   "key": "40f497df261b1a10",
+   "prev_seal": "69e0ed2114026cabd2113ce28cee30d8dd784966ac6192c56c195fbd2cc21451",
+   "note": "weekly benchmark",
+   "sig": "ddd19faeab50968315cff0d8ef45113fc0f3c0831b66c4a74b9647f640f479e58e1ec48428e0186334ecfb89d57377c598399ff7be99de5ee92c8018da861d04"
   }
  ],
  "consistency": [
@@ -158,6 +193,9 @@
    "1ca48acc309eb26744600102e7f6acfbba6f295c1619cf615eee9532de1d28bb",
    "8fe39e6a1ec8ca8e2adef6ffa2bfdfb1d13c76a0a25b46ebe84f37039fdfedd6",
    "eb0c1cc2f250816b71be780a5a8991ba5176e4546175eb1f69abe7a298284723"
+  ],
+  [
+   "462e95dc93bcc679ea2b585dc76a499d8b3bbaf91ffa69498a1f1d53c628b08f"
   ]
  ]
 }
