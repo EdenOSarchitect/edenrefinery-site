@@ -135,6 +135,28 @@
     "modelled_70b_audit_usd_per_year_eden": "357-1234",
     "modelled_assumptions": "1,000,000 decisions/day, EDEN verifies all + re-runs 1%, H100 USD 1.99-6.88/h at 40% utilisation"
    }
+  },
+  {
+   "v": 1,
+   "log": "edenrefinery.com/bench/verify-vs-rerun",
+   "i": 6,
+   "t": "2026-11-23T18:29:44Z",
+   "kind": "benchmark",
+   "actor": "github-actions",
+   "input": null,
+   "model": null,
+   "body": {
+    "what": "benchmark: check every decision of a pass vs re-run a 0.09 GFLOP stand-in AI per image",
+    "runner": "Linux x86_64",
+    "tiles": 1000,
+    "rerun_us_per_decision": 4236,
+    "verify_all_ns_per_decision": 1563,
+    "verify_one_us": 131,
+    "checking_cheaper_x": 2711,
+    "modelled_70b_audit_usd_per_year_rerun_all": "35701-123430",
+    "modelled_70b_audit_usd_per_year_eden": "357-1234",
+    "modelled_assumptions": "1,000,000 decisions/day, EDEN verifies all + re-runs 1%, H100 USD 1.99-6.88/h at 40% utilisation"
+   }
   }
  ],
  "seals": [
@@ -215,6 +237,19 @@
    "prev_seal": "83d831916836bce3f7803643f87f6d04179f26863041fcc21c6d49ddbdb4130b",
    "note": "weekly benchmark",
    "sig": "1b2d76e801394a0c758272df70027e9c368e5a7b6c871d039d2eb01c89d4e174488f401dda37ae2dc5d856d2ec9d3ffa881ce4185e6e4a84ccd155db8000420d"
+  },
+  {
+   "v": 1,
+   "type": "seal",
+   "log": "edenrefinery.com/bench/verify-vs-rerun",
+   "seq": 6,
+   "n": 7,
+   "root": "fc5e5af8c3726be1af512290f7d497e952898a4ba02752ce4e12af458663cfb2",
+   "t": "2026-11-23T18:29:44Z",
+   "key": "40f497df261b1a10",
+   "prev_seal": "295a9e7cdb3f217e6f533b0174e431bd06b1b6d71afc1046fc553de3fe5f1831",
+   "note": "weekly benchmark",
+   "sig": "6c95eebd9aeb3ef1eddeb9b80e5587105ba7d2ed3a0296241a77329cb7f68063feb04bd2cb78a19df88d48f856430e530538bcf2b8d20743c28788d191887709"
   }
  ],
  "consistency": [
@@ -235,6 +270,11 @@
   [
    "462e95dc93bcc679ea2b585dc76a499d8b3bbaf91ffa69498a1f1d53c628b08f",
    "aa21b0808e62ff0a0a848c089942e4fc6e8ba5013185b53783ea2b7c6d8a05d2",
+   "3d1da2d17b6127cb0edab316266e83faa8220878ca560c6a7cf6a11e18e95c2c"
+  ],
+  [
+   "7a35e4ae3b24c5c6961b2d7f677c8bf09538c1b6dd578ada8b5721799926ae1f",
+   "ae5a6abd563f96fbd445e4741d18c4c0b689e285fcbe11ab156ea1ca6e54e360",
    "3d1da2d17b6127cb0edab316266e83faa8220878ca560c6a7cf6a11e18e95c2c"
   ]
  ]
